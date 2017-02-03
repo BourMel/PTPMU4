@@ -1,0 +1,31 @@
+/*Field*/
+
+.air, .sol, .test, .bosse, .creux {
+    position:absolute;
+    /*changer la position dans field.js*/
+    height:50px;
+    width:70px;
+    //border:1px solid grey;
+}
+
+.air {
+    background-color:lightgoldenrodyellow;
+}
+
+.sol {
+    background-color:black;
+}
+
+.test {
+    background-color:red;
+}
+
+.bosse {
+     background-color:black;
+    border-radius:4px 4px 0 0;
+}
+
+.creux {
+    background-color:lightgoldenrodyellow;
+    border-radius:0 0 4px 4px;
+}
