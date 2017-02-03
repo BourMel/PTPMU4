@@ -33,19 +33,6 @@ function Field (height, width, maxHeightGround) {
         }
     }
     
-    //création des creux du terrain (parcours de la ligne de l'horizon)
-    for(m=0 ; m < this.width ; m++) {
-        //si l'un des 2 précédents = air, transformer en sol automatiqu.
-        if((this.content[(this.height-this.maxHeightGround) * this.width + m-1]) == 0 || (this.content[(this.height-this.maxHeightGround) * this.width + m-2]) == 0) {
-            this.content[(this.height-this.maxHeightGround) * this.width + m] = 1;
-        //probabilité que pas de creux
-        } else if(Math.random() < 0.9) {
-           this.content[(this.height-this.maxHeightGround) * this.width + m] = 1;
-        } else {
-            this.content[(this.height-this.maxHeightGround) * this.width + m] = 4; //valeur creux
-        }
-    }
-    
     //création de bosses du terrain (parcours de la ligne au dessus de l'horizon)
     for(n=0 ; n < this.width ; n++) {
         //si l'un des 2 précédents = sol, transformer en air automatiqu.
@@ -59,6 +46,22 @@ function Field (height, width, maxHeightGround) {
         }
     }
     
+    //faire en sorte que la deuxième colonne (position héros) ne soit pas un creux
+    //création des creux du terrain (parcours de la ligne de l'horizon)
+    for(m=0 ; m < this.width ; m++) {
+        //si l'un des 2 précédents = air, ou si celui du dessus=bosse transformer en sol automatiqu
+        if((this.content[(this.height-this.maxHeightGround) * this.width + m-1]) == 0 || (this.content[(this.height-this.maxHeightGround) * this.width + m-2]) == 0 || (this.content[(this.height-1-this.maxHeightGround) * this.width + m]) == 3) {
+            this.content[(this.height-this.maxHeightGround) * this.width + m] = 1;
+        //probabilité que pas de creux
+        } else if(Math.random() < 0.8) {
+           this.content[(this.height-this.maxHeightGround) * this.width + m] = 1;
+        } else {
+            //création d'un creux sur toute la hauteur
+            for(o=0; o < this.height ; o++) {
+                this.content[(this.height-this.maxHeightGround+o) * this.width + m] = 0;
+            }
+        }
+    }
 }
 
 Field.prototype.display = function () {
@@ -75,8 +78,6 @@ Field.prototype.display = function () {
                 bloc.setAttribute("class", "test");
             } else if (this.content[j * this.width + i] == 3) {
                 bloc.setAttribute("class", "bosse");
-            } else if (this.content[j * this.width + i] == 4) {
-                bloc.setAttribute("class", "creux");
             }
             
             //à adapter à la taille des blocs
@@ -87,5 +88,10 @@ Field.prototype.display = function () {
     }
 }
 
-var jeu = new Field(10, 40, 5);
+//lit quel type de case
+Field.prototype.checkBloc = function (ligne, colonne) {
+    return(this.content[ligne*this.width + colonne]);
+}
+
+var jeu = new Field(10, 80, 4);
 jeu.display();

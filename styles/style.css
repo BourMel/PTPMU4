@@ -1,6 +1,6 @@
 /*Field*/
 
-.air, .sol, .test, .bosse, .creux {
+.air, .sol, .test, .bosse {
     position:absolute;
     /*changer la position dans field.js*/
     height:50px;
@@ -25,7 +25,14 @@
     border-radius:4px 4px 0 0;
 }
 
-.creux {
-    background-color:lightgoldenrodyellow;
-    border-radius:0 0 4px 4px;
+/*hero*/
+
+.hero {
+    position:absolute;
+    width:70px;
+    height:50px;
+    /*largeur d'une case*/
+    left:70px;
+    background-color:black;
+    border:1px solid red;
 }
