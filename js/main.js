@@ -1,6 +1,6 @@
 $(document).ready(function(){
-    $("#hero").hide();
-    $("#field").hide();
+    //$("#hero").hide();
+    //$("#field").hide();
     
     document.getElementById("butonPlay").addEventListener("click", function() {
         $("#startGame").hide();
