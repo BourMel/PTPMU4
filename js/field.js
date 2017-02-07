@@ -116,3 +116,4 @@ Field.prototype.move = function(direction) {
 
 var game = new Field(10, 80, 4, 0);
 game.display();
+//le terrain est créé dans main.js

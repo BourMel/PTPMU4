@@ -45,6 +45,7 @@ Hero.prototype.move = function(direction) {
     this.display();
 }
 
+//le heros est créé dans main.js
 var fox = new Hero (1, 1, 0);
 fox.display();
 fox.findGround();
