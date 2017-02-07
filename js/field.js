@@ -90,7 +90,7 @@ Field.prototype.display = function () {
 
 //lit quel type de case
 Field.prototype.checkBloc = function (ligne, colonne) {
-    return(this.content[ligne*this.width + colonne]);
+    return this.content[ligne*this.width + colonne];
 }
 
 var jeu = new Field(10, 80, 4);
