@@ -1,7 +1,8 @@
-function Field (height, width, maxHeightGround) {
+function Field (height, width, maxHeightGround, positionX) {
     this.height = height;
     this.width = width;
     this.maxHeightGround = maxHeightGround;
+    this.positionX = positionX;
     
     //pour manipuler la difficulté du niveau, les probabilités doivent être un paramètre de la fonction
     
@@ -65,6 +66,13 @@ function Field (height, width, maxHeightGround) {
 }
 
 Field.prototype.display = function () {
+    var field = document.createElement("div");
+    field.setAttribute("id", "field");
+    document.body.appendChild(field);
+
+    var HTMLfield = document.getElementById("field");
+    HTMLfield.style.left = (this.positionX*70) + "px";
+
     for(i=0 ; i<this.width ; i++) {
         for(j=0 ; j<this.height ; j++) {
             var bloc = document.createElement("div");
@@ -83,7 +91,7 @@ Field.prototype.display = function () {
             //à adapter à la taille des blocs
             bloc.style.left = (i*70) + "px";
             bloc.style.top = (j*50) + "px";
-            document.body.appendChild(bloc);
+            HTMLfield.appendChild(bloc);
         }
     }
 }
@@ -93,5 +101,18 @@ Field.prototype.checkBloc = function (ligne, colonne) {
     return this.content[ligne*this.width + colonne];
 }
 
-var game = new Field(10, 80, 4);
+//déplace le décor (appelé par controls.js)
+Field.prototype.move = function(direction) {
+    switch(direction) {
+        case 1: //gauche
+            this.positionX += 1;
+            break;
+        case 3: //droite
+            this.positionX -= 1;
+            break;
+    }
+    this.display();
+}
+
+var game = new Field(10, 80, 4, 0);
 game.display();

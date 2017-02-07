@@ -1,6 +1,7 @@
-function Hero (x, y) {
+function Hero (x, y, fieldPositionX) {
     this.x = x;
     this.y = y;
+    this.fieldPositionX = fieldPositionX;
 
     var hero = document.createElement("div");
     hero.setAttribute("id", "hero");
@@ -12,7 +13,7 @@ function Hero (x, y) {
 Hero.prototype.display = function() {
     var HTMLhero = document.getElementById("hero");
     HTMLhero.style.top = (this.y*50) + "px"; //devra être adapté automatiquement à la hauteur du sol
-    HTMLhero.style.left = (this.x*70) + "px";
+    HTMLhero.style.left = (this.x*70 + this.fieldPositionX*70) + "px";
 }
 
 //placer le héros automatiquement sur le sol (chute !)
