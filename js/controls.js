@@ -17,6 +17,6 @@ document.onkeydown = function(event) {
             console.log("Down");
             break;
     }
-    
-    return direction;
+
+    game.move(direction);
 }

@@ -1,5 +1,14 @@
 /*Field*/
 
+/*cache le surplus de terrain*/
+body {
+    overflow:hidden;
+}
+
+#field {
+    position:absolute;
+}
+
 .air, .sol, .test, .bosse {
     position:absolute;
     /*changer la position dans field.js*/
