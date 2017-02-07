@@ -1,4 +1,81 @@
-/*Field*/
+/* ******************************************************************** */
+/* UTILITAIRES */
+/* ******************************************************************** */
+@font-face {
+  font-family: Beauty and the Beast; 
+  src: url(Beauty and the Beast Sample.otf);
+}
+
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i');
+
+.accueilTitre h1,
+#butonPlay {
+     font-family: Beauty and the Beast;
+}
+
+/* ******************************************************************** */
+/* INTERFACES */
+/* ******************************************************************** */
+
+body {
+    width: 100%;
+    height: 100vh;
+    font-family: Source Sans Pro;
+    color: #36383a;
+}
+
+/* ********* Accueil ********* */
+
+.interfaceAccueil {
+    background-color: #f2f1d2;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.accueilFlex {text-align: center; }
+.accueilTitre {text-align: center; }
+
+.accueilTitre h1 {
+    font-size: 10em;
+    padding: 0.3em;
+}
+
+.accueilTitre p {
+    font-size: 2em;
+    letter-spacing: 5px;
+}
+
+#butonPlay {
+    width: 100%; 
+    margin-top: 3em;
+    font-size: 3em;
+}
+
+#butonPlay:hover,
+.icon:hover 
+{cursor: pointer;}
+
+.icon {
+    background-color: black;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+
+/* ********* Succès ********* */
+
+/* ********* Game Over ********* */
+
+
+
+/* ******************************************************************** */
+/* FIELD */
+/* ******************************************************************** */
 
 /*cache le surplus de terrain*/
 body {
@@ -34,7 +111,11 @@ body {
     border-radius:4px 4px 0 0;
 }
 
-/*hero*/
+
+
+/* ******************************************************************** */
+/* HERO */
+/* ******************************************************************** */
 
 #hero {
     position:absolute;
