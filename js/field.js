@@ -93,5 +93,5 @@ Field.prototype.checkBloc = function (ligne, colonne) {
     return this.content[ligne*this.width + colonne];
 }
 
-var jeu = new Field(10, 80, 4);
-jeu.display();
+var game = new Field(10, 80, 4);
+game.display();
