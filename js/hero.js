@@ -16,11 +16,12 @@ Hero.prototype.display = function() {
 }
 
 //placer le héros automatiquement sur le sol (chute !)
-Hero.prototype.findGround = function () { //sera probablement à rassembler avec fonction move
-    //si case dessous = air, déplacement auto vers le bas (gérer vitesse)
+Hero.prototype.findGround = function () {
     var nextY = this.y + 1;
-    if(jeu.checkBloc(nextY, this.x) == 0) {
-        this.x += 1;
+    while(game.checkBloc(nextY, this.x) == 0) {
+        this.y += 1;
+        nextY += 1;
+        this.display();
     }
     fox.display();
 }
