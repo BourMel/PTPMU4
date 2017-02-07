@@ -1,5 +1,14 @@
 /*Field*/
 
+/*cache le surplus de terrain*/
+body {
+    overflow:hidden;
+}
+
+#field {
+    position:absolute;
+}
+
 .air, .sol, .test, .bosse {
     position:absolute;
     /*changer la position dans field.js*/
@@ -27,12 +36,12 @@
 
 /*hero*/
 
-.hero {
+#hero {
     position:absolute;
     width:70px;
     height:50px;
     /*largeur d'une case*/
-    left:70px;
     background-color:black;
     border:1px solid red;
+    z-index:20;
 }
