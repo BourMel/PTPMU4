@@ -5,7 +5,6 @@ function Hero (x, y, fieldPositionX) {
 
     var hero = document.createElement("div");
     hero.setAttribute("id", "hero");
-    hero.setAttribute("class", "hero");
     document.body.appendChild(hero);
 }
 
@@ -24,7 +23,6 @@ Hero.prototype.findGround = function () {
         nextY += 1;
         this.display();
     }
-    fox.display();
 }
 
 /* Animation du Hero, changement de style selon direction. Fonction appelée par controls.js */
@@ -47,6 +45,6 @@ Hero.prototype.move = function(direction) {
     this.display();
 }
 
-var fox = new Hero ();
+var fox = new Hero (1, 1, 0);
 fox.display();
 fox.findGround();
