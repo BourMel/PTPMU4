@@ -37,16 +37,25 @@ body {
 }
 
 .accueilFlex {text-align: center; }
-.accueilTitre {text-align: center; }
+.accueilTitre {}
 
 .accueilTitre h1 {
-    font-size: 10em;
-    padding: 0.3em;
+    font-size: 8em;
+    padding: 0.5em 0.7em 0.5em 0.7em;
+    background-image: url(../images/wirecadre.png); 
+    background-size:cover;
+    background-position: center;
 }
 
 .accueilTitre p {
     font-size: 2em;
     letter-spacing: 5px;
+}
+
+.accueilIcones {
+    position: absolute;
+    top: 200px;
+    right: 400px;
 }
 
 #butonPlay {
