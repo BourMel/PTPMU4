@@ -1,3 +1,20 @@
+
+var bouton = document.getElementById("butonPlay");
+bouton.addEventListener("click", initGame);
+
+function initGame(event) {
+    console.log("hellow");
+    var jeu = new Field(10, 80, 4);
+    jeu.display();
+}
+
+
+//$("#butonPlay").click(function(){
+//    console.log("The paragraph was clicked.");
+//});
+
+
+
 function Field (height, width, maxHeightGround) {
     this.height = height;
     this.width = width;
@@ -93,5 +110,7 @@ Field.prototype.checkBloc = function (ligne, colonne) {
     return this.content[ligne*this.width + colonne];
 }
 
-var jeu = new Field(10, 80, 4);
-jeu.display();
+
+
+    
+

@@ -25,6 +25,6 @@ Hero.prototype.findGround = function () { //sera probablement à rassembler avec
 }
 
 
-var renard = new Hero ();
-renard.display();
-renard.findGround();
+//var renard = new Hero ();
+//renard.display();
+//renard.findGround();
