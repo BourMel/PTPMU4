@@ -18,5 +18,6 @@ document.onkeydown = function(event) {
             break;
     }
     
-    return direction;
+    
+    fox.move(direction);
 }
