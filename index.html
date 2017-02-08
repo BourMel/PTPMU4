@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="styles/style.css"> </head>
 
 <body>
+   
+   <!-- interface Accueil -->
     <div id="startGame">
         <div class="interfaceAccueil">
             <div class="accueilTitre">
@@ -26,14 +28,51 @@
             </div>
             <div id="butonPlay">
                 <p>Play</p>
-                <img id="playArrow" src="images/arrow-02.svg"/></div>
+                <img id="playArrow" src="images/arrow-02.svg"/>
+            </div>
             
         </div>
       </div>  
-        
+    
+    <!-- interface Succès -->
+     <div id="success">
+        <div class="interfaceSuccess">
+            <h1>Félicitations !</h1>
+            <div class="interfaceScore">
+                <p>score : xxxxxxxxx</p>
+            </div>
+            <div class="interfaceBoutons">
+                <div id="butonPlayAgain">
+                    <p>Rejouer</p>
+                    <img id="playArrow" src="images/arrow-02.svg"/>
+                </div>
+                <div id="butonQuit">
+                    <p>Quitter</p>
+                </div> 
+            </div>
+        </div>  
+     </div>  
 
-    
-    
+    <!-- interface Game Over -->
+    <div id="gameOver">
+        <div class="interfaceGameOver">
+            <h1>Game Over !</h1>
+            <div class="interfaceScore">
+                <p>score : xxxxxxxxx</p>
+            </div>
+            <div class="interfaceBoutons">
+                <div id="butonPlayAgain">
+                    <p>Rejouer</p>
+                    <img id="playArrow" src="images/arrow-02.svg"/>
+                </div>
+                <div id="butonQuit">
+                    <p>Quitter</p>
+                </div> 
+            </div>
+        </div>  
+     </div> 
+     
+     
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
     <!--A mettre dans un ordre logique /!\-->
     <script src="js/field.js"></script>

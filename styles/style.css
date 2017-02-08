@@ -30,14 +30,19 @@ body {
 /* ******************************************************************** */
 /* TYPOS */
 /* ******************************************************************** */
-.accueilTitre h1,
-#butonPlay {
+h1,
+#butonPlay,
+#butonPlayAgain,
+#butonQuit {
      font-family: Beauty and the Beast;
 }
 
-.accueilTitre h1 {
+h1 {
     font-size: 8em;
     padding: 0.5em;
+}
+
+.accueilTitre h1 {
     background-image: url(../images/wirecadre-01.svg); 
     background-size: contain;
     background-repeat: no-repeat;
@@ -54,16 +59,10 @@ body {
 /* INTERFACES */
 /* ******************************************************************** */
 
-/* ********* Accueil ********* */
-#startGame {
-    position:absolute;
-    width: 100%;
-    height: 100vh;
-}
-
-
-.interfaceAccueil {
-    background-color: #f2f1d2;
+/* ********* Générales ********* */
+.interfaceAccueil,
+.interfaceSuccess,
+.interfaceGameOver{
     width: 100%;
     height: 100%;
     display: flex;
@@ -73,16 +72,30 @@ body {
     text-align: center;
 }
 
-#butonPlay {
-    width: 100%; 
-    font-size: 3em;
-    margin-top: -300px;
+#startGame,
+#success,
+#gameOver {
+    position:absolute;
+    width: 100%;
+    height: 100vh;
 }
 
+/* ********* Accueil ********* */
+.interfaceAccueil {background-color: #f2f1d2;}
+
+#butonPlay,
+#butonPlayAgain,
+#butonQuit {
+    width: 100%; 
+    font-size: 3em;
+/*    margin-top: -300px;*/
+}
 
 #playArrow {width: 100px;}
 
 #butonPlay:hover,
+#butonPlayAgain:hover,
+#butonQuit:hover,
 .icon:hover {
     cursor: pointer;}
 
@@ -103,9 +116,19 @@ body {
 
 
 /* ********* Succès ********* */
+#startGame,
+#success {display: none;}
 
+.interfaceSuccess {background-color: #f1e741;}
+
+.interfaceBoutons {
+    width: 50%;
+    display: flex;
+}
+
+.interfaceScore {width: 100%;}
 /* ********* Game Over ********* */
-
+.interfaceGameOver {background-color: #712607; color: #f2f1d2;}
 
 
 /* ******************************************************************** */

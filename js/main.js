@@ -1,11 +1,17 @@
 $(document).ready(function(){
-    //$("#hero").hide();
-    //$("#field").hide();
-    
     document.getElementById("butonPlay").addEventListener("click", function() {
         $("#startGame").hide();
-         $("#hero").show();
-    $("#field").show();
+        $("#hero").show();
+        $("#field").show();
+    })
+    document.getElementById("butonPlayAgain").addEventListener("click", function() {
+        $("#startGame").hide();
+        $("#hero").show();
+        $("#field").show();
+    })
+    document.getElementById("butonQuit").addEventListener("click", function() {
+        $("#startGame").show();
+        $("#success").hide();
     })
 });
 
