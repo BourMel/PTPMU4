@@ -1,7 +1,10 @@
-function Hero (x, y, fieldPositionX) {
+function Hero (x, y, field, xHeroField) {
     this.x = x;
     this.y = y;
-    this.fieldPositionX = fieldPositionX;
+    //on précise dans quel terrain se trouve le héros pour rendre les méthodes générales
+    this.field = field;
+    //donne la case du terrain sur laquelle est le héros (si qqn a un autre nom de variable plus clair à proposer...)
+    this.xHeroField = xHeroField;
 
     var hero = document.createElement("div");
     hero.setAttribute("id", "hero");
@@ -18,7 +21,7 @@ Hero.prototype.display = function() {
 //placer le héros automatiquement sur le sol (chute !)
 Hero.prototype.findGround = function () {
     var nextY = this.y + 1;
-    while(game.checkBloc(nextY, this.x) == 0) {
+    while(this.field.checkBloc(nextY, this.xHeroField) == 0) {
         this.y += 1;
         nextY += 1;
         this.display();
@@ -31,21 +34,25 @@ Hero.prototype.move = function(direction) {
         case 1: // Si direction gauche, alors change couleur de fond
             document.getElementById("hero").style.backgroundColor = "yellow";
             console.log("Couleur");
+            //utilisé pour findGround uniquement
+            this.xHeroField -=1;
             break;
         case 2: // Si direction haut, alors change couleur de fond
             document.getElementById("hero").style.backgroundColor = "purple";
             break;
         case 3: // Si direction droite, alors change couleur de fond
             document.getElementById("hero").style.backgroundColor = "green";
+            //utilisé pour findGround uniquement
+            this.xHeroField +=1;
             break;
         case 4: // Si direction bas, alors change couleur de fond
             document.getElementById("hero").style.backgroundColor = "blue";
             break;
     }
+
     this.display();
 }
 
-//le heros est créé dans main.js
-var fox = new Hero (1, 1, 0);
+var fox = new Hero (1, 1, game, 0);
 fox.display();
 fox.findGround();

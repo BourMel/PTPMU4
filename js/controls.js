@@ -20,6 +20,7 @@ document.onkeydown = function(event) {
     
     
     fox.move(direction);
+    fox.findGround();
 
     game.move(direction);
 }
