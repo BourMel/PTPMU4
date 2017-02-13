@@ -37,21 +37,22 @@ h1,
      font-family: Beauty and the Beast;
 }
 
-h1 {
-    font-size: 8em;
-    margin-bottom: 100px;
-}
+h1 {font-size: 8em; letter-spacing: 10px;}
+.interfaceGameOver h1,
+.interfaceSuccess h1 {margin-bottom: 100px;}
 
 .accueilTitre h1 {
+    padding: 0.5em;
     background-image: url(../images/wirecadre-01.svg); 
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
 }
 
-.accueilTitre p {
+.texte {
     font-size: 2em;
     letter-spacing: 7px;
+    margin-top: 5px;
 }
 
 
@@ -60,6 +61,9 @@ h1 {
 /* ******************************************************************** */
 
 /* ********* Générales ********* */
+#startGame,
+#success {display: none;}
+
 .interfaceAccueil,
 .interfaceSuccess,
 .interfaceGameOver{
@@ -83,7 +87,7 @@ h1 {
 
 /* ********* Accueil ********* */
 .interfaceAccueil {background-color: #f2f1d2;}
-
+.accueilTitre {margin-bottom: 100px;}
 #butonPlay,
 #butonPlayAgain,
 #butonQuit {
@@ -100,7 +104,10 @@ h1 {
 .icon:hover {
     cursor: pointer;}
 
-.accueilIcones {margin-left: 1em;}
+.accueilIcones {
+    margin-left: 1em;
+    margin-bottom: 100px;
+}
 
 .icon {
     background-color: #36383a;
@@ -117,8 +124,7 @@ h1 {
 
 
 /* ********* Succès ********* */
-#startGame,
-#success {display: none;}
+
 
 .interfaceSuccess {background-color: #f1e741;}
 
