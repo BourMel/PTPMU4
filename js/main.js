@@ -1,4 +1,20 @@
 $(document).ready(function(){
+    document.getElementById("help").addEventListener("click", function() {
+        $("#helpBox").show();
+    })
+    document.getElementById("success").addEventListener("click", function() {
+        $("#successBox").show();
+    })
+    document.getElementById("credit").addEventListener("click", function() {
+        $("#creditBox").show();
+    })
+    document.getElementById("closeBox").addEventListener("click", function() {
+        $("#helpBox").hide();
+        $("#successBox").hide();
+        $("#creditBox").hide();
+    })
+    
+    
     document.getElementById("butonPlay").addEventListener("click", function() {
         $("#startGame").hide();
         $("#hero").show();
