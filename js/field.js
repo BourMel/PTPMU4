@@ -43,19 +43,27 @@ function Field (height, width, maxHeightGround, positionX) {
         } else if(Math.random() < 0.8) {
            this.content[(this.height-1-this.maxHeightGround) * this.width + n] = 0;
         } else {
-            this.content[(this.height-1-this.maxHeightGround) * this.width + n] = 3;//valeur bosse
+            if(Math.random() < 0.05) {
+                this.content[(this.height-1-this.maxHeightGround) * this.width + n] = 2; //valeur piège
+            } else {
+                this.content[(this.height-1-this.maxHeightGround) * this.width + n] = 3;//valeur bosse
+            }
         }
     }
     
     //faire en sorte que la deuxième colonne (position héros) ne soit pas un creux
     //création des creux du terrain (parcours de la ligne de l'horizon)
     for(m=0 ; m < this.width ; m++) {
-        //si l'un des 2 précédents = air, ou si celui du dessus=bosse transformer en sol automatiqu
-        if((this.content[(this.height-this.maxHeightGround) * this.width + m-1]) == 0 || (this.content[(this.height-this.maxHeightGround) * this.width + m-2]) == 0 || (this.content[(this.height-1-this.maxHeightGround) * this.width + m]) == 3) {
+        //si l'un des 2 précédents = air, ou si celui du dessus=bosse ou piege, transformer en sol automatiqu
+        if((this.content[(this.height-this.maxHeightGround) * this.width + m-1]) == 0 || (this.content[(this.height-this.maxHeightGround) * this.width + m-2]) == 0 || (this.content[(this.height-1-this.maxHeightGround) * this.width + m]) == 3 || (this.content[(this.height-1-this.maxHeightGround) * this.width + m]) == 2) {
             this.content[(this.height-this.maxHeightGround) * this.width + m] = 1;
         //probabilité que pas de creux
         } else if(Math.random() < 0.8) {
-           this.content[(this.height-this.maxHeightGround) * this.width + m] = 1;
+            if(Math.random() < 0.05) {
+                this.content[(this.height-this.maxHeightGround) * this.width + m] = 2; //piège
+            } else {
+                this.content[(this.height-this.maxHeightGround) * this.width + m] = 1; //sol
+            }
         } else {
             //création d'un creux sur toute la hauteur
             for(o=0; o < this.height ; o++) {
@@ -83,7 +91,7 @@ Field.prototype.display = function () {
             } else if (this.content[j * this.width + i] == 1) {
                 bloc.setAttribute("class", "sol");
             } else if (this.content[j * this.width + i] == 2) {
-                bloc.setAttribute("class", "test");
+                bloc.setAttribute("class", "piege");
             } else if (this.content[j * this.width + i] == 3) {
                 bloc.setAttribute("class", "bosse");
             }
