@@ -96,22 +96,35 @@ Field.prototype.display = function () {
     }
 }
 
-//lit quel type de case
+//lit quel type de case (utilisé dans Hero.findGround)
 Field.prototype.checkBloc = function (ligne, colonne) {
     return this.content[ligne*this.width + colonne];
 }
 
 //déplace le décor (appelé par controls.js)
-Field.prototype.move = function(direction) {
-    switch(direction) {
-        case 1: //gauche
-            this.positionX += 1;
-            break;
-        case 3: //droite
-            this.positionX -= 1;
-            break;
+Field.prototype.move = function(direction, heroX, heroY) {
+    //si se dirige vers autre chose que de l'air, ne déplace pas le décor
+    var leftToHero = heroX-1;
+    var rightToHero = heroX+1;
+    var didMove;
+
+    if(direction==1 && this.checkBloc(heroY, leftToHero)==0 || direction==3 && this.checkBloc(heroY, rightToHero)==0) { //gauche
+        switch(direction) {
+            case 1: //gauche
+                this.positionX += 1;
+                break;
+            case 3: //droite
+                this.positionX -= 1;
+                break;
+        }
+        didMove=true;
+    } else {
+        didMove=false;
     }
+
     this.display();
+    //indique si un mouvement ou une collision a eu lieu (utilisé dans controls.js)
+    return didMove;
 }
 
 var game = new Field(10, 80, 4, 0);

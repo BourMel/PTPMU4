@@ -2,25 +2,27 @@ document.onkeydown = function(event) {
     switch(event.keyCode) {
         case 37:
             direction = 1;
-            console.log("Left");
+            //console.log("Left");
             break;
         case 38:
             direction = 2;
-            console.log("Up");
+            //console.log("Up");
             break;
         case 39:
             direction = 3;
-            console.log("Right");
+            //console.log("Right");
             break;
         case 40:
             direction = 4;
-            console.log("Down");
+            //console.log("Down");
             break;
     }
-    
-    
-    fox.move(direction);
-    fox.findGround();
 
-    game.move(direction);
+    //lit la position de fox pour qu'elle puisse être utilisée dans le game.move (gestion collision)
+    var positionFox = fox.where();
+    //ainsi, fox.move n'est exécuté que s'il n'y a pas eu de collision, et ses valeurs X et Y ne changent que dans ce cas-là
+    if(game.move(direction, positionFox.heroPositionX, positionFox.heroPositionY) == true) {
+        fox.move(direction);
+        fox.findGround();
+    }
 }
