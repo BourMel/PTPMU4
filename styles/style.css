@@ -115,7 +115,7 @@ body {
     position:absolute;
     display: none;
 }
-.air, .sol, .test, .bosse {
+.air, .sol, .piege, .bosse {
     position:absolute;
     /*changer la position dans field.js*/
     height:50px;
@@ -131,7 +131,7 @@ body {
     background-color: #36383a;
 }
 
-.test {
+.piege {
     background-color:red;
 }
 
@@ -140,6 +140,10 @@ body {
     border-radius:4px 4px 0 0;
 }
 
+progress {
+    position:fixed;
+    bottom:10px;
+}
 
 
 /* ******************************************************************** */

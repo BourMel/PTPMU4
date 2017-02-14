@@ -43,19 +43,27 @@ function Field (height, width, maxHeightGround, positionX) {
         } else if(Math.random() < 0.8) {
            this.content[(this.height-1-this.maxHeightGround) * this.width + n] = 0;
         } else {
-            this.content[(this.height-1-this.maxHeightGround) * this.width + n] = 3;//valeur bosse
+            if(Math.random() < 0.05) {
+                this.content[(this.height-1-this.maxHeightGround) * this.width + n] = 2; //valeur piège
+            } else {
+                this.content[(this.height-1-this.maxHeightGround) * this.width + n] = 3;//valeur bosse
+            }
         }
     }
     
     //faire en sorte que la deuxième colonne (position héros) ne soit pas un creux
     //création des creux du terrain (parcours de la ligne de l'horizon)
     for(m=0 ; m < this.width ; m++) {
-        //si l'un des 2 précédents = air, ou si celui du dessus=bosse transformer en sol automatiqu
-        if((this.content[(this.height-this.maxHeightGround) * this.width + m-1]) == 0 || (this.content[(this.height-this.maxHeightGround) * this.width + m-2]) == 0 || (this.content[(this.height-1-this.maxHeightGround) * this.width + m]) == 3) {
+        //si l'un des 2 précédents = air, ou si celui du dessus=bosse ou piege, transformer en sol automatiqu
+        if((this.content[(this.height-this.maxHeightGround) * this.width + m-1]) == 0 || (this.content[(this.height-this.maxHeightGround) * this.width + m-2]) == 0 || (this.content[(this.height-1-this.maxHeightGround) * this.width + m]) == 3 || (this.content[(this.height-1-this.maxHeightGround) * this.width + m]) == 2) {
             this.content[(this.height-this.maxHeightGround) * this.width + m] = 1;
         //probabilité que pas de creux
         } else if(Math.random() < 0.8) {
-           this.content[(this.height-this.maxHeightGround) * this.width + m] = 1;
+            if(Math.random() < 0.05) {
+                this.content[(this.height-this.maxHeightGround) * this.width + m] = 2; //piège
+            } else {
+                this.content[(this.height-this.maxHeightGround) * this.width + m] = 1; //sol
+            }
         } else {
             //création d'un creux sur toute la hauteur
             for(o=0; o < this.height ; o++) {
@@ -83,7 +91,7 @@ Field.prototype.display = function () {
             } else if (this.content[j * this.width + i] == 1) {
                 bloc.setAttribute("class", "sol");
             } else if (this.content[j * this.width + i] == 2) {
-                bloc.setAttribute("class", "test");
+                bloc.setAttribute("class", "piege");
             } else if (this.content[j * this.width + i] == 3) {
                 bloc.setAttribute("class", "bosse");
             }
@@ -96,22 +104,35 @@ Field.prototype.display = function () {
     }
 }
 
-//lit quel type de case
+//lit quel type de case (utilisé dans Hero.findGround)
 Field.prototype.checkBloc = function (ligne, colonne) {
     return this.content[ligne*this.width + colonne];
 }
 
 //déplace le décor (appelé par controls.js)
-Field.prototype.move = function(direction) {
-    switch(direction) {
-        case 1: //gauche
-            this.positionX += 1;
-            break;
-        case 3: //droite
-            this.positionX -= 1;
-            break;
+Field.prototype.move = function(direction, heroX, heroY) {
+    //si se dirige vers autre chose que de l'air, ne déplace pas le décor
+    var leftToHero = heroX-1;
+    var rightToHero = heroX+1;
+    var didMove;
+
+    if(direction==1 && this.checkBloc(heroY, leftToHero)==0 || direction==3 && this.checkBloc(heroY, rightToHero)==0) { //gauche
+        switch(direction) {
+            case 1: //gauche
+                this.positionX += 1;
+                break;
+            case 3: //droite
+                this.positionX -= 1;
+                break;
+        }
+        didMove=true;
+    } else {
+        didMove=false;
     }
+
     this.display();
+    //indique si un mouvement ou une collision a eu lieu (utilisé dans controls.js)
+    return didMove;
 }
 
 var game = new Field(10, 80, 4, 0);
