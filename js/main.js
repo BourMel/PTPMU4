@@ -2,7 +2,7 @@ $(document).ready(function(){
     document.getElementById("help").addEventListener("click", function() {
         $("#helpBox").show();
     })
-    document.getElementById("success").addEventListener("click", function() {
+    document.getElementById("result").addEventListener("click", function() {
         $("#successBox").show();
     })
     document.getElementById("credit").addEventListener("click", function() {
@@ -20,7 +20,7 @@ $(document).ready(function(){
         $("#hero").show();
         $("#field").show();
     })
-    document.getElementById("butonPlayAgain").addEventListener("click", function() {
+        document.getElementById("butonPlayAgain").addEventListener("click", function() {
         $("#startGame").hide();
         $("#hero").show();
         $("#field").show();
