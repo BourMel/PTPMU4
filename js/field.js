@@ -134,6 +134,3 @@ Field.prototype.move = function(direction, heroX, heroY) {
     //indique si un mouvement ou une collision a eu lieu (utilisé dans controls.js)
     return didMove;
 }
-
-var game = new Field(10, 80, 4, 0);
-game.display();

@@ -17,12 +17,14 @@ document.onkeydown = function(event) {
             //console.log("Down");
             break;
     }
+    
 
     //lit la position de fox pour qu'elle puisse être utilisée dans le game.move (gestion collision)
     var positionFox = fox.where();
     //ainsi, fox.move n'est exécuté que s'il n'y a pas eu de collision, et ses valeurs X et Y ne changent que dans ce cas-là
     if(game.move(direction, positionFox.heroPositionX, positionFox.heroPositionY) == true) {
         fox.move(direction);
-        fox.findGround();
+        //chute après chaque déplacement
+        var intervalFalling = setInterval(progressivFall(), 1000);   
     }
 }

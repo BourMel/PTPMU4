@@ -26,21 +26,37 @@ Hero.prototype.display = function() {
 }
 
 //placer le héros automatiquement sur le sol (chute !)
-Hero.prototype.findGround = function () {
+Hero.prototype.findGround = function () { //retourne vrai ou faux, function anim() utilise findGround sur objet global (et gère interval)
     var nextY = this.y + 1;
     //on situe x par rapport au tableau
     var actualX = this.x-1;
+    
+    /*
     while(this.field.checkBloc(nextY, actualX) == 0) {
         this.y += 1;
         nextY += 1;
         this.display();
     }
-
+    
     if(this.field.checkBloc(nextY, actualX) == 2) {
         console.log("le prochain est un piège !");
         this.life-=10;
         this.display();
     }
+    */
+    
+    if(this.field.checkBloc(nextY, actualX) == 0) {
+        this.y += 1;
+        nextY += 1;
+        return true; //indique à function anim (dans controls.js) que la chute continue
+    } else if (this.field.checkBloc(nextY, actualX) == 2) {
+        this.life-=10;
+        return false;
+    } else {
+        return false;
+    }
+
+
 }
 
 /* Animation du Hero, changement de style selon direction. Fonction appelée par controls.js */
@@ -71,7 +87,3 @@ Hero.prototype.where = function() {
     //this.x-1 correspond à x situé par rapport au tableau
     return {heroPositionX: this.x-1, heroPositionY: this.y};
 }
-
-var fox = new Hero (1, 1, 100, game);
-fox.display();
-fox.findGround();
