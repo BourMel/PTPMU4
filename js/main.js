@@ -4,8 +4,10 @@ $(document).ready(function(){
     
     document.getElementById("butonPlay").addEventListener("click", function() {
         $("#startGame").hide();
-         $("#hero").show();
-    $("#field").show();
+        $("#hero").show();
+        $("#field").show();
+        $('#wrapPlatform').show();
+        $('.plateforme').show();
     })
 });
 

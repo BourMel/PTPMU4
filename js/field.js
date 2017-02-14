@@ -82,7 +82,7 @@ Field.prototype.display = function () {
                 bloc.setAttribute("class", "air");
             } else if (this.content[j * this.width + i] == 1) {
                 bloc.setAttribute("class", "sol");
-            } else if (this.content[j * this.width + i] == 2) {
+            } else if (this.content[j * this.width + i] == 2) { // A enlever
                 bloc.setAttribute("class", "test");
             } else if (this.content[j * this.width + i] == 3) {
                 bloc.setAttribute("class", "bosse");

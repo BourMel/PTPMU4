@@ -120,7 +120,7 @@ body {
     /*changer la position dans field.js*/
     height:50px;
     width:70px;
-    //border:1px solid grey;
+    /*border:1px solid grey;*/
 }
 
 .air {
@@ -155,4 +155,20 @@ body {
     background-color: #36383a;
     border:1px solid red;
     z-index:20;
+}
+
+/* ******************************************************************** */
+/* PLATEFORME */
+/* ******************************************************************** */
+
+#wrapPlatform {
+    position: absolute;
+    display: none;
+}
+
+.plateforme {display: none;
+    position: absolute;
+    height: 50px;
+    width: 70px;
+    background-color: red;
 }

@@ -33,7 +33,6 @@ Hero.prototype.move = function(direction) {
     switch(direction) {
         case 1: // Si direction gauche, alors change couleur de fond
             document.getElementById("hero").style.backgroundColor = "yellow";
-            console.log("Couleur");
             //utilisé pour findGround uniquement
             this.xHeroField -=1;
             break;
