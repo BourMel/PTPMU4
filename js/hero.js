@@ -34,8 +34,7 @@ Hero.prototype.display = function() {
     //barre de vie
     document.getElementById("lifeBar").setAttribute("value", this.life);
     //score (prenant en compte l'avancement dans le jeu)
-    var completeScore = this.score + (this.x-1)*10;
-    document.getElementById("score").innerHTML = completeScore;
+    document.getElementById("score").innerHTML = this.score + (this.x-1)*10;
 }
 
 //placer le héros automatiquement sur le sol (chute !)
@@ -80,6 +79,14 @@ Hero.prototype.move = function(direction) {
     }
 
     this.display();
+}
+
+Hero.prototype.checkLife = function() {
+    if(this.life == 0) {
+        return false; //annonce mort du perso
+    } else {
+        return true;
+    }
 }
 
 //renvoie la position du héros (utilisé dans field.move)
