@@ -1,19 +1,28 @@
 function Hero (x, y, life, field) {
-    this.x = x;
-    this.y = y;
-    this.life= life;
+    this.x      = x;
+    this.y      = y;
+    this.life   = life;
+    this.score  = 0;
     //on précise dans quel terrain se trouve le héros pour rendre les méthodes générales
-    this.field = field;
+    this.field  = field;
 
+    //heros
     var hero = document.createElement("div");
     hero.setAttribute("id", "hero");
     document.body.appendChild(hero);
 
+    //barre de vie
     var lifeBar = document.createElement("progress");
     lifeBar.setAttribute("id", "lifeBar");
     lifeBar.setAttribute("max", this.life);
     lifeBar.setAttribute("value", this.life);
     document.body.appendChild(lifeBar);
+
+    //score
+    var score = document.createElement("div");
+    score.setAttribute("id", "score");
+    score.innerHTML = this.score;
+    document.body.appendChild(score);
 }
 
 //les valeurs chiffrées doivent être adaptées au CSS
@@ -22,7 +31,11 @@ Hero.prototype.display = function() {
     HTMLhero.style.top = (this.y*50) + "px"; //devra être adapté automatiquement à la hauteur du sol
     HTMLhero.style.left = (this.x*70 + this.fieldPositionX*70) + "px";
 
+    //barre de vie
     document.getElementById("lifeBar").setAttribute("value", this.life);
+    //score (prenant en compte l'avancement dans le jeu)
+    var completeScore = this.score + (this.x-1)*10;
+    document.getElementById("score").innerHTML = completeScore;
 }
 
 //placer le héros automatiquement sur le sol (chute !)
@@ -31,32 +44,19 @@ Hero.prototype.findGround = function () { //retourne vrai ou faux, function anim
     //on situe x par rapport au tableau
     var actualX = this.x-1;
     
-    /*
-    while(this.field.checkBloc(nextY, actualX) == 0) {
-        this.y += 1;
-        nextY += 1;
-        this.display();
-    }
-    
-    if(this.field.checkBloc(nextY, actualX) == 2) {
-        console.log("le prochain est un piège !");
-        this.life-=10;
-        this.display();
-    }
-    */
-    
     if(this.field.checkBloc(nextY, actualX) == 0) {
         this.y += 1;
         nextY += 1;
-        return true; //indique à function anim (dans controls.js) que la chute continue
+        //indique à function anim (dans controls.js) que la chute continue
+        return true;
+    //si on marche sur un sol piégé
     } else if (this.field.checkBloc(nextY, actualX) == 2) {
         this.life-=10;
+        this.score-=10;
         return false;
     } else {
         return false;
     }
-
-
 }
 
 /* Animation du Hero, changement de style selon direction. Fonction appelée par controls.js */

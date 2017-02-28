@@ -7,7 +7,6 @@ function init() {
 
     fox = new Hero (1, 1, 100, game);
     fox.display();
-    
 }
 
 //la fonction, quand elle est appelée, active la chute du personnage
@@ -21,12 +20,12 @@ function progressivFall () {
 
 
 $(document).ready(function(){
+    //JEU
     init();
     //chute au début du jeu
     var intervalFalling = setInterval(progressivFall, 1000);
-    
-    
-    
+
+    //INTERFACE
     document.getElementById("help").addEventListener("click", function() {
         $("#helpBox").show();
     })
