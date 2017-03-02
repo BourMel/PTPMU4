@@ -1,5 +1,7 @@
 function Hero (x, y, life, field) {
     this.x      = x;
+    //conserve la valeur de départ de y
+    this.startY = y;
     this.y      = y;
     this.life   = life;
     this.score  = 0;
@@ -43,7 +45,12 @@ Hero.prototype.findGround = function () { //retourne vrai ou faux, function anim
     //on situe x par rapport au tableau
     var actualX = this.x-1;
     
-    if(this.field.checkBloc(nextY, actualX) == 0) {
+    //cas où on dépasse les limites du terrain (chute dans un trou)
+    if (this.y+1+this.startY > this.field.height) {
+        this.life = 0;
+        return false;
+    //cas "air" (et undefined en théorie, qui est géré au préalable par "if")
+    } else if(this.field.checkBloc(nextY, actualX) == 0) {
         this.y += 1;
         nextY += 1;
         //indique à function anim (dans controls.js) que la chute continue

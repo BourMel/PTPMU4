@@ -18,7 +18,8 @@ function init() {
 //la fonction, quand elle est appelée, active la chute du personnage
 //c'est la seule fonction à être active sans action du joueur
 function anim () {
-    var foxFall = fox.findGround();
+    //nommé comme variable pour pouvoir être utilisé dans controls.js
+    var progressivFall = fox.findGround();
     fox.display();
 
     //si plus de vie, arrête de vérifier le sol,
@@ -30,6 +31,7 @@ function anim () {
     /*if(fall == false) {
         clearInterval(intervalFalling);
     }*/
+    
  }
 
 $(document).ready(function(){
