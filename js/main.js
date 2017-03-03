@@ -44,6 +44,11 @@ function anim () {
  }
 
 $(document).ready(function(){
+    //JEU
+    init();
+    //chute au début du jeu
+    var intervalAnim = setInterval(anim, 1000);
+    
     /* popups page d'accueil */
     var openButtons = $('.icon');
     openButtons.click(function() {
@@ -51,13 +56,8 @@ $(document).ready(function(){
         cible = "#" + cible + "Box";
         $(cible).show();
     });
-    //JEU
-    init();
-    //chute au début du jeu
-    var intervalAnim = setInterval(anim, 1000);
-
-    //INTERFACE
     
+    //INTERFACE
     var closeButtons = $('.closeBox');
     closeButtons.click(function() {
         $(this).parent().hide();
