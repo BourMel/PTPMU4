@@ -1,8 +1,8 @@
-function Hero (x, y, speedY, life, field) {
+function Hero (x, y, life, field) {
     this.x      = x;
     //conserve la valeur de départ de y
     this.startY = y;
-    this.speedY = speedY;
+    this.speedY = 3;
     this.y      = y;
     this.life   = life;
     this.score  = 0;
