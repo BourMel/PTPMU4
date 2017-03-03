@@ -1,25 +1,33 @@
 var game;
 var fox;
 var ennemy;
-var item// ?
+var item;
+var tabEnnemy = new Array();
+
+//DONNEES DU JEU : à modifier selon niveau de difficulté recherché
+var widthField = 80;
+var heightField = 10;
+var heightGround = 4;
+var heroLife = 100;
+var nbrEnnemy = 10; //peut être réduit s'ils tombent dans des trous
+var ennemyLife = 100;
 
 function init() {
-    widthField = 80;
-    
-    game = new Field(10, widthField, 4, 0);
+    game = new Field(heightField, widthField, heightGround, 0);
     game.display();
 
-    fox = new Hero (1, 1, 100, game);
+    fox = new Hero (1, 1, heroLife, game);
     fox.display();
 
-    //id à attribuer à l'aide d'une boucle
-    ennemy = new Ennemy ("ennemy1", widthField, 1, 100, game);
-    ennemy.display();
-    ennemy.findGround();
-    
-   // item = new Item ("item1", widthField, 1, 100, game);
-    //item.display();
-    //item.findGround();
+    //crée un tableau d'ennemis
+    for(var i = 0 ; i < nbrEnnemy+1 ; i++) {
+        var ennemy = new Ennemy ("ennemy"+i, widthField, 0, ennemyLife, game);
+        ennemy.findGround();
+        if(ennemy.checkLife()) {
+            ennemy.display();
+            tabEnnemy.push(ennemy);
+        }
+    }
 }
 
 //la fonction, quand elle est appelée, active la chute du personnage
@@ -28,19 +36,15 @@ function anim () {
     //nommé comme variable pour pouvoir être utilisé dans controls.js
     var progressivFall = fox.findGround();
     fox.display();
-
-    //si plus de vie, arrête de vérifier le sol,
-    //et recommence le jeu
+    
+    //GAME OVER
     if(fox.checkLife() == false) {
-        //affichage des scores à la place ?
+        //possibilité de remplacer par interface
         init();
     }
     /*if(fall == false) {
         clearInterval(intervalFalling);
     }*/
-    
-   // progressivFallEnnemy = ennemy.findGround();
-    
  }
 
 $(document).ready(function(){
@@ -63,8 +67,6 @@ $(document).ready(function(){
         $(this).parent().hide();
     });
     
-    
-    /* */
     document.getElementById("butonPlay").addEventListener("click", function() {
         $("#startGame").hide();
         $("#hero").show();

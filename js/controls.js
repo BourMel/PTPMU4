@@ -24,6 +24,10 @@ document.onkeydown = function(event) {
     //ainsi, fox.move n'est exécuté que s'il n'y a pas eu de collision, et ses valeurs X et Y ne changent que dans ce cas-là
     if((game.move(direction, positionFox.heroPositionX, positionFox.heroPositionY) == true) || (direction == 2) || (direction == 4)) {
         fox.move(direction);
+        
+        for(var i = 0 ; i < tabEnnemy.length ; i++) {
+            tabEnnemy[i].move(direction);
+        }
         //chute après chaque déplacement ?
         //var intervalFalling = setInterval(fox.findGround(), 1000);   
     }
