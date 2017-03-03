@@ -1,18 +1,25 @@
 var game;
 var fox;
-var ennemy; // ?
+var ennemy;
+var item// ?
 
 function init() {
-    game = new Field(10, 80, 4, 0);
+    widthField = 80;
+    
+    game = new Field(10, widthField, 4, 0);
     game.display();
 
     fox = new Hero (1, 1, 100, game);
     fox.display();
 
     //id à attribuer à l'aide d'une boucle
-    ennemy = new Ennemy ("ennemy1", 80, 1, 100, game);
+    ennemy = new Ennemy ("ennemy1", widthField, 1, 100, game);
     ennemy.display();
     ennemy.findGround();
+    
+    item = new Item ("item1", widthField, 1, 100, game);
+    item.display();
+    item.findGround();
 }
 
 //la fonction, quand elle est appelée, active la chute du personnage
