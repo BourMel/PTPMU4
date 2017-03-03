@@ -32,6 +32,8 @@ function anim () {
         clearInterval(intervalFalling);
     }*/
     
+   // progressivFallEnnemy = ennemy.findGround();
+    
  }
 
 $(document).ready(function(){
