@@ -1,4 +1,4 @@
-//maxX prend pour valeur la longueur du terrain
+/*//maxX prend pour valeur la longueur du terrain
 function Items (id, maxX, y, field) {
     this.id     = id;
     this.x      = Math.floor(Math.random()*maxX);
@@ -31,4 +31,4 @@ items.prototype.findGround = function () {
     } else {
         return false;
     }
-}
+}*/

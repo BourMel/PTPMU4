@@ -17,9 +17,9 @@ function init() {
     ennemy.display();
     ennemy.findGround();
     
-    item = new Item ("item1", widthField, 1, 100, game);
-    item.display();
-    item.findGround();
+   // item = new Item ("item1", widthField, 1, 100, game);
+    //item.display();
+    //item.findGround();
 }
 
 //la fonction, quand elle est appelée, active la chute du personnage
