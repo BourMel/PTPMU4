@@ -139,6 +139,11 @@ h1 {font-size: 8em; letter-spacing: 10px;}
     justify-content: center;
 }
 
+.soundtrack {
+    position:fixed;
+    top:800px;
+    right:0px;
+}
 
 /* ********* Succès ********* */
 

@@ -45,6 +45,10 @@ function anim () {
     /*if(fall == false) {
         clearInterval(intervalFalling);
     }*/
+
+    for(var b = 0 ; b < tabEnnemy.length ; b++) {
+        tabEnnemy[b].move();
+    }
  }
 
 $(document).ready(function(){
@@ -52,7 +56,9 @@ $(document).ready(function(){
     init();
     //chute au début du jeu
     var intervalAnim = setInterval(anim, 1000);
-    
+
+    //INTERFACE
+
     /* popups page d'accueil */
     var openButtons = $('.icon');
     openButtons.click(function() {
@@ -60,8 +66,7 @@ $(document).ready(function(){
         cible = "#" + cible + "Box";
         $(cible).show();
     });
-    
-    //INTERFACE
+
     var closeButtons = $('.closeBox');
     closeButtons.click(function() {
         $(this).parent().hide();

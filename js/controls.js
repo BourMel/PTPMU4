@@ -26,10 +26,10 @@ document.onkeydown = function(event) {
         fox.move(direction);
         
         for(var i = 0 ; i < tabEnnemy.length ; i++) {
-            tabEnnemy[i].move(direction);
+            //réaffiche à chaque mouvement en prenant en compte la postion du terrain
+            tabEnnemy[i].display();
         }
         //chute après chaque déplacement ?
-        //var intervalFalling = setInterval(fox.findGround(), 1000);   
+        //var intervalFalling = setInterval(fox.findGround(), 1000);
     }
-    
 }

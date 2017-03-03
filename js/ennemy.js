@@ -12,11 +12,12 @@ function Ennemy (id, maxX, y, life, field) {
     document.body.appendChild(ennemy);
 }
 
-//affiche l'ennemi
+//affiche l'ennemi, appelé dans init() (main.js) et par controls.js
 Ennemy.prototype.display = function () {
     var HTMLennemy = document.getElementById(this.id);
-    HTMLennemy.style.top = (this.y*50) + "px"; //devra être adapté automatiquement à la hauteur du sol
-    HTMLennemy.style.left = (this.x*70) + "px";
+    HTMLennemy.style.top = (this.y*50) + "px";
+    //prend en compte le déplacement du terrain
+    HTMLennemy.style.left = ((this.x + this.field.positionX)*70) + "px";
 }
 
 //lui fait trouver le sol
@@ -49,8 +50,25 @@ Ennemy.prototype.checkLife = function () {
     }
 }
 
-//déplacement en même temps que le terrain
 Ennemy.prototype.move = function () {
-    console.log(this.field.move());
-    //trop long, associer les ennemis aux coordonnées du terrain ?
+    //vérifie état du sol à la prochaine case
+    if(Math.random()<0.5) {
+        //si la voie est libre
+        if((this.field.checkBloc(this.y, this.x-1) == 0) && (this.field.checkBloc(this.y+1, this.x-1) !=0)) {
+            this.x -=1;
+            //la case quittée est libre
+            this.field.writeBlock(this.y, this.x+1, 0);
+        }
+    } else if ((Math.random()>0.5)) {
+        //si la voie est libre
+        if((this.field.checkBloc(this.y, this.x+1) == 0) && (this.field.checkBloc(this.y+1, this.x+1) !=0) ) {
+            this.x +=1;
+            //la case quittée est libre
+            this.field.writeBlock(this.y, this.x-1, 4);
+        }
+    }
+
+    //annonce la case active comme étant occupée
+    this.field.writeBlock(this.y, this.x, 0);
+    this.display();
 }

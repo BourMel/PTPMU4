@@ -8,7 +8,11 @@ function Field (height, width, maxHeightGround, positionX) {
     
     /*this.content définit la nature de chaque case du tableau, ainsi :
     air = 0
-    sol = 1*/
+    sol = 1
+    piège = 2
+    bosse = 3
+    ennemi = 4
+    */
     this.content = new Array(this.height * this.width);
     
     //tout le tableau prend d'abord la valeur "air"
@@ -95,7 +99,7 @@ Field.prototype.display = function () {
             } else if (this.content[j * this.width + i] == 3) {
                 bloc.setAttribute("class", "bosse");
             }
-            
+
             //à adapter à la taille des blocs
             bloc.style.left = (i*70) + "px";
             bloc.style.top = (j*50) + "px";
@@ -107,6 +111,11 @@ Field.prototype.display = function () {
 //lit quel type de case (utilisé dans Hero.findGround)
 Field.prototype.checkBloc = function (ligne, colonne) {
     return this.content[ligne*this.width + colonne];
+}
+
+//écrit sur la case
+Field.prototype.writeBlock = function (ligne, colonne, value) {
+    this.content[ligne*this.width + colonne] = value;
 }
 
 //déplace le décor (appelé par controls.js)

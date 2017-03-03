@@ -56,7 +56,7 @@ Hero.prototype.findGround = function () { //retourne vrai ou faux, function anim
         //indique à function anim (dans controls.js) que la chute continue
         return true;
     //si on marche sur un sol piégé
-    } else if (this.field.checkBloc(nextY, actualX) == 2) {
+    } else if ((this.field.checkBloc(nextY, actualX) == 2)) {
         this.life-=10;
         this.score-=10;
         return false;
