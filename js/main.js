@@ -44,42 +44,41 @@ function anim () {
  }
 
 $(document).ready(function(){
+    /* popups page d'accueil */
+    var openButtons = $('.icon');
+    openButtons.click(function() {
+        var cible = $(this).attr('id');
+        cible = "#" + cible + "Box";
+        $(cible).show();
+    });
     //JEU
     init();
     //chute au début du jeu
     var intervalAnim = setInterval(anim, 1000);
 
     //INTERFACE
-    document.getElementById("help").addEventListener("click", function() {
-        $("#helpBox").show();
-    })
-    document.getElementById("result").addEventListener("click", function() {
-        $("#successBox").show();
-    })
-    document.getElementById("credit").addEventListener("click", function() {
-        $("#creditBox").show();
-    })
-    document.getElementById("closeBox").addEventListener("click", function() {
-        $("#helpBox").hide();
-        $("#successBox").hide();
-        $("#creditBox").hide();
-    })
+    
+    var closeButtons = $('.closeBox');
+    closeButtons.click(function() {
+        $(this).parent().hide();
+    });
     
     
+    /* */
     document.getElementById("butonPlay").addEventListener("click", function() {
         $("#startGame").hide();
         $("#hero").show();
         $("#field").show();
-    })
+    });
         document.getElementById("butonPlayAgain").addEventListener("click", function() {
         $("#startGame").hide();
         $("#hero").show();
         $("#field").show();
-    })
+    });
     document.getElementById("butonQuit").addEventListener("click", function() {
         $("#startGame").show();
         $("#success").hide();
-    })
+    });
 });
 
 
