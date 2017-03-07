@@ -25,8 +25,12 @@ document.onkeydown = function(event) {
     if((game.move(direction, positionFox.heroPositionX, positionFox.heroPositionY) == true) || (direction == 2) || (di
                                                                                                                     rection == 4)) {
         fox.move(direction);
+        
+        for(var i = 0 ; i < tabEnnemy.length ; i++) {
+            //réaffiche à chaque mouvement en prenant en compte la postion du terrain
+            tabEnnemy[i].display();
+        }
         //chute après chaque déplacement ?
-        //var intervalFalling = setInterval(fox.findGround(), 1000);   
+        //var intervalFalling = setInterval(fox.findGround(), 1000);
     }
-    
 }
