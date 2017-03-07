@@ -1,8 +1,9 @@
-function Field (height, width, maxHeightGround, positionX) {
+function Field (id, height, width, maxHeightGround) {
+    this.id = id;
     this.height = height;
     this.width = width;
     this.maxHeightGround = maxHeightGround;
-    this.positionX = positionX;
+    this.positionX = 0;
     
     //pour manipuler la difficulté du niveau, les probabilités doivent être un paramètre de la fonction
     
@@ -80,10 +81,10 @@ function Field (height, width, maxHeightGround, positionX) {
 
 Field.prototype.display = function () {
     var field = document.createElement("div");
-    field.setAttribute("id", "field");
+    field.setAttribute("id", this.id);
     document.body.appendChild(field);
 
-    var HTMLfield = document.getElementById("field");
+    var HTMLfield = document.getElementById(this.id);
     HTMLfield.style.left = (this.positionX*70) + "px";
 
     for(i=0 ; i<this.width ; i++) {
@@ -99,6 +100,10 @@ Field.prototype.display = function () {
                 bloc.setAttribute("class", "piege");
             } else if (this.content[j * this.width + i] == 3) {
                 bloc.setAttribute("class", "bosse");
+            } else if (this.content[j * this.width + i] == 4) {
+                bloc.setAttribute("class", "ennemyfield");
+            } else if (this.content[j * this.width + i] == 5) {
+                bloc.setAttribute("class", "herofield");
             }
 
             //à adapter à la taille des blocs
@@ -125,6 +130,9 @@ Field.prototype.move = function(direction, heroX, heroY) {
     var leftToHero = heroX-1;
     var rightToHero = heroX+1;
     var didMove;
+
+    //console.log("à ma gauche " + this.checkBloc(heroY, leftToHero));
+    //console.log("à ma droite " + this.checkBloc(heroY, rightToHero));
 
     if(direction==1 && this.checkBloc(heroY, leftToHero)==0 || direction==3 && this.checkBloc(heroY, rightToHero)==0) { //gauche
         switch(direction) {

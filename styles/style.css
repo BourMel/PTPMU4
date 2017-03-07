@@ -194,6 +194,44 @@ h1 {font-size: 8em; letter-spacing: 10px;}
     z-index:15;
 }
 
+/*débug*/
+.air::after {
+    content:"0";
+    display:block;
+}
+
+.sol::after {
+    content:"1";
+    display:block;
+    color:white;
+}
+
+.bosse::after {
+    content:"3";
+    display:block;
+    color:white;
+}
+
+.piege::after {
+    content:"2";
+    display:block;
+    color:white;
+}
+
+.ennemyfield {
+    content:"4";
+    display:block;
+    color:white;
+}
+
+.herofield {
+    content:"5";
+    display:block;
+    color:white;
+}
+
+
+
 /*barre de vie*/
 progress {
     position:fixed;
@@ -212,7 +250,8 @@ progress {
     position:absolute;
     width:70px;
     height:50px;
-    background-color:black;
+    /*background-color:black;*/
+    border:1px solid green;
     z-index: 10;    
 }
 
@@ -230,7 +269,7 @@ progress {
     width:70px;
     height:50px;
     /*largeur d'une case*/
-    background-color: #36383a;
+    /*background-color: #36383a;*/
     border:1px solid red;
     z-index:20;
     /*à affiner : permet chute progressive mais pas très net

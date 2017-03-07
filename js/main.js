@@ -6,6 +6,7 @@ var platform;
 var tabEnnemy = new Array();
 
 //DONNEES DU JEU : à modifier selon niveau de difficulté recherché
+var idField = "field"; //impact dans le css
 var widthField = 80;
 var heightField = 10;
 var heightGround = 4;
@@ -14,26 +15,25 @@ var nbrEnnemy = 10; //peut être réduit s'ils tombent dans des trous
 var ennemyLife = 100;
 
 function init() {
-    game = new Field(heightField, widthField, heightGround, 0);
+    game = new Field(idField, heightField, widthField, heightGround);
     game.display();
 
-    fox = new Hero (1, 1, heroLife, game);
+    //platform = new Platform(game);
+    //platform.display();
+
+    fox = new Hero (heroLife, game);
     fox.display();
     fox.findGround();
 
     //crée un tableau d'ennemis
     for(var i = 0 ; i < nbrEnnemy+1 ; i++) {
-        var ennemy = new Ennemy ("ennemy"+i, widthField, 0, ennemyLife, game);
+        ennemy = new Ennemy ("ennemy"+i, 0, ennemyLife, game);
         ennemy.findGround();
         if(ennemy.checkLife()) {
             ennemy.display();
             tabEnnemy.push(ennemy);
         }
     }
-    
-    
-    var platform = new Platform(80, 1);
-    platform.display();
 
    // item = new Item ("item1", widthField, 1, 100, game);
     //item.display();
@@ -59,6 +59,10 @@ function anim () {
     for(var b = 0 ; b < tabEnnemy.length ; b++) {
         tabEnnemy[b].move();
     }
+
+    //débug
+    game.display();
+
  }
 
 $(document).ready(function(){

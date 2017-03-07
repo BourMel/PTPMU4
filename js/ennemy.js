@@ -1,16 +1,15 @@
-//maxX prend pour valeur la longueur du terrain
-function Ennemy (id, maxX, y, life, field) {
+function Ennemy (id, y, life, field) {
     this.id     = id;
-    this.x      = Math.floor(Math.random()*maxX);
-    this.y      = y;
     this.life   = life;
     this.field  = field;
+    this.x      = Math.floor(Math.random() * this.field.width);
+    this.y      = y;
 
-    var field = document.getElementById("field");
+    var fieldHTML = document.getElementById(this.field.id);
     var ennemy = document.createElement("div");
     ennemy.setAttribute("class", "ennemy");
     ennemy.setAttribute("id", this.id);
-    field.appendChild(ennemy);
+    fieldHTML.appendChild(ennemy);
 }
 
 //affiche l'ennemi, appelé dans init() (main.js) et par controls.js
