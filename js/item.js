@@ -32,7 +32,7 @@ Item.prototype.findGround = function () {
         this.y += 1;
         nextY += 1;
         
-        //si dépasse limites du terrain
+        //si dépasse limites du terrain enlève la vie
         if (this.y > this.field.height) {
             this.life = 0;
             return false;
@@ -40,7 +40,7 @@ Item.prototype.findGround = function () {
     }
 }
 
-//si plus de vie, return false
+//si il n'a plus de vie, l'item disparaît
 Item.prototype.checkLife = function () {
     if(this.life == 0) {
         var HTMLitem = document.getElementById(this.id);
@@ -52,3 +52,7 @@ Item.prototype.checkLife = function () {
 }
 
 
+
+//annonce la case active comme étant occupée
+    //this.field.writeBlock(this.y, this.x, 0);
+    //this.display();

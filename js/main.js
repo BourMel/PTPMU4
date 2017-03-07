@@ -4,6 +4,7 @@ var ennemy;
 var item;
 var platform;
 var tabEnnemy = new Array();
+var tabItems = new Array();
 
 //DONNEES DU JEU : à modifier selon niveau de difficulté recherché
 var widthField = 80;
@@ -39,18 +40,16 @@ function init() {
     var platform = new Platform(80, 1);
     platform.display();
 
+    
     //créé de nouveaux items à collectionner
-//    for(var i = 0 ; i < nbrItem+1 ; i++) {
-//        var item = new Item ("item"+i, widthField, 0, itemLife, game);
-//        item.findGround();
-//        if(item.checkLife()) {
-//            item.display();
-//            tabEnnemy.push(item);
-//        }
-//    }
-    item = new Item ("item1", widthField, 1, 100, game);
-    item.display();
-    item.findGround();
+    for(var i = 0 ; i < nbrItem+1 ; i++) {
+        var item = new Item ("item"+i, widthField, 0, itemLife, game);
+        item.findGround();
+        if(item.checkLife()) {
+            item.display();
+            tabItems.push(item);
+        }
+    }
 }
 
 //la fonction, quand elle est appelée, active la chute du personnage

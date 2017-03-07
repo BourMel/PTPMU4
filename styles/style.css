@@ -11,8 +11,9 @@
 }
 
 .item {
+    position: absolute;
     height: 50px;
-    width: 50px;
+    width: 70px;
     background-color: aqua;
 }
 /* ******************************************************************** */
