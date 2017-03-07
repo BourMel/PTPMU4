@@ -12,11 +12,15 @@ var heightGround = 4;
 var heroLife = 100;
 var nbrEnnemy = 10; //peut être réduit s'ils tombent dans des trous
 var ennemyLife = 100;
+var nbrItem = 10;
+var itemLife = 100;
 
 function init() {
+    //créé un nouveau terrain
     game = new Field(heightField, widthField, heightGround, 0);
     game.display();
 
+    //créé le héros
     fox = new Hero (1, 1, heroLife, game);
     fox.display();
     fox.findGround();
@@ -31,13 +35,22 @@ function init() {
         }
     }
     
-    
+    //créé de nouvelles plateformes aériennes
     var platform = new Platform(80, 1);
     platform.display();
 
-   // item = new Item ("item1", widthField, 1, 100, game);
-    //item.display();
-    //item.findGround();
+    //créé de nouveaux items à collectionner
+//    for(var i = 0 ; i < nbrItem+1 ; i++) {
+//        var item = new Item ("item"+i, widthField, 0, itemLife, game);
+//        item.findGround();
+//        if(item.checkLife()) {
+//            item.display();
+//            tabEnnemy.push(item);
+//        }
+//    }
+    item = new Item ("item1", widthField, 1, 100, game);
+    item.display();
+    item.findGround();
 }
 
 //la fonction, quand elle est appelée, active la chute du personnage
