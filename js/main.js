@@ -7,8 +7,8 @@ var tabEnnemy = new Array();
 
 //DONNEES DU JEU : à modifier selon niveau de difficulté recherché
 var widthField = 80;
-var heightField = 10;
-var heightGround = 4;
+var heightField = 20;
+var heightGround = 8;
 var heroLife = 100;
 var nbrEnnemy = 10; //peut être réduit s'ils tombent dans des trous
 var ennemyLife = 100;
