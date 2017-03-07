@@ -2,6 +2,7 @@ function Hero (x, y, life, field) {
     this.x      = x;
     //conserve la valeur de départ de y
     this.startY = y;
+    this.speedY = 3;
     this.y      = y;
     this.life   = life;
     this.score  = 0;
@@ -75,6 +76,13 @@ Hero.prototype.move = function(direction) {
             break;
         case 2: // Si direction haut, alors change couleur de fond
             document.getElementById("hero").style.backgroundColor = "purple";
+            var nextY = this.y + 1;
+            var actualX = this.x-1;
+            console.log(this.field.checkBloc(nextY, this.x));
+            //si n'essaie pas de sauter à partir de l'air
+            if(this.field.checkBloc(nextY, actualX) != 0) {
+                this.y -= 1;
+            }
             break;
         case 3: // Si direction droite, alors change couleur de fond
             document.getElementById("hero").style.backgroundColor = "green";
@@ -87,6 +95,34 @@ Hero.prototype.move = function(direction) {
 
     this.display();
 }
+
+/* ************************************************************* */
+/* SAUT */
+/* ************************************************************* */
+
+//Hero.prototype.positionne = function () {
+//    document.getElementById(this.id).style.top = this.y + 'px';
+//}
+
+
+Hero.prototype.jump = function() {
+    this.speedY
+    
+    
+    this.x += 10 * this.vx; //10=nb de pixels dont on se déplace tt les 40ms
+        this.y += 10 * this.vy;
+        this.positionne();
+        if (this.x > window.innerWidth - 150) {
+            this.vx = - this.vx;
+        }
+        if (this.y > window.innerHeight - 150) {
+            this.vy = - this.vy;
+        }
+}
+
+
+/* ************************************************************* */
+/* ************************************************************* */
 
 Hero.prototype.checkLife = function() {
     if(this.life == 0) {

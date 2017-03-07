@@ -12,6 +12,7 @@ function init() {
 
     fox = new Hero (1, 1, 100, game);
     fox.display();
+    fox.findGround();
 
     //id à attribuer à l'aide d'une boucle
     ennemy = new Ennemy ("ennemy1", widthField, 1, 100, game);
