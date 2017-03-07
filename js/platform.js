@@ -15,64 +15,57 @@ teste si case = plateforme
 => Alors appelle la fonction chute OU
 => rien (héros garde sa position) */
 
-function Platform(xfield, yfield, positionX) {
-    this.xfield = xfield; // lignes = largeur du terrain
-    this.yfield = yfield; // colonnes = hauteur du terrain
-    this.positionX = positionX; // Pour déplacer les plateformes qd héros se déplace
+function Platform(width, height) {
+    this.width = width;
+    this.height = height;
     
-    /* La plateforme prend l'ensemble de la largeur et de la hauteur du terrain */
-    this.block = new Array(this.xfield * this.yfield);
+    /* La plateforme prend l'ensemble de sa largeur et de sa hauteur */
+    this.block = new Array(this.width * this.height);
     
-    /* Parcourir entre la 2ème ligne de field
-    & 2 lignes au dessus de bosse */
-    for(j = 0; j < this.xfield*this.yfield; j++) {
-        if(Math.random() < 0.8) {
-            this.block[j] = 1;
-            console.log("Valeur de 1");
-        }
+    /* Parcourt des colonnes puis des lignes */
+    for(i = 0; i < this.width; i++) {
+        for(j = 0; j < this.height; j++) {
+            /* Pour un nombre aléatoire sur la ligne de la plateforme, prend la valeur de 3. Donc plateforme = 3 */
+            if(Math.random() < 0.3) {
+                this.block[i] = 3;
+            } else {
+                this.block[i] = 0;
+            }
+        }   
     }
 }
 
 Platform.prototype.display = function() {
-    var wrapPlatform = document.createElement("div");
-    wrapPlatform.setAttribute("id", "wrapPlatform");
-    document.body.appendChild(wrapPlatform);
+    // Parcourt l'ensemble de la ligne platforme
+    var field = document.getElementById("field");
+    var platform = document.createElement("div");
+    platform.setAttribute("id", "wrap-platform");
+    field.appendChild(platform);
+
+    var HTMLplatform = document.getElementById("wrap-platform");
+    HTMLplatform.style.left = 0 + 'px';
     
-    var HTMLwrapPlatform = document.getElementById("wrapPlatform");
-    HTMLwrapPlatform.style.left = (this.positionX * 70) + "px";
-    
-    for(a = 0; a < this.xfield; a++) {
-        for(b = 0; b < this.yfield; b++) {
-//            var platform = document.createElement("div");
+    for(i = 0; i < this.width; i++) {
+        for(j = 0; j < this.height; j++) {
+            var blocPlat = document.createElement("div");
             
-            if(this.block[a * this.xfield + b] == 1) {
-                var platform = document.createElement("div");
-                platform.setAttribute("class", "plateforme");
+            if(this.block[j * this.width + i] == 3) {
+                blocPlat.setAttribute("class", "plateform");
+                console.log("Platform");
+            }
+            else if(this.block[j * this.width + i] == 0) {
+                blocPlat.setAttribute("class", "air-platform");
+                console.log("Air");
             }
             
-            platform.style.left = (b * 70) + "px";
-            platform.style.top = (a * 50) + "px";
-            HTMLwrapPlatform.appendChild(platform);
+            // Positionne les block de plateforme selon la position * 70 (taille du block)
+            blocPlat.style.left = (i * 70) + 'px';
+            blocPlat.style.top = ((j * 50) + 100) + 'px';
+            HTMLplatform.appendChild(blocPlat);
         }
     }
-    
 }
 
-// Déplace les plateformes (appelé par controls.js)
-Platform.prototype.move = function(direction) {
-    switch(direction) {
-        case 1: //gauche
-            this.positionX += 1;
-            break;
-        case 3: //droite
-            this.positionX -= 1;
-            break;
-    }
-    
-    this.display();
-}
-
-
-var platform = new Platform(80, 3, 0);
+var platform = new Platform(80, 1);
 platform.display();
-platform.move(direction);
+// console.log(platform);

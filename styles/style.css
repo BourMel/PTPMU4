@@ -166,9 +166,18 @@ body {
     display: none;
 }
 
-.plateforme {display: none;
+.plateform {display: none;
     position: absolute;
     height: 50px;
     width: 70px;
     background-color: red;
+    z-index: 10;
+}
+
+.air-platform {display: none;
+    position: absolute;
+    height: 50px;
+    width: 70px;
+    background-color: none;
+    z-index: 10;
 }

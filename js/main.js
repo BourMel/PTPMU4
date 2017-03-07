@@ -7,7 +7,8 @@ $(document).ready(function(){
         $("#hero").show();
         $("#field").show();
         $('#wrapPlatform').show();
-        $('.plateforme').show();
+        $('.plateform').show();
+        $('.air-platform').show();
     })
 });
 
