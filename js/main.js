@@ -1,7 +1,8 @@
 var game;
 var fox;
 var ennemy;
-var item// ?
+var item;
+var platform;
 
 function init() {
     widthField = 80;
@@ -17,6 +18,10 @@ function init() {
     ennemy.display();
     ennemy.findGround();
     
+    
+    var platform = new Platform(80, 1);
+    platform.display();
+
    // item = new Item ("item1", widthField, 1, 100, game);
     //item.display();
     //item.findGround();
@@ -69,7 +74,7 @@ $(document).ready(function(){
         $("#startGame").hide();
         $("#hero").show();
         $("#field").show();
-        $('#wrapPlatform').show();
+        $('#wrap-platform').show();
         $('.plateform').show();
         $('.air-platform').show();
     });

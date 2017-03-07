@@ -51,11 +51,9 @@ Platform.prototype.display = function() {
             
             if(this.block[j * this.width + i] == 3) {
                 blocPlat.setAttribute("class", "plateform");
-                console.log("Platform");
             }
             else if(this.block[j * this.width + i] == 0) {
                 blocPlat.setAttribute("class", "air-platform");
-                console.log("Air");
             }
             
             // Positionne les block de plateforme selon la position * 70 (taille du block)
@@ -65,7 +63,3 @@ Platform.prototype.display = function() {
         }
     }
 }
-
-var platform = new Platform(80, 1);
-platform.display();
-// console.log(platform);
