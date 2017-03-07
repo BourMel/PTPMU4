@@ -6,10 +6,11 @@ function Ennemy (id, maxX, y, life, field) {
     this.life   = life;
     this.field  = field;
 
+    var field = document.getElementById("field");
     var ennemy = document.createElement("div");
     ennemy.setAttribute("class", "ennemy");
     ennemy.setAttribute("id", this.id);
-    document.body.appendChild(ennemy);
+    field.appendChild(ennemy);
 }
 
 //affiche l'ennemi, appelé dans init() (main.js) et par controls.js
