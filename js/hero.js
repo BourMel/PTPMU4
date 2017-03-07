@@ -71,7 +71,7 @@ Hero.prototype.findGround = function () { //retourne vrai ou faux, function anim
 Hero.prototype.move = function(direction) {
     switch(direction) {
         case 1: // Si direction gauche, alors change couleur de fond
-            document.getElementById("hero").style.backgroundColor = "yellow";
+            document.getElementById("hero").style.backgroundColor = "yellow";   
             //la case quittée est libre
             this.field.writeBlock(this.y-this.startY, this.x-this.startX, 0);
             this.x-=1;

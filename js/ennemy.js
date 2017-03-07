@@ -17,8 +17,7 @@ function Ennemy (id, maxX, y, life, field) {
 Ennemy.prototype.display = function () {
     var HTMLennemy = document.getElementById(this.id);
     HTMLennemy.style.top = (this.y*50) + "px";
-    //prend en compte le déplacement du terrain
-    HTMLennemy.style.left = ((this.x + this.field.positionX)*70) + "px";
+    HTMLennemy.style.left = ((this.x)*70) + "px";
 }
 
 //lui fait trouver le sol
@@ -52,20 +51,20 @@ Ennemy.prototype.checkLife = function () {
 }
 
 Ennemy.prototype.move = function () {
-    //vérifie état du sol à la prochaine case
+    //vérifie état du sol à la prochaine case    
     if(Math.random()<0.5) {
         //si la voie est libre
-        if(((this.field.checkBloc(this.y, this.x-1) == 0) && (this.field.checkBloc(this.y+1, this.x-1) == 1)) || ((this.field.checkBloc(this.y, this.x-1) == 0) && (this.field.checkBloc(this.y+1, this.x-1) ==3))) {
-            this.x -=1;
+        if((this.field.checkBloc(this.y, this.x-1) == 0) && (this.field.checkBloc(this.y+1, this.x-1) !=0)) {
             //la case quittée est libre
-            this.field.writeBlock(this.y, this.x+1, 0);
+            this.field.writeBlock(this.y, this.x, 0);
+            this.x -=1;
         }
     } else if ((Math.random()>0.5)) {
         //si la voie est libre
-        if((this.field.checkBloc(this.y, this.x+1) == 0) && (this.field.checkBloc(this.y+1, this.x+1) !=0) ) {
-            this.x +=1;
+        if((this.field.checkBloc(this.y, this.x+1) == 0) && (this.field.checkBloc(this.y+1, this.x+1) !=0)) {
             //la case quittée est libre
-            this.field.writeBlock(this.y, this.x-1, 0);
+            this.field.writeBlock(this.y, this.x, 0);
+            this.x +=1;
         }
     }
 
