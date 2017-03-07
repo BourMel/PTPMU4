@@ -69,6 +69,9 @@ $(document).ready(function(){
         $("#startGame").hide();
         $("#hero").show();
         $("#field").show();
+        $('#wrapPlatform').show();
+        $('.plateform').show();
+        $('.air-platform').show();
     });
         document.getElementById("butonPlayAgain").addEventListener("click", function() {
         $("#startGame").hide();

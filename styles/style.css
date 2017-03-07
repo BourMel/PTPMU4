@@ -168,7 +168,7 @@ h1 {font-size: 8em; letter-spacing: 10px;}
     /*changer la position dans field.js*/
     height:50px;
     width:70px;
-    //border:1px solid grey;
+    /*border:1px solid grey;*/
 }
 
 .air {
@@ -224,4 +224,29 @@ progress {
     z-index:20;
     /*à affiner : permet chute progressive mais pas très net
     transition:all 1000ms linear;*/
+}
+
+/* ******************************************************************** */
+/* PLATEFORME */
+/* ******************************************************************** */
+
+#wrapPlatform {
+    position: absolute;
+    display: none;
+}
+
+.plateform {display: none;
+    position: absolute;
+    height: 50px;
+    width: 70px;
+    background-color: red;
+    z-index: 10;
+}
+
+.air-platform {display: none;
+    position: absolute;
+    height: 50px;
+    width: 70px;
+    background-color: none;
+    z-index: 10;
 }
