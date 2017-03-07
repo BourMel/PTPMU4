@@ -2,6 +2,7 @@ function Hero (x, y, life, field) {
     this.x      = x;
     //conserve la valeur de départ de y
     this.startY = y;
+    this.startX = x;
     this.speedY = 3;
     this.y      = y;
     this.life   = life;
@@ -71,14 +72,16 @@ Hero.prototype.move = function(direction) {
     switch(direction) {
         case 1: // Si direction gauche, alors change couleur de fond
             document.getElementById("hero").style.backgroundColor = "yellow";
+            //la case quittée est libre
+            this.field.writeBlock(this.y-this.startY, this.x-this.startX, 0);
             this.x-=1;
-            //console.log("Couleur");
             break;
         case 2: // Si direction haut, alors change couleur de fond
             document.getElementById("hero").style.backgroundColor = "purple";
+            //la case quittée est libre
+            this.field.writeBlock(this.y-this.startY, this.x-this.startX, 0);
             var nextY = this.y + 1;
             var actualX = this.x-1;
-            console.log(this.field.checkBloc(nextY, this.x));
             //si n'essaie pas de sauter à partir de l'air
             if(this.field.checkBloc(nextY, actualX) != 0) {
                 this.y -= 1;
@@ -86,43 +89,23 @@ Hero.prototype.move = function(direction) {
             break;
         case 3: // Si direction droite, alors change couleur de fond
             document.getElementById("hero").style.backgroundColor = "green";
+            //la case quittée est libre
+            this.field.writeBlock(this.y-this.startY, this.x-this.startX, 0);
             this.x+=1;
             break;
         case 4: // Si direction bas, alors change couleur de fond
             document.getElementById("hero").style.backgroundColor = "blue";
+            //la case quittée est libre
+            this.field.writeBlock(this.y-this.startY, this.x-this.startX, 0);
             break;
     }
-
+    
+    //annonce la case active comme étant occupée
+    //écrit sur les cases en prenant en compte le fait que le héros part de 1 par rapport
+    //à ses coordonnées et de 0 par rapport au tableau
+    this.field.writeBlock(this.y-this.startY, this.x-this.startX, 5);
     this.display();
 }
-
-/* ************************************************************* */
-/* SAUT */
-/* ************************************************************* */
-
-//Hero.prototype.positionne = function () {
-//    document.getElementById(this.id).style.top = this.y + 'px';
-//}
-
-
-Hero.prototype.jump = function() {
-    this.speedY
-    
-    
-    this.x += 10 * this.vx; //10=nb de pixels dont on se déplace tt les 40ms
-        this.y += 10 * this.vy;
-        this.positionne();
-        if (this.x > window.innerWidth - 150) {
-            this.vx = - this.vx;
-        }
-        if (this.y > window.innerHeight - 150) {
-            this.vy = - this.vy;
-        }
-}
-
-
-/* ************************************************************* */
-/* ************************************************************* */
 
 Hero.prototype.checkLife = function() {
     if(this.life == 0) {

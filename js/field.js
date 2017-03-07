@@ -12,6 +12,7 @@ function Field (height, width, maxHeightGround, positionX) {
     piège = 2
     bosse = 3
     ennemi = 4
+    hero = 5
     */
     this.content = new Array(this.height * this.width);
     

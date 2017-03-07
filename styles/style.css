@@ -191,6 +191,7 @@ h1 {font-size: 8em; letter-spacing: 10px;}
 .bosse {
      background-color: #36383a;
     border-radius:4px 4px 0 0;
+    z-index:15;
 }
 
 /*barre de vie*/
@@ -212,6 +213,11 @@ progress {
     width:70px;
     height:50px;
     background-color:black;
+    z-index: 10;    
+}
+
+.ennemyField, .heroField {
+    background-color:rebeccapurple;
 }
 
 /* ******************************************************************** */
@@ -244,7 +250,7 @@ progress {
     position: absolute;
     height: 50px;
     width: 70px;
-    background-color: red;
+    background-color: #36383a;
     z-index: 10;
 }
 
