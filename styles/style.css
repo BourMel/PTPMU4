@@ -1,4 +1,6 @@
 
+
+
 /* ******************************************************************** */
 /* UTILITAIRES */
 /* ******************************************************************** */
@@ -25,10 +27,7 @@ body {
     width: 100%;
     height: 100vh;
     font-family: Source Sans Pro;
-    color: #36383a;
-	overflow:hidden; /*cache surplus de terrain*/
-/*    background-image: url(../images/background.png);
-    background-color: #bce579;*/
+	overflow: hidden; 
     background: #bce579;   
     background: linear-gradient(-5deg, #067567, #bce579 ); /* Standard syntax (must be last) */
 }
@@ -150,32 +149,34 @@ h1 {font-size: 8em; letter-spacing: 10px;}
 /* ********* Game Over ********* */
 .interfaceGameOver {background-color: #712607; color: #f2f1d2;}
 
-
+.item,
+.air-platform, 
+.plateform,
+#hero, 
+.ennemy,
+.air, 
+.sol, 
+.piege, 
+.bosse{
+    height: 50px;
+    width: 70px;
+}
 /* ******************************************************************** */
 /* FIELD */
 /* ******************************************************************** */
-#field {
-    
-    display: none;
-}
-.air, .sol, .piege, .bosse {
+#field {display: none;}
+
+.air,
+.sol, 
+.piege, 
+.bosse {
     position:absolute;
-    /*changer la position dans field.js*/
-    height:50px;
-    width:70px;
-    /*border:1px solid grey;*/
 }
 
-.air {
-/*    background-color: #f2f1d2;*/
-}
 
-.sol {
-    background-color: #36383a;
-}
+.sol {background-color: #36383a;}
 
 .piege {
-/*    background-color:red;*/
     background-image: url(../images/trap.png);
     background-size: cover;
 }
@@ -185,41 +186,18 @@ h1 {font-size: 8em; letter-spacing: 10px;}
     border-radius:4px 4px 0 0;
 }
 
-/*barre de vie*/
-progress {
-/*
-    position:fixed;
-    bottom:10px;
-*/
-}
 
-/*score*/
-#score {
-/*
-    position:fixed;
-    bottom:10px;
-    right:10px;
-*/
-    font-size:3em;
-}
+#score { font-size:3em;}
 
-.ennemy {
-    position:absolute;
-    width:70px;
-    height:50px;
-    background-color:black;
-}
+
 
 /* ******************************************************************** */
-/* HERO */
+/* HERO + ENNEMY*/
 /* ******************************************************************** */
 
 #hero {
     display: none;
     position:absolute;
-    width:70px;
-    height:50px;
-    /*largeur d'une case*/
     background-color: #36383a;
     border:1px solid red;
     z-index:20;
@@ -227,30 +205,35 @@ progress {
     transition:all 1000ms linear;*/
 }
 
+.ennemy {
+    position:absolute;
+    background-color:black;
+}
+
 /* ******************************************************************** */
 /* PLATEFORME */
 /* ******************************************************************** */
+
 
 #wrapPlatform {
     position: absolute;
     display: none;
 }
 
-.plateform {display: none;
+.plateform {
+    display: none;
     position: absolute;
-    height: 50px;
-    width: 70px;
     background-color: #36383a;
     z-index: 10;
 }
 
-.air-platform {display: none;
+.air-platform {
+    display: none;
     position: absolute;
-    height: 50px;
-    width: 70px;
     background-color: none;
     z-index: 10;
 }
+
 
 #helpBox,
 #resultBox,
@@ -264,12 +247,6 @@ progress {
     margin: 15%;
 }
 
-/* ******************************************************************** */
-/* ITEMS */
-/* ******************************************************************** */
 
-.item {
-    height: 50px;
-    width: 50px;
-    background-color: aqua;
-}
+
+.item {background-color: aqua;}
