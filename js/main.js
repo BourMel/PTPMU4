@@ -6,36 +6,38 @@ var platform;
 var tabEnnemy = new Array();
 
 //DONNEES DU JEU : à modifier selon niveau de difficulté recherché
+var idField = "field"; //impact dans le css
+var idHero = "hero"; //idem
 var widthField = 80;
-var heightField = 10;
-var heightGround = 4;
+var heightField = 20;
+var heightGround = 8;
 var heroLife = 100;
 var nbrEnnemy = 10; //peut être réduit s'ils tombent dans des trous
 var ennemyLife = 100;
 
 function init() {
-    game = new Field(heightField, widthField, heightGround, 0);
+    game = new Field(idField, heightField, widthField, heightGround);
     game.display();
 
-    fox = new Hero (1, 1, heroLife, game);
+    platform = new Platform(game);
+    platform.display();
+
+    fox = new Hero (idHero, heroLife, game);
     fox.display();
     fox.findGround();
 
     //crée un tableau d'ennemis
-    for(var i = 0 ; i < nbrEnnemy+1 ; i++) {
-        var ennemy = new Ennemy ("ennemy"+i, widthField, 0, ennemyLife, game);
+    for(var i = 0 ; i < nbrEnnemy ; i++) {
+        ennemy = new Ennemy ("ennemy"+i, 0, ennemyLife, game);
         ennemy.findGround();
         if(ennemy.checkLife()) {
             ennemy.display();
             tabEnnemy.push(ennemy);
         }
     }
-    
-    
-    var platform = new Platform(80, 1);
-    platform.display();
 
-   // item = new Item ("item1", widthField, 1, 100, game);
+
+    // item = new Item ("item1", widthField, 1, 100, game);
     //item.display();
     //item.findGround();
 }
@@ -44,22 +46,57 @@ function init() {
 //c'est la seule fonction à être active sans action du joueur
 function anim () {
     //nommé comme variable pour pouvoir être utilisé dans controls.js
-    var progressivFall = fox.findGround();
+    //var progressivFall =
+    fox.findGround();
+    fox.findEnnemy();
     fox.display();
-    
+
     //GAME OVER
     if(fox.checkLife() == false) {
         //possibilité de remplacer par interface
         init();
     }
     /*if(fall == false) {
-        clearInterval(intervalFalling);
-    }*/
+     clearInterval(intervalFalling);
+     }*/
 
     for(var b = 0 ; b < tabEnnemy.length ; b++) {
         tabEnnemy[b].move();
     }
- }
+}
+
+
+function blink () {
+    var HTMLhero = document.getElementById(idHero);
+    lostLife = setInterval(changeColor(HTMLhero), 100);
+    HTMLhero.style.backgroundColor = "#36383a";
+}
+
+function changeColor(HTMLhero) {
+    var nbrClignotements = 3;
+
+    for(i=0; i<nbrClignotements; i++) {
+        setTimeout( function () {
+            HTMLhero.style.backgroundColor = "red";
+        }, 50);
+        setTimeout( function () {
+            HTMLhero.style.backgroundColor = "#36383a";
+        }, 50);
+
+        nbrClignotements--;
+        if(nbrClignotements == 0) {
+            clearInterval(lostLife);
+        }
+    }
+
+
+}
+
+/*
+ *
+ * DOCUMENT READY
+ *
+ */
 
 $(document).ready(function(){
     //JEU
@@ -81,7 +118,7 @@ $(document).ready(function(){
     closeButtons.click(function() {
         $(this).parent().hide();
     });
-    
+
     document.getElementById("butonPlay").addEventListener("click", function() {
         $("#startGame").hide();
         $("#hero").show();
@@ -90,7 +127,7 @@ $(document).ready(function(){
         $('.plateform').show();
         $('.air-platform').show();
     });
-        document.getElementById("butonPlayAgain").addEventListener("click", function() {
+    document.getElementById("butonPlayAgain").addEventListener("click", function() {
         $("#startGame").hide();
         $("#hero").show();
         $("#field").show();
@@ -103,12 +140,12 @@ $(document).ready(function(){
 
 
 /*function initGame(event) {
-    var game = new Field(10, 80, 4, 0);
-    game.display();
-}
+ var game = new Field(10, 80, 4, 0);
+ game.display();
+ }
 
-var bouton = document.getElementById("butonPlay");
-bouton.addEventListener("click", initGame);*/
+ var bouton = document.getElementById("butonPlay");
+ bouton.addEventListener("click", initGame);*/
 
 
 //$("#butonPlay").click(function(){

@@ -1,8 +1,9 @@
-function Field (height, width, maxHeightGround, positionX) {
+function Field (id, height, width, maxHeightGround) {
+    this.id = id;
     this.height = height;
     this.width = width;
     this.maxHeightGround = maxHeightGround;
-    this.positionX = positionX;
+    this.positionX = 0;
     
     //pour manipuler la difficulté du niveau, les probabilités doivent être un paramètre de la fonction
     
@@ -12,6 +13,7 @@ function Field (height, width, maxHeightGround, positionX) {
     piège = 2
     bosse = 3
     ennemi = 4
+    hero = 5
     */
     this.content = new Array(this.height * this.width);
     
@@ -75,14 +77,15 @@ function Field (height, width, maxHeightGround, positionX) {
             }
         }
     }
+
+    //contruction HTML
+    var field = document.createElement("div");
+    field.setAttribute("id", this.id);
+    document.body.appendChild(field);
 }
 
 Field.prototype.display = function () {
-    var field = document.createElement("div");
-    field.setAttribute("id", "field");
-    document.body.appendChild(field);
-
-    var HTMLfield = document.getElementById("field");
+    var HTMLfield = document.getElementById(this.id);
     HTMLfield.style.left = (this.positionX*70) + "px";
 
     for(i=0 ; i<this.width ; i++) {
@@ -134,6 +137,7 @@ Field.prototype.move = function(direction, heroX, heroY) {
                 this.positionX -= 1;
                 break;
         }
+
         didMove=true;
     } else {
         didMove=false;

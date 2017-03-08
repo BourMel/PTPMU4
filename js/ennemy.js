@@ -1,24 +1,22 @@
-//maxX prend pour valeur la longueur du terrain
-function Ennemy (id, maxX, y, life, field) {
+function Ennemy (id, y, life, field) {
     this.id     = id;
-    this.x      = Math.floor(Math.random()*maxX);
-    this.y      = y;
     this.life   = life;
     this.field  = field;
+    this.x      = Math.floor(Math.random() * this.field.width);
+    this.y      = y;
 
-    var field = document.getElementById("field");
+    var fieldHTML = document.getElementById(this.field.id);
     var ennemy = document.createElement("div");
     ennemy.setAttribute("class", "ennemy");
     ennemy.setAttribute("id", this.id);
-    field.appendChild(ennemy);
+    fieldHTML.appendChild(ennemy);
 }
 
 //affiche l'ennemi, appelé dans init() (main.js) et par controls.js
 Ennemy.prototype.display = function () {
     var HTMLennemy = document.getElementById(this.id);
     HTMLennemy.style.top = (this.y*50) + "px";
-    //prend en compte le déplacement du terrain
-    HTMLennemy.style.left = ((this.x + this.field.positionX)*70) + "px";
+    HTMLennemy.style.left = ((this.x)*70) + "px";
 }
 
 //lui fait trouver le sol
@@ -52,24 +50,24 @@ Ennemy.prototype.checkLife = function () {
 }
 
 Ennemy.prototype.move = function () {
-    //vérifie état du sol à la prochaine case
+    //vérifie état du sol à la prochaine case    
     if(Math.random()<0.5) {
         //si la voie est libre
-        if((this.field.checkBloc(this.y, this.x-1) == 0) && (this.field.checkBloc(this.y+1, this.x-1) !=0)) {
-            this.x -=1;
+        if((this.field.checkBloc(this.y, this.x-1) == 0) && (this.field.checkBloc(this.y+1, this.x-1) ==1)) {
             //la case quittée est libre
-            this.field.writeBlock(this.y, this.x+1, 0);
+            this.field.writeBlock(this.y, this.x, 0);
+            this.x -=1;
         }
     } else if ((Math.random()>0.5)) {
         //si la voie est libre
-        if((this.field.checkBloc(this.y, this.x+1) == 0) && (this.field.checkBloc(this.y+1, this.x+1) !=0) ) {
-            this.x +=1;
+        if((this.field.checkBloc(this.y, this.x+1) == 0) && (this.field.checkBloc(this.y+1, this.x+1) ==1)) {
             //la case quittée est libre
-            this.field.writeBlock(this.y, this.x-1, 4);
+            this.field.writeBlock(this.y, this.x, 0);
+            this.x +=1;
         }
     }
 
     //annonce la case active comme étant occupée
-    this.field.writeBlock(this.y, this.x, 0);
+    this.field.writeBlock(this.y, this.x, 4);
     this.display();
 }

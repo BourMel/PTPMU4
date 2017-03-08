@@ -1,17 +1,15 @@
-function Hero (x, y, life, field) {
-    this.x      = x;
-    //conserve la valeur de départ de y
-    this.startY = y;
+function Hero (id, life, field) {
+    this.id     = id;
+    this.x      = 0;
+    this.y      = 0;
     this.speedY = 3;
-    this.y      = y;
     this.life   = life;
     this.score  = 0;
-    //on précise dans quel terrain se trouve le héros pour rendre les méthodes générales
     this.field  = field;
 
     //heros
     var hero = document.createElement("div");
-    hero.setAttribute("id", "hero");
+    hero.setAttribute("id", this.id);
     document.body.appendChild(hero);
 
     //barre de vie
@@ -30,99 +28,89 @@ function Hero (x, y, life, field) {
 
 //les valeurs chiffrées doivent être adaptées au CSS
 Hero.prototype.display = function() {
-    var HTMLhero = document.getElementById("hero");
+    var HTMLhero = document.getElementById(this.id);
     HTMLhero.style.top = (this.y*50) + "px"; //devra être adapté automatiquement à la hauteur du sol
     HTMLhero.style.left = (this.x*70 + this.fieldPositionX*70) + "px";
 
     //barre de vie
     document.getElementById("lifeBar").setAttribute("value", this.life);
     //score (prenant en compte l'avancement dans le jeu)
-    document.getElementById("score").innerHTML = this.score + (this.x-1)*10;
+    document.getElementById("score").innerHTML = this.score + this.x*10;
 }
 
 //placer le héros automatiquement sur le sol (chute !)
 Hero.prototype.findGround = function () { //retourne vrai ou faux, function anim() utilise findGround sur objet global (et gère interval)
     var nextY = this.y + 1;
-    //on situe x par rapport au tableau
-    var actualX = this.x-1;
-    
+
     //cas où on dépasse les limites du terrain (chute dans un trou)
-    if (this.y+1+this.startY > this.field.height) {
+    if (this.y+1 > this.field.height-1) {
         this.life = 0;
         return false;
     //cas "air" (et undefined en théorie, qui est géré au préalable par "if")
-    } else if(this.field.checkBloc(nextY, actualX) == 0) {
+    } else if(this.field.checkBloc(nextY, this.x) == 0) {
         this.y += 1;
         nextY += 1;
+
+        //annonce la case active comme étant occupée, et la précédente comme étant libre
+        this.field.writeBlock(this.y-1, this.x, 0);
+        this.field.writeBlock(this.y, this.x, 5);
+
         //indique à function anim (dans controls.js) que la chute continue
         return true;
     //si on marche sur un sol piégé
-    } else if ((this.field.checkBloc(nextY, actualX) == 2)) {
+    } else if ((this.field.checkBloc(nextY, this.x) == 2)) {
         this.life-=10;
         this.score-=10;
+        blink();
         return false;
     } else {
         return false;
     }
 }
 
-/* Animation du Hero, changement de style selon direction. Fonction appelée par controls.js */
+//teste droite et gauche du héros ; si ennemi, perd de la vie
+Hero.prototype.findEnnemy = function () {
+    var leftToHero = this.x-1;
+    var rightToHero = this.x+1;
+
+    if((this.field.checkBloc(this.y, leftToHero) == 4) || (this.field.checkBloc(this.y, rightToHero) == 4)) {
+        this.life-=10;
+        this.score-=10;
+        blink();
+    }
+}
+
+/* Animation du Hero, changement de style selon direction. Fonction appelée par controls.js si pas de collision */
 Hero.prototype.move = function(direction) {
+    //la case quittée est vide
+    this.field.writeBlock(this.y, this.x, 0);
+
     switch(direction) {
         case 1: // Si direction gauche, alors change couleur de fond
-            document.getElementById("hero").style.backgroundColor = "yellow";
-            this.x-=1;
-            //console.log("Couleur");
+            //document.getElementById("hero").style.backgroundColor = "yellow";
+            this.x -= 1;
             break;
         case 2: // Si direction haut, alors change couleur de fond
-            document.getElementById("hero").style.backgroundColor = "purple";
+            //document.getElementById("hero").style.backgroundColor = "purple";
             var nextY = this.y + 1;
-            var actualX = this.x-1;
-            console.log(this.field.checkBloc(nextY, this.x));
             //si n'essaie pas de sauter à partir de l'air
-            if(this.field.checkBloc(nextY, actualX) != 0) {
+            if (this.field.checkBloc(nextY, this.x) != 0) {
                 this.y -= 1;
             }
             break;
         case 3: // Si direction droite, alors change couleur de fond
-            document.getElementById("hero").style.backgroundColor = "green";
-            this.x+=1;
+            //document.getElementById("hero").style.backgroundColor = "green";
+            this.x += 1;
             break;
         case 4: // Si direction bas, alors change couleur de fond
-            document.getElementById("hero").style.backgroundColor = "blue";
+            //document.getElementById("hero").style.backgroundColor = "blue";
             break;
     }
 
+    //annonce la case active comme étant occupée
+    this.field.writeBlock(this.y, this.x, 5);
     this.display();
 }
-
-/* ************************************************************* */
-/* SAUT */
-/* ************************************************************* */
-
-//Hero.prototype.positionne = function () {
-//    document.getElementById(this.id).style.top = this.y + 'px';
-//}
-
-
-Hero.prototype.jump = function() {
-    this.speedY
-    
-    
-    this.x += 10 * this.vx; //10=nb de pixels dont on se déplace tt les 40ms
-        this.y += 10 * this.vy;
-        this.positionne();
-        if (this.x > window.innerWidth - 150) {
-            this.vx = - this.vx;
-        }
-        if (this.y > window.innerHeight - 150) {
-            this.vy = - this.vy;
-        }
-}
-
-
-/* ************************************************************* */
-/* ************************************************************* */
 
 Hero.prototype.checkLife = function() {
     if(this.life == 0) {
@@ -135,5 +123,5 @@ Hero.prototype.checkLife = function() {
 //renvoie la position du héros (utilisé dans field.move)
 Hero.prototype.where = function() {
     //this.x-1 correspond à x situé par rapport au tableau
-    return {heroPositionX: this.x-1, heroPositionY: this.y};
+    return {heroPositionX: this.x, heroPositionY: this.y};
 }
