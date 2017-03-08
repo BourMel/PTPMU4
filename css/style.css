@@ -1,0 +1,291 @@
+@charset "UTF-8";
+/* ******************************************************************** */
+/* VARIABLES */
+/* ******************************************************************** */
+/* ******************************************************************** */
+/* UTILITAIRES */
+/* ******************************************************************** */
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i");
+@font-face {
+  font-family: Beauty and the Beast;
+  src: url(../fontes/beauty_and_the_beast_sample-webfont.ttf);
+  src: url(../fontes/beauty_and_the_beast_sample-webfont.woff);
+  src: url(../fontes/beauty_and_the_beast_sample-webfont.woff2); }
+/* import des partiels scss */
+/* ******************************************************************** */
+/* GENERALES */
+/* ******************************************************************** */
+#gameOver,
+#success {
+  display: none; }
+
+.interfaceAccueil,
+.interfaceSuccess,
+.interfaceGameOver {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  align-content: center; }
+
+#startGame,
+#success,
+#gameOver {
+  position: absolute;
+  width: 100%;
+  height: 100vh; }
+
+/* ******************************************************************** */
+/* ACCUEIL */
+/* ******************************************************************** */
+.interfaceAccueil {
+  background-color: #f2f1d2; }
+
+.accueilTitre {
+  margin-bottom: 100px; }
+
+#butonPlay,
+#butonPlayAgain,
+#butonQuit {
+  width: 100%;
+  font-size: 3em;
+  /*    margin-top: -300px;*/ }
+
+#playArrow {
+  width: 100px; }
+
+#butonPlay:hover,
+#butonPlayAgain:hover,
+#butonQuit:hover,
+.icon:hover {
+  cursor: pointer; }
+
+.accueilIcones {
+  margin-left: 1em;
+  margin-bottom: 100px; }
+
+.icon {
+  color: #f2f1d2;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-bottom: 0.5em;
+  font-size: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.soundtrack {
+  position: fixed;
+  top: 800px;
+  right: 0px; }
+
+/* ******************************************************************** */
+/* SUCCES */
+/* ******************************************************************** */
+.interfaceSuccess {
+  background-color: #f1e741; }
+
+.interfaceBoutons {
+  width: 50%;
+  display: flex;
+  margin-top: 100px; }
+
+.interfaceScore {
+  width: 100%; }
+
+/* ******************************************************************** */
+/* GAME OVER */
+/* ******************************************************************** */
+.interfaceGameOver {
+  background-color: #712607;
+  color: #f2f1d2; }
+
+/* ******************************************************************** */
+/* FIELD */
+/* ******************************************************************** */
+#field {
+  display: none;
+  position: relative; }
+
+.item {
+  z-index: 10;
+  background-image: url(../images/item.png);
+  animation: bounce 0.9s ease-out infinite alternate; }
+
+#helpBox,
+#resultBox,
+#creditBox,
+.ennemy,
+#hero,
+#wrapPlatform,
+.plateform,
+.air-platform,
+.air,
+.sol,
+.piege,
+.bosse,
+.item {
+  position: absolute; }
+
+.air-platform,
+.plateform,
+#hero,
+.ennemy,
+.air,
+.sol,
+.piege,
+.bosse,
+.item {
+  height: 50px;
+  width: 70px; }
+
+#helpBox,
+#resultBox,
+#creditBox,
+.air-platform,
+.plateform,
+#wrapPlatform,
+#hero {
+  display: none; }
+
+.sol,
+.bosse {
+  background-color: #36383a; }
+
+.piege {
+  background-image: url(../images/trap-01.png);
+  background-size: cover; }
+
+.bosse {
+  border-radius: 4px 4px 0 0;
+  z-index: 15; }
+
+#score {
+  font-size: 3em; }
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0%); }
+  100% {
+    transform: translateY(-20px); } }
+/* ******************************************************************** */
+/* HERO + ENNEMY*/
+/* ******************************************************************** */
+#hero {
+  background-color: #36383a;
+  border: 1px solid red;
+  z-index: 20;
+  /*├á affiner : permet chute progressive mais pas tr├¿s net
+  transition:all 1000ms linear;*/ }
+
+.ennemy {
+  background-color: black;
+  z-index: 10; }
+
+/* ******************************************************************** */
+/* PLATEFORME */
+/* ******************************************************************** */
+.plateform {
+  background-color: #36383a;
+  z-index: 10; }
+
+.air-platform {
+  background-color: none;
+  z-index: 10; }
+
+#helpBox,
+#resultBox,
+#creditBox {
+  z-index: 1;
+  background-color: red;
+  height: 70%;
+  width: 70%;
+  margin: 15%; }
+
+/*d├®bug*/
+/*.air::after {
+    content:"0";
+    display:block;
+}
+
+.sol::after {
+    content:"1";
+    display:block;
+    color:white;
+}
+
+.bosse::after {
+    content:"3";
+    display:block;
+    color:white;
+}
+
+.piege::after {
+    content:"2";
+    display:block;
+    color:white;
+}
+
+.ennemyfield {
+    content:"4";
+    display:block;
+    color:white;
+}
+
+.herofield {
+    content:"5";
+    display:block;
+    color:white;
+}
+*/
+/* ******************************************************************** */
+/* GENERALES */
+/* ******************************************************************** */
+*,
+*:after,
+*:before {
+  box-sizing: border-box; }
+
+body {
+  width: 100%;
+  height: 100vh;
+  font-family: Source Sans Pro;
+  overflow: hidden;
+  background: #bce579;
+  /* pour les navigateurs qui ne supportent pas les d├®grad├®s */
+  background: linear-gradient(-5deg, #067567, #bce579); }
+
+/* ******************************************************************** */
+/* TYPOS */
+/* ******************************************************************** */
+h1,
+#butonPlay,
+#butonPlayAgain,
+#butonQuit {
+  font-family: Beauty and the Beast; }
+
+h1 {
+  font-size: 8em;
+  letter-spacing: 10px; }
+
+.interfaceGameOver h1,
+.interfaceSuccess h1 {
+  margin-bottom: 100px; }
+
+.accueilTitre h1 {
+  padding: 0.5em;
+  background-image: url(../images/wirecadre-01.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center; }
+
+.texte {
+  font-size: 2em;
+  letter-spacing: 7px;
+  margin-top: 5px; }
+
+/*# sourceMappingURL=style.css.map */

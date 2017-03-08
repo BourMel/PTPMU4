@@ -1,0 +1,173 @@
+$square-height: 50px;
+$square-width: 70px;
+$display-none: none;
+$color-ground: #36383a;
+
+/* ******************************************************************** */
+/* FIELD */
+/* ******************************************************************** */
+
+#field {
+    display: $display-none;
+    position: relative;
+}
+
+.item {
+    z-index: 10;
+    background-image: url(../images/item.png);
+    animation: bounce 0.9s ease-out infinite alternate;
+}
+
+#helpBox,
+#resultBox,
+#creditBox,
+.ennemy,
+#hero,
+#wrapPlatform,
+.plateform,
+.air-platform,
+.air,
+.sol,
+.piege,
+.bosse,
+.item {
+    position: absolute;
+}
+
+.air-platform,
+.plateform,
+#hero,
+.ennemy,
+.air,
+.sol,
+.piege,
+.bosse,
+.item {
+    height: $square-height;
+    width: $square-width;
+}
+
+#helpBox,
+#resultBox,
+#creditBox,
+.air-platform,
+.plateform,
+#wrapPlatform,
+#hero{
+    display: $display-none;
+}
+
+
+.sol,
+.bosse {
+    background-color: $color-ground;
+}
+
+.piege {
+    background-image: url(../images/trap-01.png);
+    background-size: cover;
+}
+
+.bosse {
+    border-radius: 4px 4px 0 0;
+    z-index: 15;
+}
+
+#score {
+    font-size: 3em;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0%);
+    }
+    100% {
+        transform: translateY(-20px);
+    }
+}
+
+
+/* ******************************************************************** */
+/* HERO + ENNEMY*/
+/* ******************************************************************** */
+
+#hero {
+    background-color: $color-ground;
+    border: 1px solid red;
+    z-index: 20;
+    /*à affiner : permet chute progressive mais pas très net
+    transition:all 1000ms linear;*/
+}
+
+.ennemy {
+    background-color: black;
+    z-index: 10;
+}
+
+
+/* ******************************************************************** */
+/* PLATEFORME */
+ /* ******************************************************************** */
+
+ 
+
+.plateform {
+    background-color: $color-ground;
+    z-index: 10;
+}
+
+.air-platform {
+    background-color: none;
+    z-index: 10;
+}
+
+#helpBox,
+#resultBox,
+#creditBox {
+    z-index: 1;
+    background-color: red;
+    height: 70%;
+    width: 70%;
+    margin: 15%;
+}
+
+
+
+/*débug*/
+
+
+/*.air::after {
+    content:"0";
+    display:block;
+}
+
+.sol::after {
+    content:"1";
+    display:block;
+    color:white;
+}
+
+.bosse::after {
+    content:"3";
+    display:block;
+    color:white;
+}
+
+.piege::after {
+    content:"2";
+    display:block;
+    color:white;
+}
+
+.ennemyfield {
+    content:"4";
+    display:block;
+    color:white;
+}
+
+.herofield {
+    content:"5";
+    display:block;
+    color:white;
+}
+*/
