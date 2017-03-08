@@ -43,7 +43,7 @@ Hero.prototype.findGround = function () { //retourne vrai ou faux, function anim
     var nextY = this.y + 1;
 
     //cas où on dépasse les limites du terrain (chute dans un trou)
-    if (this.y+1+this.startY > this.field.height) {
+    if (this.y+1 > this.field.height-1) {
         this.life = 0;
         return false;
     //cas "air" (et undefined en théorie, qui est géré au préalable par "if")

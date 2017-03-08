@@ -1,5 +1,8 @@
 document.onkeydown = function(event) {
     switch(event.keyCode) {
+        case NULL:
+            var direction = 0;
+            break;
         case 37:
             direction = 1;
             //console.log("Left");
