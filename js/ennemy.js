@@ -56,18 +56,18 @@ Ennemy.prototype.move = function () {
         if((this.field.checkBloc(this.y, this.x-1) == 0) && (this.field.checkBloc(this.y+1, this.x-1) !=0)) {
             //la case quittée est libre
             this.field.writeBlock(this.y, this.x, 0);
-            this.x -=1;
+            //this.x -=1;
         }
     } else if ((Math.random()>0.5)) {
         //si la voie est libre
         if((this.field.checkBloc(this.y, this.x+1) == 0) && (this.field.checkBloc(this.y+1, this.x+1) !=0)) {
             //la case quittée est libre
-            this.field.writeBlock(this.y, this.x, 0);
+            //this.field.writeBlock(this.y, this.x, 0);
             this.x +=1;
         }
     }
 
     //annonce la case active comme étant occupée
-    this.field.writeBlock(this.y, this.x, 4);
+    //this.field.writeBlock(this.y, this.x, 4);
     this.display();
 }

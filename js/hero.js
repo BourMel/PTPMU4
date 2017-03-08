@@ -71,15 +71,13 @@ Hero.prototype.move = function(direction) {
     switch(direction) {
         case 1: // Si direction gauche, alors change couleur de fond
             //document.getElementById("hero").style.backgroundColor = "yellow";
-
             this.x-=1;
             break;
         case 2: // Si direction haut, alors change couleur de fond
             //document.getElementById("hero").style.backgroundColor = "purple";
             var nextY = this.y + 1;
-            var actualX = this.x-1;
             //si n'essaie pas de sauter à partir de l'air
-            if(this.field.checkBloc(nextY, actualX) != 0) {
+            if(this.field.checkBloc(nextY, this.x) != 0) {
                 this.y -= 1;
             }
             break;
@@ -114,5 +112,5 @@ Hero.prototype.checkLife = function() {
 //renvoie la position du héros (utilisé dans field.move)
 Hero.prototype.where = function() {
     //this.x-1 correspond à x situé par rapport au tableau
-    return {heroPositionX: this.x-1, heroPositionY: this.y};
+    return {heroPositionX: this.x, heroPositionY: this.y};
 }

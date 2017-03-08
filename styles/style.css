@@ -195,7 +195,7 @@ h1 {font-size: 8em; letter-spacing: 10px;}
 }
 
 /*débug*/
-.air::after {
+/*.air::after {
     content:"0";
     display:block;
 }
@@ -229,7 +229,7 @@ h1 {font-size: 8em; letter-spacing: 10px;}
     display:block;
     color:white;
 }
-
+*/
 
 
 /*barre de vie*/
@@ -250,8 +250,7 @@ progress {
     position:absolute;
     width:70px;
     height:50px;
-    /*background-color:black;*/
-    border:1px solid green;
+    background-color:black;
     z-index: 10;    
 }
 
@@ -269,7 +268,7 @@ progress {
     width:70px;
     height:50px;
     /*largeur d'une case*/
-    /*background-color: #36383a;*/
+    background-color: #36383a;
     border:1px solid red;
     z-index:20;
     /*à affiner : permet chute progressive mais pas très net

@@ -18,15 +18,15 @@ function init() {
     game = new Field(idField, heightField, widthField, heightGround);
     game.display();
 
-    //platform = new Platform(game);
-    //platform.display();
+    platform = new Platform(game);
+    platform.display();
 
     fox = new Hero (heroLife, game);
     fox.display();
     fox.findGround();
 
     //crée un tableau d'ennemis
-    for(var i = 0 ; i < nbrEnnemy+1 ; i++) {
+    for(var i = 0 ; i < nbrEnnemy ; i++) {
         ennemy = new Ennemy ("ennemy"+i, 0, ennemyLife, game);
         ennemy.findGround();
         if(ennemy.checkLife()) {
