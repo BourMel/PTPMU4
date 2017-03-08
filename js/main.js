@@ -4,24 +4,44 @@ var ennemy;
 var item;
 var platform;
 var tabEnnemy = new Array();
+var tabItems = new Array();
 
-//DONNEES DU JEU : à modifier selon niveau de difficulté recherché
+// ---------------------------------------------------------------- //
+// DONNEES DU JEU - à modifier selon niveau de difficulté recherché //
+// ---------------------------------------------------------------- //
+
+//terrain
 var idField = "field"; //impact dans le css
-var idHero = "hero"; //idem
 var widthField = 80;
 var heightField = 20;
 var heightGround = 8;
+
+//heros
+var idHero = "hero"; //impact dans le css
 var heroLife = 100;
+
+//ennemis
 var nbrEnnemy = 10; //peut être réduit s'ils tombent dans des trous
 var ennemyLife = 100;
 
+//items
+var nbrItem = 10;
+var itemLife = 100;
+
+
+// ---------------------------------------------------------------- //
+// INITIALISATION DU JEU //
+// ---------------------------------------------------------------- //
 function init() {
+    //créé un nouveau terrain
     game = new Field(idField, heightField, widthField, heightGround);
     game.display();
 
+    //créé de nouvelles plateformes aériennes
     platform = new Platform(game);
     platform.display();
 
+    //créer le héros
     fox = new Hero (idHero, heroLife, game);
     fox.display();
     fox.findGround();
@@ -36,10 +56,15 @@ function init() {
         }
     }
 
-
-    // item = new Item ("item1", widthField, 1, 100, game);
-    //item.display();
-    //item.findGround();
+    //créé de nouveaux items à collectionner
+    for(var i = 0 ; i < nbrItem+1 ; i++) {
+        var item = new Item ("item"+i, widthField, 0, itemLife, game);
+        item.findGround();
+        if(item.checkLife()) {
+            item.display();
+            tabItems.push(item);
+        }
+    }
 }
 
 //la fonction, quand elle est appelée, active la chute du personnage
@@ -92,11 +117,9 @@ function changeColor(HTMLhero) {
 
 }
 
-/*
- *
- * DOCUMENT READY
- *
- */
+// ---------------------------------------------------------------- //
+// DOCUMENT READY //
+// ---------------------------------------------------------------- //
 
 $(document).ready(function(){
     //JEU
