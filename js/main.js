@@ -36,7 +36,8 @@ function init() {
         }
     }
 
-   // item = new Item ("item1", widthField, 1, 100, game);
+
+    // item = new Item ("item1", widthField, 1, 100, game);
     //item.display();
     //item.findGround();
 }
@@ -49,20 +50,20 @@ function anim () {
     fox.findGround();
     fox.findEnnemy();
     fox.display();
-    
+
     //GAME OVER
     if(fox.checkLife() == false) {
         //possibilité de remplacer par interface
         init();
     }
     /*if(fall == false) {
-        clearInterval(intervalFalling);
-    }*/
+     clearInterval(intervalFalling);
+     }*/
 
     for(var b = 0 ; b < tabEnnemy.length ; b++) {
         tabEnnemy[b].move();
     }
- }
+}
 
 
 function blink () {
@@ -117,7 +118,7 @@ $(document).ready(function(){
     closeButtons.click(function() {
         $(this).parent().hide();
     });
-    
+
     document.getElementById("butonPlay").addEventListener("click", function() {
         $("#startGame").hide();
         $("#hero").show();
@@ -126,7 +127,7 @@ $(document).ready(function(){
         $('.plateform').show();
         $('.air-platform').show();
     });
-        document.getElementById("butonPlayAgain").addEventListener("click", function() {
+    document.getElementById("butonPlayAgain").addEventListener("click", function() {
         $("#startGame").hide();
         $("#hero").show();
         $("#field").show();
@@ -139,12 +140,12 @@ $(document).ready(function(){
 
 
 /*function initGame(event) {
-    var game = new Field(10, 80, 4, 0);
-    game.display();
-}
+ var game = new Field(10, 80, 4, 0);
+ game.display();
+ }
 
-var bouton = document.getElementById("butonPlay");
-bouton.addEventListener("click", initGame);*/
+ var bouton = document.getElementById("butonPlay");
+ bouton.addEventListener("click", initGame);*/
 
 
 //$("#butonPlay").click(function(){
