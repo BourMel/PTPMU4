@@ -182,7 +182,7 @@ h1 {font-size: 8em; letter-spacing: 10px;}
 .sol {background-color: #36383a;}
 
 .piege {
-    background-image: url(../images/item.png);
+    background-image: url(../images/trap-01.png);
     background-size: cover;
 }
 
@@ -307,7 +307,7 @@ progress {
 
 .item {background-image: url(../images/item.png);}
 
-.piege{
+.item{
      animation: bounce 0.9s ease-out infinite alternate;
 }
 
