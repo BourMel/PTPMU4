@@ -59,7 +59,7 @@ Platform.prototype.display = function() {
             
             // Positionne les block de plateforme selon la position * 70 (taille du block)
             blocPlat.style.left = (i * 70) + 'px';
-            blocPlat.style.top = ((j * 50) + 100) + 'px';
+            blocPlat.style.top = ((j * 50) + (50 * 6)) + 'px';
             HTMLplatform.appendChild(blocPlat);
         }
     }
