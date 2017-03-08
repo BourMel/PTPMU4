@@ -164,7 +164,7 @@ h1 {font-size: 8em; letter-spacing: 10px;}
 /* ******************************************************************** */
 /* FIELD */
 /* ******************************************************************** */
-#field {display: none;}
+#field {display: none; position:relative;}
 
 .air,
 .sol, 
@@ -187,7 +187,6 @@ h1 {font-size: 8em; letter-spacing: 10px;}
     z-index:15;
 }
 
-<<<<<<<
 /*débug*/
 /*.air::after {
     content:"0";
@@ -231,28 +230,11 @@ progress {
     position:fixed;
     bottom:10px;
 }
-=======
-
->>>>>>>
 
 #score { font-size:3em;}
 
-.ennemy {
-    position:absolute;
-    width:70px;
-    height:50px;
-    background-color:black;
-    z-index: 10;    
-}
 
-<<<<<<<
-.ennemyField, .heroField {
-    background-color:rebeccapurple;
-}
 
-=======
-
->>>>>>>
 /* ******************************************************************** */
 /* HERO + ENNEMY*/
 /* ******************************************************************** */
@@ -267,10 +249,15 @@ progress {
     transition:all 1000ms linear;*/
 }
 
+
 .ennemy {
     position:absolute;
+    width:70px;
+    height:50px;
     background-color:black;
+    z-index: 10;
 }
+
 
 /* ******************************************************************** */
 /* PLATEFORME */

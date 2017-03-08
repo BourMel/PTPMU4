@@ -1,6 +1,6 @@
 document.onkeydown = function(event) {
     switch(event.keyCode) {
-        case NULL:
+        case "NULL":
             var direction = 0;
             break;
         case 37:

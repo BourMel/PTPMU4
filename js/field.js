@@ -77,13 +77,14 @@ function Field (id, height, width, maxHeightGround) {
             }
         }
     }
-}
 
-Field.prototype.display = function () {
+    //contruction HTML
     var field = document.createElement("div");
     field.setAttribute("id", this.id);
     document.body.appendChild(field);
+}
 
+Field.prototype.display = function () {
     var HTMLfield = document.getElementById(this.id);
     HTMLfield.style.left = (this.positionX*70) + "px";
 
@@ -136,6 +137,7 @@ Field.prototype.move = function(direction, heroX, heroY) {
                 this.positionX -= 1;
                 break;
         }
+
         didMove=true;
     } else {
         didMove=false;
