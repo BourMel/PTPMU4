@@ -100,10 +100,6 @@ Field.prototype.display = function () {
                 bloc.setAttribute("class", "piege");
             } else if (this.content[j * this.width + i] == 3) {
                 bloc.setAttribute("class", "bosse");
-            } else if (this.content[j * this.width + i] == 4) {
-                bloc.setAttribute("class", "ennemyfield");
-            } else if (this.content[j * this.width + i] == 5) {
-                bloc.setAttribute("class", "herofield");
             }
 
             //à adapter à la taille des blocs
@@ -130,9 +126,6 @@ Field.prototype.move = function(direction, heroX, heroY) {
     var leftToHero = heroX-1;
     var rightToHero = heroX+1;
     var didMove;
-
-    //console.log("à ma gauche " + this.checkBloc(heroY, leftToHero));
-    //console.log("à ma droite " + this.checkBloc(heroY, rightToHero));
 
     if(direction==1 && this.checkBloc(heroY, leftToHero)==0 || direction==3 && this.checkBloc(heroY, rightToHero)==0) { //gauche
         switch(direction) {

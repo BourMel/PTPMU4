@@ -1,8 +1,7 @@
-function Hero (life, field) {
+function Hero (id, life, field) {
+    this.id     = id;
     this.x      = 0;
     this.y      = 0;
-    this.startX = this.x;
-    this.startY = this.y;
     this.speedY = 3;
     this.life   = life;
     this.score  = 0;
@@ -10,7 +9,7 @@ function Hero (life, field) {
 
     //heros
     var hero = document.createElement("div");
-    hero.setAttribute("id", "hero");
+    hero.setAttribute("id", this.id);
     document.body.appendChild(hero);
 
     //barre de vie
@@ -29,7 +28,7 @@ function Hero (life, field) {
 
 //les valeurs chiffrées doivent être adaptées au CSS
 Hero.prototype.display = function() {
-    var HTMLhero = document.getElementById("hero");
+    var HTMLhero = document.getElementById(this.id);
     HTMLhero.style.top = (this.y*50) + "px"; //devra être adapté automatiquement à la hauteur du sol
     HTMLhero.style.left = (this.x*70 + this.fieldPositionX*70) + "px";
 
@@ -51,53 +50,65 @@ Hero.prototype.findGround = function () { //retourne vrai ou faux, function anim
     } else if(this.field.checkBloc(nextY, this.x) == 0) {
         this.y += 1;
         nextY += 1;
+
+        //annonce la case active comme étant occupée, et la précédente comme étant libre
+        this.field.writeBlock(this.y-1, this.x, 0);
+        this.field.writeBlock(this.y, this.x, 5);
+
         //indique à function anim (dans controls.js) que la chute continue
         return true;
     //si on marche sur un sol piégé
     } else if ((this.field.checkBloc(nextY, this.x) == 2)) {
         this.life-=10;
         this.score-=10;
+        blink();
         return false;
     } else {
         return false;
     }
 }
 
-/* Animation du Hero, changement de style selon direction. Fonction appelée par controls.js */
+//teste droite et gauche du héros ; si ennemi, perd de la vie
+Hero.prototype.findEnnemy = function () {
+    var leftToHero = this.x-1;
+    var rightToHero = this.x+1;
+
+    if((this.field.checkBloc(this.y, leftToHero) == 4) || (this.field.checkBloc(this.y, rightToHero) == 4)) {
+        this.life-=10;
+        this.score-=10;
+        blink();
+    }
+}
+
+/* Animation du Hero, changement de style selon direction. Fonction appelée par controls.js si pas de collision */
 Hero.prototype.move = function(direction) {
     //la case quittée est vide
-    //this.field.writeBlock(this.y, this.x, 0);
+    this.field.writeBlock(this.y, this.x, 0);
 
     switch(direction) {
         case 1: // Si direction gauche, alors change couleur de fond
             //document.getElementById("hero").style.backgroundColor = "yellow";
-            this.x-=1;
+            this.x -= 1;
             break;
         case 2: // Si direction haut, alors change couleur de fond
             //document.getElementById("hero").style.backgroundColor = "purple";
             var nextY = this.y + 1;
             //si n'essaie pas de sauter à partir de l'air
-            if(this.field.checkBloc(nextY, this.x) != 0) {
+            if (this.field.checkBloc(nextY, this.x) != 0) {
                 this.y -= 1;
             }
             break;
         case 3: // Si direction droite, alors change couleur de fond
             //document.getElementById("hero").style.backgroundColor = "green";
-            this.x+=1;
+            this.x += 1;
             break;
         case 4: // Si direction bas, alors change couleur de fond
             //document.getElementById("hero").style.backgroundColor = "blue";
             break;
     }
 
-    //la case d'arrivée est occupée par le héros
-    //this.field.writeBlock(this.y, this.x, 5);
-    //console.log("case d'arrivée : x = " + this.x-1 + "et y = " + this.y + " et terrain = " + this.field.checkBloc(this.y, this.x-1));
-/*
     //annonce la case active comme étant occupée
-    //écrit sur les cases en prenant en compte le fait que le héros part de 1 par rapport
-    //à ses coordonnées et de 0 par rapport au tableau
-    this.field.writeBlock(this.y-this.startY, this.x-this.startX, 5);*/
+    this.field.writeBlock(this.y, this.x, 5);
     this.display();
 }
 

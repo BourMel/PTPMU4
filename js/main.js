@@ -7,6 +7,7 @@ var tabEnnemy = new Array();
 
 //DONNEES DU JEU : à modifier selon niveau de difficulté recherché
 var idField = "field"; //impact dans le css
+var idHero = "hero"; //idem
 var widthField = 80;
 var heightField = 10;
 var heightGround = 4;
@@ -21,7 +22,7 @@ function init() {
     platform = new Platform(game);
     platform.display();
 
-    fox = new Hero (heroLife, game);
+    fox = new Hero (idHero, heroLife, game);
     fox.display();
     fox.findGround();
 
@@ -44,7 +45,9 @@ function init() {
 //c'est la seule fonction à être active sans action du joueur
 function anim () {
     //nommé comme variable pour pouvoir être utilisé dans controls.js
-    var progressivFall = fox.findGround();
+    //var progressivFall =
+    fox.findGround();
+    fox.findEnnemy();
     fox.display();
     
     //GAME OVER
@@ -59,11 +62,40 @@ function anim () {
     for(var b = 0 ; b < tabEnnemy.length ; b++) {
         tabEnnemy[b].move();
     }
-
-    //débug
-    game.display();
-
  }
+
+
+function blink () {
+    var HTMLhero = document.getElementById(idHero);
+    lostLife = setInterval(changeColor(HTMLhero), 100);
+    HTMLhero.style.backgroundColor = "#36383a";
+}
+
+function changeColor(HTMLhero) {
+    var nbrClignotements = 3;
+
+    for(i=0; i<nbrClignotements; i++) {
+        setTimeout( function () {
+            HTMLhero.style.backgroundColor = "red";
+        }, 50);
+        setTimeout( function () {
+            HTMLhero.style.backgroundColor = "#36383a";
+        }, 50);
+
+        nbrClignotements--;
+        if(nbrClignotements == 0) {
+            clearInterval(lostLife);
+        }
+    }
+
+
+}
+
+/*
+ *
+ * DOCUMENT READY
+ *
+ */
 
 $(document).ready(function(){
     //JEU
