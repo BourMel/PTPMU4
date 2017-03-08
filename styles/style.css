@@ -194,6 +194,44 @@ h1 {font-size: 8em; letter-spacing: 10px;}
     z-index:15;
 }
 
+/*débug*/
+/*.air::after {
+    content:"0";
+    display:block;
+}
+
+.sol::after {
+    content:"1";
+    display:block;
+    color:white;
+}
+
+.bosse::after {
+    content:"3";
+    display:block;
+    color:white;
+}
+
+.piege::after {
+    content:"2";
+    display:block;
+    color:white;
+}
+
+.ennemyfield {
+    content:"4";
+    display:block;
+    color:white;
+}
+
+.herofield {
+    content:"5";
+    display:block;
+    color:white;
+}
+*/
+
+
 /*barre de vie*/
 progress {
     position:fixed;

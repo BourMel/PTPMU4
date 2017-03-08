@@ -15,9 +15,10 @@ teste si case = plateforme
 => Alors appelle la fonction chute OU
 => rien (héros garde sa position) */
 
-function Platform(width, height) {
-    this.width = width;
-    this.height = height;
+function Platform(field) {
+    this.field = field;
+    this.width = this.field.width;
+    this.height = this.field.height;
     
     /* La plateforme prend l'ensemble de sa largeur et de sa hauteur */
     this.block = new Array(this.width * this.height);
@@ -37,10 +38,10 @@ function Platform(width, height) {
 
 Platform.prototype.display = function() {
     // Parcourt l'ensemble de la ligne platforme
-    var field = document.getElementById("field");
+    var fieldHTML = document.getElementById(this.field.id);
     var platform = document.createElement("div");
     platform.setAttribute("id", "wrap-platform");
-    field.appendChild(platform);
+    fieldHTML.appendChild(platform);
 
     var HTMLplatform = document.getElementById("wrap-platform");
     HTMLplatform.style.left = 0 + 'px';
