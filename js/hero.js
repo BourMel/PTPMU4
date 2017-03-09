@@ -2,6 +2,8 @@ function Hero (id, life, field) {
     this.id     = id;
     this.x      = 0;
     this.y      = 0;
+    this.xPix   = 0;
+    this.yPix   = 0;
     this.speedY = 3;
     this.life   = life;
     this.score  = 0;
@@ -29,8 +31,10 @@ function Hero (id, life, field) {
 //les valeurs chiffrées doivent être adaptées au CSS
 Hero.prototype.display = function() {
     var HTMLhero = document.getElementById(this.id);
-    HTMLhero.style.top = (this.y*50) + "px"; //devra être adapté automatiquement à la hauteur du sol
-    HTMLhero.style.left = (this.x*70 + this.fieldPositionX*70) + "px";
+    //HTMLhero.style.top = (this.y*50) + "px"; //devra être adapté automatiquement à la hauteur du sol
+    //HTMLhero.style.left = (this.x*70 + this.fieldPositionX*70) + "px";
+    HTMLhero.style.top = (this.yPix) + "px";
+    HTMLhero.style.left = (this.xPix) + "px";
 
     //barre de vie
     document.getElementById("lifeBar").setAttribute("value", this.life);
@@ -40,6 +44,7 @@ Hero.prototype.display = function() {
 
 //placer le héros automatiquement sur le sol (chute !)
 Hero.prototype.findGround = function () { //retourne vrai ou faux, function anim() utilise findGround sur objet global (et gère interval)
+    this.y = Math.floor(this.yPix / heightBlock);
     var nextY = this.y + 1;
 
     //cas où on dépasse les limites du terrain (chute dans un trou)
@@ -48,12 +53,15 @@ Hero.prototype.findGround = function () { //retourne vrai ou faux, function anim
         return false;
     //cas "air" (et undefined en théorie, qui est géré au préalable par "if")
     } else if(this.field.checkBloc(nextY, this.x) == 0) {
-        this.y += 1;
+        //this.y += 1;
+        this.yPix +=1;
         nextY += 1;
 
         //annonce la case active comme étant occupée, et la précédente comme étant libre
         this.field.writeBlock(this.y-1, this.x, 0);
         this.field.writeBlock(this.y, this.x, 5);
+
+        this.y = Math.floor(this.yPix / heightBlock);
 
         //indique à function anim (dans controls.js) que la chute continue
         return true;
@@ -88,24 +96,30 @@ Hero.prototype.move = function(direction) {
     switch(direction) {
         case 1: // Si direction gauche, alors change couleur de fond
             //document.getElementById("hero").style.backgroundColor = "yellow";
-            this.x -= 1;
+            //this.x -= 1;
+            this.xPix -=1;
             break;
         case 2: // Si direction haut, alors change couleur de fond
             //document.getElementById("hero").style.backgroundColor = "purple";
-            var nextY = this.y + 1;
+            var nextY = Math.floor(this.yPix) + 1;
             //si n'essaie pas de sauter à partir de l'air
             if (this.field.checkBloc(nextY, this.x) != 0) {
-                this.y -= 1;
+                //this.y -= 1;
+                this.yPix -=1;
             }
             break;
         case 3: // Si direction droite, alors change couleur de fond
             //document.getElementById("hero").style.backgroundColor = "green";
-            this.x += 1;
+            //this.x += 1;
+            this.xPix +=1;
             break;
         case 4: // Si direction bas, alors change couleur de fond
             //document.getElementById("hero").style.backgroundColor = "blue";
             break;
     }
+
+    this.x = Math.floor(this.xPix / widthBlock);
+    this.y = Math.floor(this.yPix / heightBlock);
 
     //annonce la case active comme étant occupée
     this.field.writeBlock(this.y, this.x, 5);

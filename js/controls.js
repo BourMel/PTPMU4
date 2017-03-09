@@ -33,9 +33,9 @@ document.onkeydown = function(event) {
             tabEnnemy[i].display();
         }
         
-        for(var i = 0 ; i < tabItems.length ; i++) {
+        /*for(var i = 0 ; i < tabItems.length ; i++) {
             tabItems[i].display();
-        }
+        }*/
         //chute après chaque déplacement ?
         //var intervalFalling = setInterval(fox.findGround(), 1000);
     }

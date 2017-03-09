@@ -12,15 +12,17 @@ var widthField = 80;
 var heightField = 20;
 var heightGround = 8;
 var heroLife = 100;
-var nbrEnnemy = 10; //peut être réduit s'ils tombent dans des trous
+var nbrEnnemy = 1; //peut être réduit s'ils tombent dans des trous
 var ennemyLife = 100;
+var widthBlock = 70; //en pixels
+var heightBlock = 50;
 
 function init() {
     game = new Field(idField, heightField, widthField, heightGround);
     game.display();
 
-    platform = new Platform(game);
-    platform.display();
+    //platform = new Platform(game);
+    //platform.display();
 
     fox = new Hero (idHero, heroLife, game);
     fox.display();
@@ -47,6 +49,7 @@ function init() {
 function anim () {
     //nommé comme variable pour pouvoir être utilisé dans controls.js
     //var progressivFall =
+
     fox.findGround();
     fox.findEnnemy();
     fox.display();
@@ -102,7 +105,7 @@ $(document).ready(function(){
     //JEU
     init();
     //chute au début du jeu
-    var intervalAnim = setInterval(anim, 1000);
+    var intervalAnim = setInterval(anim, 40);
 
     //INTERFACE
 

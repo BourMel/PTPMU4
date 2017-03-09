@@ -4,6 +4,7 @@ function Field (id, height, width, maxHeightGround) {
     this.width = width;
     this.maxHeightGround = maxHeightGround;
     this.positionX = 0;
+    this.positionXPix = 0;
     
     //pour manipuler la difficulté du niveau, les probabilités doivent être un paramètre de la fonction
     
@@ -131,12 +132,16 @@ Field.prototype.move = function(direction, heroX, heroY) {
     if(direction==1 && this.checkBloc(heroY, leftToHero)==0 || direction==3 && this.checkBloc(heroY, rightToHero)==0) { //gauche
         switch(direction) {
             case 1: //gauche
-                this.positionX += 1;
+                this.positionXPix +=1;
+                //this.positionX += 1;
                 break;
             case 3: //droite
-                this.positionX -= 1;
+                this.positionXPix -= 1;
+                //this.positionX -= 1;
                 break;
         }
+
+        this.positionX = this.positionXPix / widthBlock,
 
         didMove=true;
     } else {
