@@ -5,6 +5,7 @@ var item;
 var platform;
 var tabEnnemy = new Array();
 var tabItems = new Array();
+var nbrGame;
 
 // ---------------------------------------------------------------- //
 // DONNEES DU JEU - à modifier selon niveau de difficulté recherché //
@@ -32,9 +33,26 @@ var itemLife = 100;
 // ---------------------------------------------------------------- //
 // INITIALISATION DU JEU //
 // ---------------------------------------------------------------- //
-function init() {
+function init(nbrGame) {
+    //si ce n'est pas la première partie
+    if(nbrGame != 0) {
+        oldField = document.getElementById(idField + nbrGame-1);
+        oldHero = document.getElementById(idHero + nbrGame-1);
+        oldScore = document.getElementById("score");
+        oldLife = document.getElementById("lifeBar");
+        oldEnnemies = oldField.getElementsByClassName("ennemy");
+        while (oldField.firstChild) {
+            oldField.removeChild(oldField.firstChild);
+        }
+
+        document.body.removeChild(oldField);
+        document.body.removeChild(oldHero);
+        document.body.removeChild(oldScore);
+        document.body.removeChild(oldLife);
+    }
+
     //créé un nouveau terrain
-    game = new Field(idField, heightField, widthField, heightGround);
+    game = new Field(idField + nbrGame, heightField, widthField, heightGround);
     game.display();
 
     //créé de nouvelles plateformes aériennes
@@ -42,7 +60,7 @@ function init() {
     platform.display();
 
     //créer le héros
-    fox = new Hero (idHero, heroLife, game);
+    fox = new Hero (idHero + nbrGame, heroLife, game);
     fox.display();
     fox.findGround();
 
@@ -65,6 +83,9 @@ function init() {
             tabItems.push(item);
         }
     }
+
+    //chute au début du jeu
+    intervalAnim = setInterval(anim, 1000);
 }
 
 //la fonction, quand elle est appelée, active la chute du personnage
@@ -79,11 +100,10 @@ function anim () {
     //GAME OVER
     if(fox.checkLife() == false) {
         //possibilité de remplacer par interface
-        init();
+        nbrGame ++;
+        clearInterval(intervalAnim);
+        init(nbrGame);
     }
-    /*if(fall == false) {
-     clearInterval(intervalFalling);
-     }*/
 
     for(var b = 0 ; b < tabEnnemy.length ; b++) {
         tabEnnemy[b].move();
@@ -123,9 +143,8 @@ function changeColor(HTMLhero) {
 
 $(document).ready(function(){
     //JEU
-    init();
-    //chute au début du jeu
-    var intervalAnim = setInterval(anim, 1000);
+    nbrGame = 0;
+    init(nbrGame);
 
     //INTERFACE
 
