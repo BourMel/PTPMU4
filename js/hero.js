@@ -66,33 +66,48 @@ Hero.prototype.findGround = function () { //retourne vrai ou faux, function anim
     }
 }
 
+Hero.prototype.findPlatform = function() {
+    // 1 case en haut
+    var lastY = this.y - 1;
+    
+    if (this.platform.checkPlatform(lastY) == 3) {
+        console.log("Hellllow Plateforme");
+    }
+}
+
 /* Animation du Hero, changement de style selon direction. Fonction appelée par controls.js */
 Hero.prototype.move = function(direction) {
     switch(direction) {
         case 1: // Si direction gauche, alors change couleur de fond
             document.getElementById("hero").style.backgroundColor = "yellow";
             this.x-=1;
-            //console.log("Couleur");
             break;
+            
         case 2: // Si direction haut, alors change couleur de fond
             document.getElementById("hero").style.backgroundColor = "purple";
             var nextY = this.y + 1;
-            var actualX = this.x-1;
+            var actualX = this.x - 1;
+            var lastY = this.y - 1;
+            
             console.log(this.field.checkBloc(nextY, this.x));
-            //si n'essaie pas de sauter à partir de l'air
+            console.log(this.platform.checkPlatform(lastY));
+            
+            // Si n'essaie pas de sauter à partir de l'air
             if(this.field.checkBloc(nextY, actualX) != 0) {
                 this.y -= 1;
             }
             break;
+            
         case 3: // Si direction droite, alors change couleur de fond
             document.getElementById("hero").style.backgroundColor = "green";
             this.x+=1;
             break;
+            
         case 4: // Si direction bas, alors change couleur de fond
             document.getElementById("hero").style.backgroundColor = "blue";
             break;
     }
-
+    
     this.display();
 }
 

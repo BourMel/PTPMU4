@@ -3,7 +3,6 @@
 /* Récupérer position héros
 
 Quand mouvement vers le haut,
-
 Pour chaque ligne sur axe Y
 
 teste si case = air
@@ -58,8 +57,12 @@ Platform.prototype.display = function() {
             
             // Positionne les block de plateforme selon la position * 70 (taille du block)
             blocPlat.style.left = (i * 70) + 'px';
-            blocPlat.style.top = ((j * 50) + 100) + 'px';
+            blocPlat.style.top = ((j * 50) + (50 * 3)) + 'px';
             HTMLplatform.appendChild(blocPlat);
         }
     }
+}
+
+Platform.prototype.checkPlatform = function (ligne, colonne) {
+    return this.block[ligne * this.width + colonne];
 }
