@@ -1,3 +1,5 @@
+/* *************** CLASS FIELD *************** */
+
 function Field (id, height, width, maxHeightGround) {
     this.id = id;
     this.height = height;
@@ -14,6 +16,7 @@ function Field (id, height, width, maxHeightGround) {
     bosse = 3
     ennemi = 4
     hero = 5
+    platform = 6
     */
     this.content = new Array(this.height * this.width);
     
@@ -84,6 +87,35 @@ function Field (id, height, width, maxHeightGround) {
     document.body.appendChild(field);
 }
 
+/* *************** CLASS PLATFORM *************** */
+
+function Platform(field) {
+    this.field = field;
+    this.width = this.field.width;
+    this.height = this.field.height;
+    
+    /* La plateforme prend l'ensemble de sa largeur et de sa hauteur */
+    this.block = new Array(this.width * this.height);
+    
+    /* Parcourt des colonnes puis des lignes */
+    for(i = 0; i < this.width; i++) {
+        for(j = 0; j < this.height; j++) {
+            /* Pour un nombre aléatoire sur la ligne de la plateforme, prend la valeur de 3. Donc plateforme = 3 */
+            if(Math.random() < 0.3) {
+                this.block[i] = 6;
+            } else {
+                this.block[i] = 0;
+            }
+        }   
+    }
+}
+
+
+/* ****************************** FONCTIONS ****************************** */
+/* *********************************************************************** */
+
+/* *************** FIELD *************** */
+
 Field.prototype.display = function () {
     var HTMLfield = document.getElementById(this.id);
     HTMLfield.style.left = (this.positionX*70) + "px";
@@ -107,6 +139,37 @@ Field.prototype.display = function () {
             bloc.style.left = (i*70) + "px";
             bloc.style.top = (j*50) + "px";
             HTMLfield.appendChild(bloc);
+        }
+    }
+}
+
+/* *************** PLATFORM *************** */
+
+Platform.prototype.display = function() {
+    // Parcourt l'ensemble de la ligne platforme
+    var fieldHTML = document.getElementById(this.field.id);
+    var platform = document.createElement("div");
+    platform.setAttribute("id", "wrap-platform");
+    fieldHTML.appendChild(platform);
+
+    var HTMLplatform = document.getElementById("wrap-platform");
+    HTMLplatform.style.left = 0 + 'px';
+    
+    for(i = 0; i < this.width; i++) {
+        for(j = 0; j < this.height; j++) {
+            var blocPlat = document.createElement("div");
+            
+            if(this.block[j * this.width + i] == 6) {
+                blocPlat.setAttribute("class", "plateform");
+            }
+            else if(this.block[j * this.width + i] == 0) {
+                blocPlat.setAttribute("class", "air-platform");
+            }
+            
+            // Positionne les block de plateforme selon la position * 70 (taille du block)
+            blocPlat.style.left = (i * 70) + 'px';
+            blocPlat.style.top = ((j * 50) + (50 * 9)) + 'px';
+            HTMLplatform.appendChild(blocPlat);
         }
     }
 }
