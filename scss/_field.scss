@@ -92,8 +92,8 @@
     background-color: $color-ground;
     border: 1px solid red;
     z-index: 20;
-    /*à affiner : permet chute progressive mais pas très net
-    transition:all 1000ms linear;*/
+    /* a affiner : permet chute progressive mais pas tres net
+    transition:all 1000ms linear; */
 }
 
 .ennemy {
@@ -130,7 +130,7 @@
 
 
 
-/*débug*/
+/*debug*/
 
 
 /*.air::after {

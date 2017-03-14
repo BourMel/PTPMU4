@@ -179,6 +179,10 @@ Field.prototype.checkBloc = function (ligne, colonne) {
     return this.content[ligne*this.width + colonne];
 }
 
+Platform.prototype.checkBloc = function (ligne, colonne) {
+    return this.content[ligne*this.width + colonne];
+}
+
 //écrit sur la case
 Field.prototype.writeBlock = function (ligne, colonne, value) {
     this.content[ligne*this.width + colonne] = value;
