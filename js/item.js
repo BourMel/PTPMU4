@@ -6,7 +6,7 @@ function Item (id, maxX, y, life, field) {
     this.life   = life;
     this.field  = field;
 
-    var field = document.getElementById("field"); 
+    var field = document.getElementById("field" + nbrGame);
     var item = document.createElement("div"); //créé une div qui s'appelle item
     item.setAttribute("class", "item");
     item.setAttribute("id", this.id);

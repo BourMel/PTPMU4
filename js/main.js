@@ -36,11 +36,14 @@ var itemLife = 100;
 function init(nbrGame) {
     //si ce n'est pas la première partie
     if(nbrGame != 0) {
-        oldField = document.getElementById(idField + nbrGame-1);
-        oldHero = document.getElementById(idHero + nbrGame-1);
-        oldScore = document.getElementById("score");
-        oldLife = document.getElementById("lifeBar");
-        oldEnnemies = oldField.getElementsByClassName("ennemy");
+        oldGame = nbrGame - 1;
+
+        oldField = document.getElementById(idField + oldGame);
+        oldHero = document.getElementById(idHero + oldGame);
+        oldScore = document.getElementById("score" + oldGame);
+        oldLife = document.getElementById("lifeBar" + oldGame);
+
+        /*vide le terrain avant de le supprimer*/
         while (oldField.firstChild) {
             oldField.removeChild(oldField.firstChild);
         }
@@ -64,8 +67,9 @@ function init(nbrGame) {
     fox.display();
     fox.findGround();
 
-    //crée un tableau d'ennemis
-    for(var i = 0 ; i < nbrEnnemy ; i++) {
+    //crée un tableau d'ennemis (vide au départ)
+    var tabEnnemy = new Array();
+    for(var i = 0 ; i < nbrEnnemy+1; i++) {
         ennemy = new Ennemy ("ennemy"+i, 0, ennemyLife, game);
         ennemy.findGround();
         if(ennemy.checkLife()) {
@@ -112,7 +116,7 @@ function anim () {
 
 
 function blink () {
-    var HTMLhero = document.getElementById(idHero);
+    var HTMLhero = document.getElementById(idHero + nbrGame);
     lostLife = setInterval(changeColor(HTMLhero), 100);
     HTMLhero.style.backgroundColor = "#36383a";
 }
@@ -163,16 +167,16 @@ $(document).ready(function(){
 
     document.getElementById("butonPlay").addEventListener("click", function() {
         $("#startGame").hide();
-        $("#hero").show();
-        $("#field").show();
+        $("#hero" + nbrGame).show();
+        $("#field" + nbrGame).show();
         $('#wrap-platform').show();
         $('.plateform').show();
         $('.air-platform').show();
     });
     document.getElementById("butonPlayAgain").addEventListener("click", function() {
         $("#startGame").hide();
-        $("#hero").show();
-        $("#field").show();
+        $("#hero" + nbrGame).show();
+        $("#field" + nbrGame).show();
     });
     document.getElementById("butonQuit").addEventListener("click", function() {
         $("#startGame").show();

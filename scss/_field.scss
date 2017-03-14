@@ -4,7 +4,7 @@
 /* FIELD */
 /* ******************************************************************** */
 
-#field {
+div[id^=field] {
     display: $display-none;
     position: relative;
 }
@@ -19,7 +19,7 @@
 #resultBox,
 #creditBox,
 .ennemy,
-#hero,
+div[id^=hero],
 #wrapPlatform,
 .plateform,
 .air-platform,
@@ -33,7 +33,7 @@
 
 .air-platform,
 .plateform,
-#hero,
+div[id^=hero],
 .ennemy,
 .air,
 .sol,
@@ -50,7 +50,7 @@
 .air-platform,
 .plateform,
 #wrapPlatform,
-#hero{
+div[id^=hero]{
     display: $display-none;
 }
 
@@ -88,7 +88,7 @@
 /* HERO + ENNEMY*/
 /* ******************************************************************** */
 
-#hero {
+div[id^=hero] {
     background-color: $color-ground;
     border: 1px solid red;
     z-index: 20;
@@ -130,7 +130,7 @@
 
 
 
-/*débug*/
+/*debug*/
 
 
 /*.air::after {

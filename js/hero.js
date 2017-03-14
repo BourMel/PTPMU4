@@ -14,14 +14,14 @@ function Hero (id, life, field) {
 
     //barre de vie
     var lifeBar = document.createElement("progress");
-    lifeBar.setAttribute("id", "lifeBar");
+    lifeBar.setAttribute("id", "lifeBar" + nbrGame);
     lifeBar.setAttribute("max", this.life);
     lifeBar.setAttribute("value", this.life);
     document.body.appendChild(lifeBar);
 
     //score
     var score = document.createElement("div");
-    score.setAttribute("id", "score");
+    score.setAttribute("id", "score" + nbrGame);
     score.innerHTML = this.score;
     document.body.appendChild(score);
 }
@@ -33,9 +33,9 @@ Hero.prototype.display = function() {
     HTMLhero.style.left = (this.x*70 + this.fieldPositionX*70) + "px";
 
     //barre de vie
-    document.getElementById("lifeBar").setAttribute("value", this.life);
+    document.getElementById("lifeBar" + nbrGame).setAttribute("value", this.life);
     //score (prenant en compte l'avancement dans le jeu)
-    document.getElementById("score").innerHTML = this.score + this.x*10;
+    document.getElementById("score" + nbrGame).innerHTML = this.score + this.x*10;
 }
 
 //placer le héros automatiquement sur le sol (chute !)
