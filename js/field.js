@@ -170,6 +170,8 @@ Platform.prototype.display = function() {
             blocPlat.style.left = (i * 70) + 'px';
             blocPlat.style.top = ((j * 50) + (50 * 9)) + 'px';
             HTMLplatform.appendChild(blocPlat);
+            
+            // console.log(this.block[i]);
         }
     }
 }
@@ -180,7 +182,8 @@ Field.prototype.checkBloc = function (ligne, colonne) {
 }
 
 Platform.prototype.checkBloc = function (ligne, colonne) {
-    return this.content[ligne*this.width + colonne];
+    return this.block[ligne*this.width + colonne];
+    console.log("Bonjour");
 }
 
 //écrit sur la case
