@@ -125,3 +125,8 @@ Hero.prototype.where = function() {
     //this.x-1 correspond à x situé par rapport au tableau
     return {heroPositionX: this.x, heroPositionY: this.y};
 }
+
+//permet au renard de tirer
+Hero.prototype.tir = function(direction) {
+    //objet "rayon" ?
+}

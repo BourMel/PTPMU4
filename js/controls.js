@@ -19,6 +19,9 @@ document.onkeydown = function(event) {
             direction = 4;
             //console.log("Down");
             break;
+        case 32:
+            fox.tir(direction);
+            break;
     }
 
     //lit la position de fox pour qu'elle puisse être utilisée dans le game.move (gestion collision)
@@ -32,7 +35,7 @@ document.onkeydown = function(event) {
             //réaffiche à chaque mouvement en prenant en compte la postion du terrain
             tabEnnemy[i].display();
         }
-        
+
         //chute après chaque déplacement ?
         //var intervalFalling = setInterval(fox.findGround(), 1000);
     }
