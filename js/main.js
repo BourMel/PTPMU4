@@ -49,6 +49,10 @@ function init(nbrGame) {
             oldField.removeChild(oldField.firstChild);
         }
 
+        /*vide les tableaux*/
+        tabEnnemy = new Array();
+        tabItems = new Array();
+
         document.body.removeChild(oldField);
         document.body.removeChild(oldHero);
         document.body.removeChild(oldScore);
@@ -68,8 +72,7 @@ function init(nbrGame) {
     fox.display();
     fox.findGround();
 
-    //crée un tableau d'ennemis (vide au départ)
-    var tabEnnemy = new Array();
+    //crée un tableau d'ennemis
     for(var i = 0 ; i < nbrEnnemy+1; i++) {
         ennemy = new Ennemy ("ennemy"+i, 0, ennemyLife, game);
         ennemy.findGround();
@@ -110,7 +113,9 @@ function anim () {
         init(nbrGame);
     }
 
+    console.log(tabEnnemy.length);
     for(var b = 0 ; b < tabEnnemy.length ; b++) {
+        console.log("je suis dedans");
         tabEnnemy[b].move();
     }
 }
