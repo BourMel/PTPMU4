@@ -87,6 +87,8 @@ function Field (id, height, width, maxHeightGround) {
             /* Pour un nombre aléatoire sur la ligne de la plateforme, prend la valeur de 3. Donc plateforme = 3 */
             if(Math.random() < 0.3) {
                 this.content[i] = 6;
+            } else {
+                this.content[i] = 0;
             }
         }   
     }
@@ -129,10 +131,17 @@ function Field (id, height, width, maxHeightGround) {
 Field.prototype.display = function () {
     var HTMLfield = document.getElementById(this.id);
     HTMLfield.style.left = (this.positionX*70) + "px";
+    
+    var platform = document.createElement("div");
+    platform.setAttribute("id", "wrap-platform");
+    HTMLfield.appendChild(platform);
+    var HTMLplatform = document.getElementById("wrap-platform");
+//    HTMLplatform.style.left = 0 + 'px';
 
     for(i=0 ; i<this.width ; i++) {
         for(j=0 ; j<this.height ; j++) {
             var bloc = document.createElement("div");
+            var blocPlat = document.createElement("div");
             
             //si valeur air
             if(this.content[j * this.width + i] == 0) {
@@ -144,18 +153,16 @@ Field.prototype.display = function () {
             } else if (this.content[j * this.width + i] == 3) {
                 bloc.setAttribute("class", "bosse");
             } else if (this.content[j * this.width + i] == 6) {
-                bloc.setAttribute("class", "platform");
+                blocPlat.setAttribute("class", "platform");
             }
+            
+            console.log(blocPlat);
 
             //à adapter à la taille des blocs
             bloc.style.left = (i*70) + "px";
             bloc.style.top = (j*50) + "px";
             HTMLfield.appendChild(bloc);
-            
-            // Stylisation plateforme
-//            var platform = document.createElement("div");
-//            platform.setAttribute("id", "wrap-platform");
-//            fieldHTML.appendChild(platform);
+            HTMLplatform.appendChild(blocPlat);
         }
     }
 }
