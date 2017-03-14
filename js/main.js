@@ -36,6 +36,7 @@ var itemLife = 100;
 function init(nbrGame) {
     //si ce n'est pas la première partie
     if(nbrGame != 0) {
+        $('#gameOver').show();
         oldGame = nbrGame - 1;
 
         oldField = document.getElementById(idField + oldGame);
@@ -173,8 +174,11 @@ $(document).ready(function(){
         $('.plateform').show();
         $('.air-platform').show();
     });
-    document.getElementById("butonPlayAgain").addEventListener("click", function() {
-        $("#startGame").hide();
+
+    //changé car le clic n'était pas détecté
+    //document.getElementById("butonPlayAgain").addEventListener("click", function() {
+    document.getElementById("gameOver").addEventListener("click", function() {
+        $("#gameOver").hide();
         $("#hero" + nbrGame).show();
         $("#field" + nbrGame).show();
     });
