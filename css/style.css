@@ -100,7 +100,7 @@
 /* ******************************************************************** */
 /* FIELD */
 /* ******************************************************************** */
-#field {
+div[id^=field] {
   display: none;
   position: relative; }
 
@@ -113,7 +113,7 @@
 #resultBox,
 #creditBox,
 .ennemy,
-#hero,
+div[id^=hero],
 #wrapPlatform,
 .plateform,
 .air-platform,
@@ -126,7 +126,7 @@
 
 .air-platform,
 .plateform,
-#hero,
+div[id^=hero],
 .ennemy,
 .air,
 .sol,
@@ -142,7 +142,7 @@
 .air-platform,
 .plateform,
 #wrapPlatform,
-#hero {
+div[id^=hero] {
   display: none; }
 
 .sol,
@@ -168,7 +168,7 @@
 /* ******************************************************************** */
 /* HERO + ENNEMY*/
 /* ******************************************************************** */
-#hero {
+div[id^=hero] {
   background-color: #36383a;
   border: 1px solid red;
   z-index: 20;
@@ -199,7 +199,7 @@
   width: 70%;
   margin: 15%; }
 
-/*d├®bug*/
+/*debug*/
 /*.air::after {
     content:"0";
     display:block;
@@ -286,7 +286,7 @@ body {
   font-family: Source Sans Pro;
   overflow: hidden;
   background: #bce579;
-  /* pour les navigateurs qui ne supportent pas les d├®grad├®s */
+  /* pour les navigateurs qui ne supportent pas les d├®grades */
   background: linear-gradient(-5deg, #067567, #bce579); }
 
 /*# sourceMappingURL=style.css.map */
