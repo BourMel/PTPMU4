@@ -38,8 +38,8 @@ function init() {
     game.display();
 
     //créé de nouvelles plateformes aériennes
-    platform = new Platform(game);
-    platform.display();
+    // platform = new Platform(game);
+    // platform.display();
 
     //créer le héros
     fox = new Hero (idHero, heroLife, game);

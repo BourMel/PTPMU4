@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /* ******************************************************************** */
 /* VARIABLES */
 /* ******************************************************************** */
@@ -115,7 +114,7 @@
 .ennemy,
 #hero,
 #wrapPlatform,
-.plateform,
+.platform,
 .air-platform,
 .air,
 .sol,
@@ -125,7 +124,7 @@
   position: absolute; }
 
 .air-platform,
-.plateform,
+.platform,
 #hero,
 .ennemy,
 .air,
@@ -140,7 +139,7 @@
 #resultBox,
 #creditBox,
 .air-platform,
-.plateform,
+.platform,
 #wrapPlatform,
 #hero {
   display: none; }
@@ -172,8 +171,8 @@
   background-color: #36383a;
   border: 1px solid red;
   z-index: 20;
-  /*├á affiner : permet chute progressive mais pas tr├¿s net
-  transition:all 1000ms linear;*/ }
+  /* a affiner : permet chute progressive mais pas tres net
+  transition:all 1000ms linear; */ }
 
 .ennemy {
   background-color: black;
@@ -182,7 +181,7 @@
 /* ******************************************************************** */
 /* PLATEFORME */
 /* ******************************************************************** */
-.plateform {
+.platform {
   background-color: #36383a;
   z-index: 10; }
 
@@ -199,7 +198,7 @@
   width: 70%;
   margin: 15%; }
 
-/*d├®bug*/
+/*debug*/
 /*.air::after {
     content:"0";
     display:block;
@@ -286,7 +285,7 @@ body {
   font-family: Source Sans Pro;
   overflow: hidden;
   background: #bce579;
-  /* pour les navigateurs qui ne supportent pas les d├®grad├®s */
+  /* pour les navigateurs qui ne supportent pas les degrades */
   background: linear-gradient(-5deg, #067567, #bce579); }
 
 /*# sourceMappingURL=style.css.map */

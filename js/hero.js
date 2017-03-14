@@ -43,7 +43,7 @@ Hero.prototype.display = function() {
 Hero.prototype.findGround = function () { //retourne vrai ou faux, function anim() utilise findGround sur objet global (et gère interval)
     var nextY = this.y + 1;
     // var lastY = this.y - 1;
-
+    
     // Cas où on dépasse les limites du terrain (chute dans un trou)
     if (this.y+1 > this.field.height-1) {
         this.life = 0;
@@ -63,12 +63,12 @@ Hero.prototype.findGround = function () { //retourne vrai ou faux, function anim
         //indique à function anim (dans controls.js) que la chute continue
         return true;
     }
-    
+        
     // Cas de plateforme
-    else if ((this.platform.checkBloc(nextY, this.x) == 6)) {
+    else if ((this.field.checkBloc(nextY, this.x) == 6)) {
         this.y += 1;
         nextY += 1;
-        console.log("Hellloooow");
+        console.log("Tu vas t'afficher oui, putain ?!");
     }
     
     // Si on marche sur un sol piégé

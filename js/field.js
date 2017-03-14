@@ -80,6 +80,16 @@ function Field (id, height, width, maxHeightGround) {
             }
         }
     }
+    
+    // Plateforme
+    for(i = 0; i < this.width; i++) {
+        for(j = 0; j < this.height; j++) {
+            /* Pour un nombre aléatoire sur la ligne de la plateforme, prend la valeur de 3. Donc plateforme = 3 */
+            if(Math.random() < 0.3) {
+                this.content[i] = 6;
+            }
+        }   
+    }
 
     //contruction HTML
     var field = document.createElement("div");
@@ -89,26 +99,26 @@ function Field (id, height, width, maxHeightGround) {
 
 /* *************** CLASS PLATFORM *************** */
 
-function Platform(field) {
-    this.field = field;
-    this.width = this.field.width;
-    this.height = this.field.height;
-    
-    /* La plateforme prend l'ensemble de sa largeur et de sa hauteur */
-    this.block = new Array(this.width * this.height);
-    
-    /* Parcourt des colonnes puis des lignes */
-    for(i = 0; i < this.width; i++) {
-        for(j = 0; j < this.height; j++) {
-            /* Pour un nombre aléatoire sur la ligne de la plateforme, prend la valeur de 3. Donc plateforme = 3 */
-            if(Math.random() < 0.3) {
-                this.block[i] = 6;
-            } else {
-                this.block[i] = 0;
-            }
-        }   
-    }
-}
+//function Platform(field) {
+//    this.field = field;
+//    this.width = this.field.width;
+//    this.height = this.field.height;
+//    
+//    /* La plateforme prend l'ensemble de sa largeur et de sa hauteur */
+//    this.block = new Array(this.width * this.height);
+//    
+//    /* Parcourt des colonnes puis des lignes */
+//    for(i = 0; i < this.width; i++) {
+//        for(j = 0; j < this.height; j++) {
+//            /* Pour un nombre aléatoire sur la ligne de la plateforme, prend la valeur de 3. Donc plateforme = 3 */
+//            if(Math.random() < 0.3) {
+//                this.block[i] = 6;
+//            } else {
+//                this.block[i] = 0;
+//            }
+//        }   
+//    }
+//}
 
 
 /* ****************************** FONCTIONS ****************************** */
@@ -133,58 +143,64 @@ Field.prototype.display = function () {
                 bloc.setAttribute("class", "piege");
             } else if (this.content[j * this.width + i] == 3) {
                 bloc.setAttribute("class", "bosse");
+            } else if (this.content[j * this.width + i] == 6) {
+                bloc.setAttribute("class", "platform");
             }
 
             //à adapter à la taille des blocs
             bloc.style.left = (i*70) + "px";
             bloc.style.top = (j*50) + "px";
             HTMLfield.appendChild(bloc);
+            
+            // Stylisation plateforme
+//            var platform = document.createElement("div");
+//            platform.setAttribute("id", "wrap-platform");
+//            fieldHTML.appendChild(platform);
         }
     }
 }
 
 /* *************** PLATFORM *************** */
 
-Platform.prototype.display = function() {
-    // Parcourt l'ensemble de la ligne platforme
-    var fieldHTML = document.getElementById(this.field.id);
-    var platform = document.createElement("div");
-    platform.setAttribute("id", "wrap-platform");
-    fieldHTML.appendChild(platform);
-
-    var HTMLplatform = document.getElementById("wrap-platform");
-    HTMLplatform.style.left = 0 + 'px';
-    
-    for(i = 0; i < this.width; i++) {
-        for(j = 0; j < this.height; j++) {
-            var blocPlat = document.createElement("div");
-            
-            if(this.block[j * this.width + i] == 6) {
-                blocPlat.setAttribute("class", "plateform");
-            }
-            else if(this.block[j * this.width + i] == 0) {
-                blocPlat.setAttribute("class", "air-platform");
-            }
-            
-            // Positionne les block de plateforme selon la position * 70 (taille du block)
-            blocPlat.style.left = (i * 70) + 'px';
-            blocPlat.style.top = ((j * 50) + (50 * 9)) + 'px';
-            HTMLplatform.appendChild(blocPlat);
-            
-            // console.log(this.block[i]);
-        }
-    }
-}
+//Platform.prototype.display = function() {
+//    // Parcourt l'ensemble de la ligne platforme
+//    var fieldHTML = document.getElementById(this.field.id);
+//    var platform = document.createElement("div");
+//    platform.setAttribute("id", "wrap-platform");
+//    fieldHTML.appendChild(platform);
+//
+//    var HTMLplatform = document.getElementById("wrap-platform");
+//    HTMLplatform.style.left = 0 + 'px';
+//    
+//    for(i = 0; i < this.width; i++) {
+//        for(j = 0; j < this.height; j++) {
+//            var blocPlat = document.createElement("div");
+//            
+//            if(this.block[j * this.width + i] == 6) {
+//                blocPlat.setAttribute("class", "plateform");
+//            }
+//            else if(this.block[j * this.width + i] == 0) {
+//                blocPlat.setAttribute("class", "air-platform");
+//            }
+//            
+//            // Positionne les block de plateforme selon la position * 70 (taille du block)
+//            blocPlat.style.left = (i * 70) + 'px';
+//            blocPlat.style.top = ((j * 50) + (50 * 9)) + 'px';
+//            HTMLplatform.appendChild(blocPlat);
+//            
+//            // console.log(this.block[i]);
+//        }
+//    }
+//}
 
 //lit quel type de case (utilisé dans Hero.findGround)
 Field.prototype.checkBloc = function (ligne, colonne) {
     return this.content[ligne*this.width + colonne];
 }
 
-Platform.prototype.checkBloc = function (ligne, colonne) {
-    return this.block[ligne*this.width + colonne];
-    console.log("Bonjour");
-}
+//Platform.prototype.checkBloc = function (ligne, colonne) {
+//    return this.block[ligne*this.width + colonne];
+//}
 
 //écrit sur la case
 Field.prototype.writeBlock = function (ligne, colonne, value) {
