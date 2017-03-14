@@ -5,6 +5,7 @@ var item;
 var platform;
 var tabEnnemy = new Array();
 var tabItems = new Array();
+var nbrGame;
 
 // ---------------------------------------------------------------- //
 // DONNEES DU JEU - à modifier selon niveau de difficulté recherché //
@@ -32,9 +33,34 @@ var itemLife = 100;
 // ---------------------------------------------------------------- //
 // INITIALISATION DU JEU //
 // ---------------------------------------------------------------- //
-function init() {
+function init(nbrGame) {
+    //si ce n'est pas la première partie
+    if(nbrGame != 0) {
+        $('#gameOver').show();
+        oldGame = nbrGame - 1;
+
+        oldField = document.getElementById(idField + oldGame);
+        oldHero = document.getElementById(idHero + oldGame);
+        oldScore = document.getElementById("score" + oldGame);
+        oldLife = document.getElementById("lifeBar" + oldGame);
+
+        /*vide le terrain avant de le supprimer*/
+        while (oldField.firstChild) {
+            oldField.removeChild(oldField.firstChild);
+        }
+
+        /*vide les tableaux*/
+        tabEnnemy = new Array();
+        tabItems = new Array();
+
+        document.body.removeChild(oldField);
+        document.body.removeChild(oldHero);
+        document.body.removeChild(oldScore);
+        document.body.removeChild(oldLife);
+    }
+
     //créé un nouveau terrain
-    game = new Field(idField, heightField, widthField, heightGround);
+    game = new Field(idField + nbrGame, heightField, widthField, heightGround);
     game.display();
 
     //créé de nouvelles plateformes aériennes
@@ -42,12 +68,12 @@ function init() {
     platform.display();
 
     //créer le héros
-    fox = new Hero (idHero, heroLife, game);
+    fox = new Hero (idHero + nbrGame, heroLife, game);
     fox.display();
     fox.findGround();
 
     //crée un tableau d'ennemis
-    for(var i = 0 ; i < nbrEnnemy ; i++) {
+    for(var i = 0 ; i < nbrEnnemy+1; i++) {
         ennemy = new Ennemy ("ennemy"+i, 0, ennemyLife, game);
         ennemy.findGround();
         if(ennemy.checkLife()) {
@@ -65,6 +91,9 @@ function init() {
             tabItems.push(item);
         }
     }
+
+    //chute au début du jeu
+    intervalAnim = setInterval(anim, 1000);
 }
 
 //la fonction, quand elle est appelée, active la chute du personnage
@@ -79,20 +108,21 @@ function anim () {
     //GAME OVER
     if(fox.checkLife() == false) {
         //possibilité de remplacer par interface
-        init();
+        nbrGame ++;
+        clearInterval(intervalAnim);
+        init(nbrGame);
     }
-    /*if(fall == false) {
-     clearInterval(intervalFalling);
-     }*/
 
+    console.log(tabEnnemy.length);
     for(var b = 0 ; b < tabEnnemy.length ; b++) {
+        console.log("je suis dedans");
         tabEnnemy[b].move();
     }
 }
 
 
 function blink () {
-    var HTMLhero = document.getElementById(idHero);
+    var HTMLhero = document.getElementById(idHero + nbrGame);
     lostLife = setInterval(changeColor(HTMLhero), 100);
     HTMLhero.style.backgroundColor = "#36383a";
 }
@@ -123,9 +153,8 @@ function changeColor(HTMLhero) {
 
 $(document).ready(function(){
     //JEU
-    init();
-    //chute au début du jeu
-    var intervalAnim = setInterval(anim, 1000);
+    nbrGame = 0;
+    init(nbrGame);
 
     //INTERFACE
 
@@ -144,16 +173,19 @@ $(document).ready(function(){
 
     document.getElementById("butonPlay").addEventListener("click", function() {
         $("#startGame").hide();
-        $("#hero").show();
-        $("#field").show();
+        $("#hero" + nbrGame).show();
+        $("#field" + nbrGame).show();
         $('#wrap-platform').show();
         $('.plateform').show();
         $('.air-platform').show();
     });
-    document.getElementById("butonPlayAgain").addEventListener("click", function() {
-        $("#startGame").hide();
-        $("#hero").show();
-        $("#field").show();
+
+    //changé car le clic n'était pas détecté
+    //document.getElementById("butonPlayAgain").addEventListener("click", function() {
+    document.getElementById("gameOver").addEventListener("click", function() {
+        $("#gameOver").hide();
+        $("#hero" + nbrGame).show();
+        $("#field" + nbrGame).show();
     });
     document.getElementById("butonQuit").addEventListener("click", function() {
         $("#startGame").show();

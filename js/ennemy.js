@@ -1,5 +1,5 @@
 function Ennemy (id, y, life, field) {
-    this.id     = id;
+    this.id     = "game" + nbrGame + id;
     this.life   = life;
     this.field  = field;
     this.x      = Math.floor(Math.random() * this.field.width);

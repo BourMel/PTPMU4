@@ -1,12 +1,12 @@
 //maxX prend pour valeur la longueur du terrain
 function Item (id, maxX, y, life, field) {
-    this.id     = id;
+    this.id     = "game" + nbrGame + id;
     this.x      = Math.floor(Math.random()*maxX);
     this.y      = y;
     this.life   = life;
     this.field  = field;
 
-    var field = document.getElementById("field"); 
+    var field = document.getElementById("field" + nbrGame);
     var item = document.createElement("div"); //créé une div qui s'appelle item
     item.setAttribute("class", "item");
     item.setAttribute("id", this.id);
