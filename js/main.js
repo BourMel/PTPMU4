@@ -36,7 +36,22 @@ var itemLife = 100;
 function init(nbrGame) {
     //si ce n'est pas la première partie
     if(nbrGame != 0) {
+        //GESTION DU GAME OVER
         $('#gameOver').show();
+        $('#gameOver .texte .data').html(fox.score);
+        $.ajax({
+            //exécution d'une requête AJAX vers score.php
+            url: "./php/score.php",
+            //recevoir données
+            data:{
+                action:"sendData",
+                pseudo:"pseudoDuJoueur",
+                score:fox.score,
+            },
+            dataType: "json"
+        });
+
+        //GESTION DE LA NOUVELLE PARTIE
         oldGame = nbrGame - 1;
 
         oldField = document.getElementById(idField + oldGame);
@@ -107,6 +122,8 @@ function anim () {
 
     //GAME OVER
     if(fox.checkLife() == false) {
+        fox.score = fox.score + fox.x*10; //score final
+
         //possibilité de remplacer par interface
         nbrGame ++;
         clearInterval(intervalAnim);
