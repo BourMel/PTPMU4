@@ -147,8 +147,7 @@ $(document).ready(function(){
         $("#hero").show();
         $("#field").show();
         $('#wrap-platform').show();
-        $('.plateform').show();
-        $('.air-platform').show();
+//        $('.platform').show();
     });
     document.getElementById("butonPlayAgain").addEventListener("click", function() {
         $("#startGame").hide();

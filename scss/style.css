@@ -179,7 +179,6 @@
 /* PLATEFORME */
 /* ******************************************************************** */
 .platform {
-  display: block;
   background-color: #36383a;
   z-index: 10; }
 
@@ -281,5 +280,3 @@ body {
   background: #bce579;
   /* pour les navigateurs qui ne supportent pas les degrades */
   background: linear-gradient(-5deg, #067567, #bce579); }
-
-/*# sourceMappingURL=style.css.map */

@@ -19,7 +19,7 @@ function Field (id, height, width, maxHeightGround) {
     platform = 6
     */
     this.content = new Array(this.height * this.width);
-    
+
     //tout le tableau prend d'abord la valeur "air"
     for(i=0 ; i<this.height*this.width;i++) {
         this.content[i] = 0;
@@ -82,45 +82,20 @@ function Field (id, height, width, maxHeightGround) {
     }
     
     // Plateforme
-    for(i = 0; i < this.width; i++) {
-        for(j = 0; j < this.height; j++) {
-            /* Pour un nombre aléatoire sur la ligne de la plateforme, prend la valeur de 3. Donc plateforme = 3 */
-            if(Math.random() < 0.3) {
-                this.content[i] = 6;
-            } else {
-                this.content[i] = 0;
-            }
-        }   
+    for(var i = 0; i < this.width; i++) {
+        /* Pour un nombre aléatoire sur la ligne de la plateforme, prend la valeur de 3. Donc plateforme = 3 */
+        if(Math.random() < 0.2) {
+            this.content[(this.height - this.maxHeightGround - 3) * this.width + i] = 6;
+        } else if ((Math.random() > 0.2) && (Math.random() < 0.4)) {
+            this.content[(this.height - this.maxHeightGround - 5) * this.width + i] = 6;
+        }
     }
 
-    //contruction HTML
+    // contruction HTML
     var field = document.createElement("div");
     field.setAttribute("id", this.id);
     document.body.appendChild(field);
 }
-
-/* *************** CLASS PLATFORM *************** */
-
-//function Platform(field) {
-//    this.field = field;
-//    this.width = this.field.width;
-//    this.height = this.field.height;
-//    
-//    /* La plateforme prend l'ensemble de sa largeur et de sa hauteur */
-//    this.block = new Array(this.width * this.height);
-//    
-//    /* Parcourt des colonnes puis des lignes */
-//    for(i = 0; i < this.width; i++) {
-//        for(j = 0; j < this.height; j++) {
-//            /* Pour un nombre aléatoire sur la ligne de la plateforme, prend la valeur de 3. Donc plateforme = 3 */
-//            if(Math.random() < 0.3) {
-//                this.block[i] = 6;
-//            } else {
-//                this.block[i] = 0;
-//            }
-//        }   
-//    }
-//}
 
 
 /* ****************************** FONCTIONS ****************************** */
@@ -141,7 +116,6 @@ Field.prototype.display = function () {
     for(i=0 ; i<this.width ; i++) {
         for(j=0 ; j<this.height ; j++) {
             var bloc = document.createElement("div");
-            var blocPlat = document.createElement("div");
             
             //si valeur air
             if(this.content[j * this.width + i] == 0) {
@@ -153,16 +127,13 @@ Field.prototype.display = function () {
             } else if (this.content[j * this.width + i] == 3) {
                 bloc.setAttribute("class", "bosse");
             } else if (this.content[j * this.width + i] == 6) {
-                blocPlat.setAttribute("class", "platform");
+                bloc.setAttribute("class", "platform");
             }
-            
-            console.log(blocPlat);
 
             //à adapter à la taille des blocs
             bloc.style.left = (i*70) + "px";
             bloc.style.top = (j*50) + "px";
             HTMLfield.appendChild(bloc);
-            HTMLplatform.appendChild(blocPlat);
         }
     }
 }

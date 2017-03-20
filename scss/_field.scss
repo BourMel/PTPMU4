@@ -20,7 +20,6 @@
 #hero,
 #wrapPlatform,
 .platform,
-.air-platform,
 .air,
 .sol,
 .piege,
@@ -29,7 +28,6 @@
     position: absolute;
 }
 
-.air-platform,
 .platform,
 #hero,
 .ennemy,
@@ -45,7 +43,6 @@
 #helpBox,
 #resultBox,
 #creditBox,
-.air-platform,
 .platform,
 #wrapPlatform,
 #hero{
@@ -106,12 +103,8 @@
 
 
 .platform {
+    display: block;
     background-color: $color-ground;
-    z-index: 10;
-}
-
-.air-platform {
-    background-color: none;
     z-index: 10;
 }
 
