@@ -113,9 +113,9 @@ function anim () {
         init(nbrGame);
     }
 
-    console.log(tabEnnemy.length);
+    // console.log(tabEnnemy.length);
     for(var b = 0 ; b < tabEnnemy.length ; b++) {
-        console.log("je suis dedans");
+        // console.log("je suis dedans");
         tabEnnemy[b].move();
     }
 }
@@ -175,8 +175,6 @@ $(document).ready(function(){
         $("#startGame").hide();
         $("#hero" + nbrGame).show();
         $("#field" + nbrGame).show();
-        $('#wrap-platform').show();
-//        $('.platform').show();
     });
 
     //changé car le clic n'était pas détecté

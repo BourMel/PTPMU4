@@ -54,7 +54,6 @@ Hero.prototype.findGround = function () { //retourne vrai ou faux, function anim
     else if((this.field.checkBloc(nextY, this.x) == 0)) {
         this.y += 1;
         nextY += 1;
-        console.log("Air");
 
         //annonce la case active comme étant occupée, et la précédente comme étant libre
         this.field.writeBlock(this.y-1, this.x, 0);
@@ -68,7 +67,6 @@ Hero.prototype.findGround = function () { //retourne vrai ou faux, function anim
     else if ((this.field.checkBloc(nextY, this.x) == 6)) {
         this.y += 1;
         nextY += 1;
-        console.log("Tu vas t'afficher oui, putain ?!");
     }
     
     // Si on marche sur un sol piégé
@@ -81,7 +79,6 @@ Hero.prototype.findGround = function () { //retourne vrai ou faux, function anim
     
     else {
         return false;
-        console.log("Fin");
     }
 }
 
