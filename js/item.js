@@ -53,6 +53,10 @@ Item.prototype.checkLife = function () {
 
 
 
-//annonce la case active comme étant occupée
-    //this.field.writeBlock(this.y, this.x, 0);
-    //this.display();
+
+Item.prototype.move = function () {
+    //annonce la case active comme étant occupée
+    this.field.writeBlock(this.y, this.x, 7);
+    this.display();
+    console.log("item");
+}

@@ -50,8 +50,8 @@ Hero.prototype.findGround = function () { //retourne vrai ou faux, function anim
         return false;
     }
     
-    // Cas "air" (et undefined en théorie, qui est géré au préalable par "if")
-    else if((this.field.checkBloc(nextY, this.x) == 0)) {
+    // Cas "air" et "item" (et undefined en théorie, qui est géré au préalable par "if")
+    else if((this.field.checkBloc(nextY, this.x) == 0) || (this.field.checkBloc(nextY, this.x) == 7)) {
         this.y += 1;
         nextY += 1;
 
@@ -77,6 +77,7 @@ Hero.prototype.findGround = function () { //retourne vrai ou faux, function anim
         return false;
     }
     
+    
     else {
         return false;
     }
@@ -91,6 +92,14 @@ Hero.prototype.findEnnemy = function () {
         this.life-=10;
         this.score-=10;
         blink();
+    }
+}
+
+//détecte si le héros passe sur un item 
+Hero.prototype.findItem = function () {
+    if(this.field.checkBloc(this.y, this.x) == 7 ) {
+        this.score+=100;
+        console.log("item trouvé");
     }
 }
 

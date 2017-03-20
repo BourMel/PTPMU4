@@ -91,6 +91,10 @@ function init(nbrGame) {
             tabItems.push(item);
         }
     }
+    
+    for(var b = 0 ; b < tabItems.length ; b++) {
+        tabItems[b].move();
+    }
 
     //chute au début du jeu
     intervalAnim = setInterval(anim, 1000);
@@ -103,6 +107,7 @@ function anim () {
     //var progressivFall =
     fox.findGround();
     fox.findEnnemy();
+    fox.findItem();
     fox.display();
 
     //GAME OVER
