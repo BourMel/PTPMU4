@@ -42,7 +42,7 @@ Hero.prototype.display = function() {
 //placer le héros automatiquement sur le sol (chute !)
 Hero.prototype.findGround = function () { //retourne vrai ou faux, function anim() utilise findGround sur objet global (et gère interval)
     var nextY = this.y + 1;
-    // var lastY = this.y - 1;
+//    var lastY = this.y - 1;
     
     // Cas où on dépasse les limites du terrain (chute dans un trou)
     if (this.y+1 > this.field.height-1) {
@@ -71,9 +71,9 @@ Hero.prototype.findGround = function () { //retourne vrai ou faux, function anim
         return false;
     }
 
-//    Cas de plateforme
-//    else if ((this.field.checkBloc(nextY, this.x) == 6)) {
-//        console.log("Plateuuuh");
+    // Cas de plateforme
+//    else if ((this.field.checkBloc(this.y - 1, this.x) == 6)) {
+//        console.log("Plate");
 //    }
     
     else {
@@ -106,10 +106,13 @@ Hero.prototype.move = function(direction) {
         case 2: // Si direction haut, alors change couleur de fond
             //document.getElementById("hero").style.backgroundColor = "purple";
             var nextY = this.y + 1;
+            var lastY = this.y - 1;
+            
             //si n'essaie pas de sauter à partir de l'air
-            if (this.field.checkBloc(nextY, this.x) != 0) {
+            if ((this.field.checkBloc(lastY, this.x) != 6) && (this.field.checkBloc(nextY, this.x) != 0)) {
                 this.y -= 1;
             }
+            
             break;
         case 3: // Si direction droite, alors change couleur de fond
             //document.getElementById("hero").style.backgroundColor = "green";
