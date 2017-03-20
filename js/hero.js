@@ -62,12 +62,6 @@ Hero.prototype.findGround = function () { //retourne vrai ou faux, function anim
         //indique à function anim (dans controls.js) que la chute continue
         return true;
     }
-        
-    // Cas de plateforme
-    else if ((this.field.checkBloc(nextY, this.x) == 6)) {
-        this.y += 1;
-        nextY += 1;
-    }
     
     // Si on marche sur un sol piégé
     else if ((this.field.checkBloc(nextY, this.x) == 2)) {
@@ -76,6 +70,11 @@ Hero.prototype.findGround = function () { //retourne vrai ou faux, function anim
         blink();
         return false;
     }
+
+//    Cas de plateforme
+//    else if ((this.field.checkBloc(nextY, this.x) == 6)) {
+//        console.log("Plateuuuh");
+//    }
     
     else {
         return false;
