@@ -1,3 +1,5 @@
+/* *************** CLASS FIELD *************** */
+
 function Field (id, height, width, maxHeightGround) {
     this.id = id;
     this.height = height;
@@ -14,9 +16,10 @@ function Field (id, height, width, maxHeightGround) {
     bosse = 3
     ennemi = 4
     hero = 5
+    platform = 6
     */
     this.content = new Array(this.height * this.width);
-    
+
     //tout le tableau prend d'abord la valeur "air"
     for(i=0 ; i<this.height*this.width;i++) {
         this.content[i] = 0;
@@ -77,16 +80,38 @@ function Field (id, height, width, maxHeightGround) {
             }
         }
     }
+    
+    // Plateforme
+    for(var i = 0; i < this.width; i++) {
+        /* Pour un nombre aléatoire sur la ligne de la plateforme, prend la valeur de 3. Donc plateforme = 3 */
+        if(Math.random() < 0.2) {
+            this.content[(this.height - this.maxHeightGround - 3) * this.width + i] = 6;
+        } else if ((Math.random() > 0.2) && (Math.random() < 0.4)) {
+            this.content[(this.height - this.maxHeightGround - 5) * this.width + i] = 6;
+        }
+    }
 
-    //contruction HTML
+    // contruction HTML
     var field = document.createElement("div");
     field.setAttribute("id", this.id);
     document.body.appendChild(field);
 }
 
+
+/* ****************************** FONCTIONS ****************************** */
+/* *********************************************************************** */
+
+/* *************** FIELD *************** */
+
 Field.prototype.display = function () {
     var HTMLfield = document.getElementById(this.id);
     HTMLfield.style.left = (this.positionX*70) + "px";
+    
+    var platform = document.createElement("div");
+    platform.setAttribute("id", "wrap-platform");
+    HTMLfield.appendChild(platform);
+    var HTMLplatform = document.getElementById("wrap-platform");
+//    HTMLplatform.style.left = 0 + 'px';
 
     for(i=0 ; i<this.width ; i++) {
         for(j=0 ; j<this.height ; j++) {
@@ -101,6 +126,8 @@ Field.prototype.display = function () {
                 bloc.setAttribute("class", "piege");
             } else if (this.content[j * this.width + i] == 3) {
                 bloc.setAttribute("class", "bosse");
+            } else if (this.content[j * this.width + i] == 6) {
+                bloc.setAttribute("class", "platform");
             }
 
             //à adapter à la taille des blocs
@@ -111,10 +138,47 @@ Field.prototype.display = function () {
     }
 }
 
+/* *************** PLATFORM *************** */
+
+//Platform.prototype.display = function() {
+//    // Parcourt l'ensemble de la ligne platforme
+//    var fieldHTML = document.getElementById(this.field.id);
+//    var platform = document.createElement("div");
+//    platform.setAttribute("id", "wrap-platform");
+//    fieldHTML.appendChild(platform);
+//
+//    var HTMLplatform = document.getElementById("wrap-platform");
+//    HTMLplatform.style.left = 0 + 'px';
+//    
+//    for(i = 0; i < this.width; i++) {
+//        for(j = 0; j < this.height; j++) {
+//            var blocPlat = document.createElement("div");
+//            
+//            if(this.block[j * this.width + i] == 6) {
+//                blocPlat.setAttribute("class", "plateform");
+//            }
+//            else if(this.block[j * this.width + i] == 0) {
+//                blocPlat.setAttribute("class", "air-platform");
+//            }
+//            
+//            // Positionne les block de plateforme selon la position * 70 (taille du block)
+//            blocPlat.style.left = (i * 70) + 'px';
+//            blocPlat.style.top = ((j * 50) + (50 * 9)) + 'px';
+//            HTMLplatform.appendChild(blocPlat);
+//            
+//            // console.log(this.block[i]);
+//        }
+//    }
+//}
+
 //lit quel type de case (utilisé dans Hero.findGround)
 Field.prototype.checkBloc = function (ligne, colonne) {
     return this.content[ligne*this.width + colonne];
 }
+
+//Platform.prototype.checkBloc = function (ligne, colonne) {
+//    return this.block[ligne*this.width + colonne];
+//}
 
 //écrit sur la case
 Field.prototype.writeBlock = function (ligne, colonne, value) {

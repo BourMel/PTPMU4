@@ -6,6 +6,7 @@ function Hero (id, life, field) {
     this.life   = life;
     this.score  = 0;
     this.field  = field;
+    this.platform = platform;
 
     //heros
     var hero = document.createElement("div");
@@ -41,15 +42,19 @@ Hero.prototype.display = function() {
 //placer le héros automatiquement sur le sol (chute !)
 Hero.prototype.findGround = function () { //retourne vrai ou faux, function anim() utilise findGround sur objet global (et gère interval)
     var nextY = this.y + 1;
-
-    //cas où on dépasse les limites du terrain (chute dans un trou)
+    // var lastY = this.y - 1;
+    
+    // Cas où on dépasse les limites du terrain (chute dans un trou)
     if (this.y+1 > this.field.height-1) {
         this.life = 0;
         return false;
-    //cas "air" (et undefined en théorie, qui est géré au préalable par "if")
-    } else if(this.field.checkBloc(nextY, this.x) == 0) {
+    }
+    
+    // Cas "air" (et undefined en théorie, qui est géré au préalable par "if")
+    else if((this.field.checkBloc(nextY, this.x) == 0)) {
         this.y += 1;
         nextY += 1;
+        console.log("Air");
 
         //annonce la case active comme étant occupée, et la précédente comme étant libre
         this.field.writeBlock(this.y-1, this.x, 0);
@@ -57,14 +62,26 @@ Hero.prototype.findGround = function () { //retourne vrai ou faux, function anim
 
         //indique à function anim (dans controls.js) que la chute continue
         return true;
-    //si on marche sur un sol piégé
-    } else if ((this.field.checkBloc(nextY, this.x) == 2)) {
+    }
+        
+    // Cas de plateforme
+    else if ((this.field.checkBloc(nextY, this.x) == 6)) {
+        this.y += 1;
+        nextY += 1;
+        console.log("Tu vas t'afficher oui, putain ?!");
+    }
+    
+    // Si on marche sur un sol piégé
+    else if ((this.field.checkBloc(nextY, this.x) == 2)) {
         this.life-=10;
         this.score-=10;
         blink();
         return false;
-    } else {
+    }
+    
+    else {
         return false;
+        console.log("Fin");
     }
 }
 

@@ -64,8 +64,8 @@ function init(nbrGame) {
     game.display();
 
     //créé de nouvelles plateformes aériennes
-    platform = new Platform(game);
-    platform.display();
+    // platform = new Platform(game);
+    // platform.display();
 
     //créer le héros
     fox = new Hero (idHero + nbrGame, heroLife, game);
@@ -176,8 +176,7 @@ $(document).ready(function(){
         $("#hero" + nbrGame).show();
         $("#field" + nbrGame).show();
         $('#wrap-platform').show();
-        $('.plateform').show();
-        $('.air-platform').show();
+//        $('.platform').show();
     });
 
     //changé car le clic n'était pas détecté

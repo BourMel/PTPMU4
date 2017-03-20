@@ -116,7 +116,6 @@ div[id^=field] {
 div[id^=hero],
 #wrapPlatform,
 .plateform,
-.air-platform,
 .air,
 .sol,
 .piege,
@@ -124,7 +123,6 @@ div[id^=hero],
 .item {
   position: absolute; }
 
-.air-platform,
 .plateform,
 div[id^=hero],
 .ennemy,
@@ -139,7 +137,6 @@ div[id^=hero],
 #helpBox,
 #resultBox,
 #creditBox,
-.air-platform,
 .plateform,
 #wrapPlatform,
 div[id^=hero] {
