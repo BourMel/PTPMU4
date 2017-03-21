@@ -107,7 +107,7 @@ function anim () {
     //var progressivFall =
     fox.findGround();
     fox.findEnnemy();
-    fox.findItem();
+//    fox.findItem();
     fox.display();
 
     //GAME OVER

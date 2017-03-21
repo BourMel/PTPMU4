@@ -50,8 +50,8 @@ Hero.prototype.findGround = function () { //retourne vrai ou faux, function anim
         return false;
     }
     
-    // Cas "air" et "item" (et undefined en théorie, qui est géré au préalable par "if")
-    else if((this.field.checkBloc(nextY, this.x) == 0) || (this.field.checkBloc(nextY, this.x) == 7)) {
+    // Cas "air"(et undefined en théorie, qui est géré au préalable par "if")
+    else if(this.field.checkBloc(nextY, this.x) == 0) {
         this.y += 1;
         nextY += 1;
 
@@ -59,6 +59,22 @@ Hero.prototype.findGround = function () { //retourne vrai ou faux, function anim
         this.field.writeBlock(this.y-1, this.x, 0);
         this.field.writeBlock(this.y, this.x, 5);
 
+        //indique à function anim (dans controls.js) que la chute continue
+        return true;
+        
+    //cas item
+    } else if (this.field.checkBloc(nextY, this.x) == 7) {
+        this.y += 1;
+        nextY += 1;
+
+        //annonce la case active comme étant occupée, et la précédente comme étant libre
+        this.field.writeBlock(this.y-1, this.x, 0);
+        this.field.writeBlock(this.y, this.x, 5);
+
+        //généraliser
+        this.score+=50;
+        this.display();
+        
         //indique à function anim (dans controls.js) que la chute continue
         return true;
     }
@@ -94,14 +110,14 @@ Hero.prototype.findEnnemy = function () {
         blink();
     }
 }
-
+/*
 //détecte si le héros passe sur un item 
 Hero.prototype.findItem = function () {
     if(this.field.checkBloc(this.y, this.x) == 7 ) {
         this.score+=100;
         console.log("item trouvé");
     }
-}
+}*/
 
 /* Animation du Hero, changement de style selon direction. Fonction appelée par controls.js si pas de collision */
 Hero.prototype.move = function(direction) {
