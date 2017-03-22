@@ -136,6 +136,5 @@ Hero.prototype.checkLife = function() {
 
 //renvoie la position du héros (utilisé dans field.move)
 Hero.prototype.where = function() {
-    //this.x-1 correspond à x situé par rapport au tableau
-    return {heroPositionX: this.x, heroPositionY: this.y};
+    return {heroPositionX: this.x, heroPositionY: this.y, heroPositionXPix: this.xPix};
 }

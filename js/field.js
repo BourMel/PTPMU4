@@ -129,23 +129,31 @@ Field.prototype.move = function(direction, heroX, heroY) {
     var rightToHero = heroX+1;
     var didMove;
 
-    if(direction==1 && this.checkBloc(heroY, leftToHero)==0 || direction==3 && this.checkBloc(heroY, rightToHero)==0) { //gauche
-        switch(direction) {
-            case 1: //gauche
-                this.positionXPix +=1;
-                //this.positionX += 1;
-                break;
-            case 3: //droite
-                this.positionXPix -= 1;
-                //this.positionX -= 1;
-                break;
+    //si à l'intérieur même d'une case
+    if(positionFox.heroPositionXPix % 10 == 0) {
+        console.log("si on est dans une collision");
+
+        if(direction==1 && this.checkBloc(heroY, leftToHero)==0 || direction==3 && this.checkBloc(heroY, rightToHero)==0) { //gauche
+            switch(direction) {
+                case 1: //gauche
+                    this.positionXPix +=1;
+                    //this.positionX += 1;
+                    break;
+                case 3: //droite
+                    this.positionXPix -= 1;
+                    //this.positionX -= 1;
+                    break;
+            }
+
+            this.positionX = this.positionXPix / widthBlock,
+
+                didMove=true;
+        } else {
+            didMove=false;
         }
-
-        this.positionX = this.positionXPix / widthBlock,
-
-        didMove=true;
     } else {
-        didMove=false;
+        console.log('on est dans la case on s en fout');
+        didMove = true;
     }
 
     this.display();

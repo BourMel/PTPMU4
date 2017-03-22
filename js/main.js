@@ -105,7 +105,7 @@ $(document).ready(function(){
     //JEU
     init();
     //chute au début du jeu
-    var intervalAnim = setInterval(anim, 40);
+    var intervalAnim = setInterval(anim, 1000);
 
     //INTERFACE
 
