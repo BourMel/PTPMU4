@@ -1,5 +1,3 @@
-/* *************** CLASS FIELD *************** */
-
 function Field (id, height, width, maxHeightGround) {
     this.id = id;
     this.height = height;
@@ -101,8 +99,6 @@ function Field (id, height, width, maxHeightGround) {
 /* ****************************** FONCTIONS ****************************** */
 /* *********************************************************************** */
 
-/* *************** FIELD *************** */
-
 Field.prototype.display = function () {
     var HTMLfield = document.getElementById(this.id);
     HTMLfield.style.left = (this.positionX*70) + "px";
@@ -138,47 +134,10 @@ Field.prototype.display = function () {
     }
 }
 
-/* *************** PLATFORM *************** */
-
-//Platform.prototype.display = function() {
-//    // Parcourt l'ensemble de la ligne platforme
-//    var fieldHTML = document.getElementById(this.field.id);
-//    var platform = document.createElement("div");
-//    platform.setAttribute("id", "wrap-platform");
-//    fieldHTML.appendChild(platform);
-//
-//    var HTMLplatform = document.getElementById("wrap-platform");
-//    HTMLplatform.style.left = 0 + 'px';
-//    
-//    for(i = 0; i < this.width; i++) {
-//        for(j = 0; j < this.height; j++) {
-//            var blocPlat = document.createElement("div");
-//            
-//            if(this.block[j * this.width + i] == 6) {
-//                blocPlat.setAttribute("class", "plateform");
-//            }
-//            else if(this.block[j * this.width + i] == 0) {
-//                blocPlat.setAttribute("class", "air-platform");
-//            }
-//            
-//            // Positionne les block de plateforme selon la position * 70 (taille du block)
-//            blocPlat.style.left = (i * 70) + 'px';
-//            blocPlat.style.top = ((j * 50) + (50 * 9)) + 'px';
-//            HTMLplatform.appendChild(blocPlat);
-//            
-//            // console.log(this.block[i]);
-//        }
-//    }
-//}
-
 //lit quel type de case (utilisé dans Hero.findGround)
 Field.prototype.checkBloc = function (ligne, colonne) {
     return this.content[ligne*this.width + colonne];
 }
-
-//Platform.prototype.checkBloc = function (ligne, colonne) {
-//    return this.block[ligne*this.width + colonne];
-//}
 
 //écrit sur la case
 Field.prototype.writeBlock = function (ligne, colonne, value) {
