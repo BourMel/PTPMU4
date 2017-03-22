@@ -44,8 +44,8 @@ function init(nbrGame) {
             url: "./php/score.php",
             //recevoir données
             data:{
-                action:"sendData",
-                pseudo:"pseudoDuJoueur",
+                action:"sendScore",
+                pseudo: document.getElementById("pseudoInput").value,
                 score:fox.score,
             },
             dataType: "json"
@@ -169,11 +169,9 @@ function changeColor(HTMLhero) {
 // ---------------------------------------------------------------- //
 
 $(document).ready(function(){
-    //JEU
-    nbrGame = 0;
-    init(nbrGame);
 
     //INTERFACE
+    resultBox = document.getElementById("resultBox");
 
     /* popups page d'accueil */
     var openButtons = $('.icon');
@@ -188,10 +186,38 @@ $(document).ready(function(){
         $(this).parent().hide();
     });
 
+    document.getElementById("result").addEventListener("click", function() {
+        $.ajax({
+            url: "./php/score.php",
+            data: {
+                action: "view"
+            },
+            dataType: "json",
+            success: function(view) {
+                for(i = 0 ; i < view.result.length ; i++) {
+                    var score = document.createElement("div");
+                    score.innerHTML = "<span class='pseudoItem'>" + view.result[i].pseudo + " : </span><span class='scoreItem'> " +  view.result[i].score + "</span>" ;
+                    resultBox.appendChild(score);
+                }
+            }
+        });
+    });
+
     document.getElementById("butonPlay").addEventListener("click", function() {
+        //JEU
+        nbrGame = 0;
+        init(nbrGame);
+
         $("#startGame").hide();
         $("#hero" + nbrGame).show();
         $("#field" + nbrGame).show();
+    });
+
+     formPseudo = document.getElementById("pseudoForm");
+
+    formPseudo.addEventListener("submit", function (e) {
+        e.preventDefault();
+        formPseudo.style.display = "none";
     });
 
     //changé car le clic n'était pas détecté

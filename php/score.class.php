@@ -16,7 +16,7 @@ class Score {
     function getAllFromDB ()
     {
         try {
-            $pdo = new PDO('mysql:host='.'HOST;dbname='.DBNAME, USER, PASSWORD);
+            $pdo = new PDO('mysql:host='.HOST.';dbname='.DBNAME, USER, PASSWORD);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             $result = $pdo->query('SELECT * FROM Scores');
@@ -27,12 +27,11 @@ class Score {
                 array_push($listeScores, $objet);
             }
 
-            $final = array("ok" => true, "message" => "requete reussie", "result" => listeScores);
+            $final = array("ok" => true, "message" => "requete reussie", "result" => $listeScores);
 
             $pdo = null;
         } catch (Exception $e) {
             $final = array("ok" => false, "message" => $e->getMessage(), "result" => null);
-            exit;
         }
 
         return json_encode($final);
@@ -40,24 +39,29 @@ class Score {
 
     //affichage
     function affiche() {
-        print ($this->id." ".$this->pseudo." ".$this->score);
+        print("hey");
+        foreach($this as $this) {
+            print ($this->id." ".$this->pseudo." ".$this->score);
+            print("coucou");
+        }
+
     }
 
     //récupère données de get et les met dans l'objet
     function chargeGET () {
-        $this->pseudo = $pseudo;
-        $this->score = $score;
+        $this->pseudo = isset($_GET['pseudo']) ? $_GET['pseudo'] : "Wirefox Anonyme";
+        $this->score	= isset($_GET['score']) ? $_GET['score'] : NULL ;
     }
 
     //envoie score dans BDD
     function insertDB () {
         try {
-            $pdo = new PDO('mysql:host='.'HOST;dbname='.DBNAME, USER, PASSWORD);
+            $pdo = new PDO('mysql:host='.HOST.';dbname='.DBNAME, USER, PASSWORD);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            //requête ; la variable compte le nbr de lignes insérées
+
             $requete = 'INSERT INTO Scores (pseudo, score)
-								VALUES (\''.$this->pseudo.'\', \''.$this->score.');';
-            $nbr = $pdo->exec($requete);
+								VALUES ("'.$this->pseudo.'","'.$this->score.'");';
+            $pdo->exec($requete);
             $this->id = $pdo->lastInsertId();
 
             $pdo = null;
@@ -68,21 +72,65 @@ class Score {
         }
     }
 
+    //vérifie que la BDD n'est pas trop remplie
+    /*function checkDB () {
+        try {
+            $pdo = new PDO('mysql:host='.HOST.';dbname='.DBNAME, USER, PASSWORD);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            $nbrScores = $pdo->query("SELECT COUNT(*) FROM Scores;");
+            $nbrScores = $nbrScores->fetch(PDO::FETCH_UNIQUE);
+
+            if($nbrScores[0] >= 10) {
+                return true;
+            } else {
+                return false;
+            }
+
+            $pdo = null;
+        } catch (Exception $e) {
+            //si erreur dans le bloc précédent
+            print("<p>Erreur : ".$e->getMessage()."</p>");
+            exit;
+        }
+    }*/
+
+    //supprime la valeur la plus faible de la BDD
+    /*function smallerDB () {
+        try {
+            $pdo = new PDO('mysql:host='.HOST.';dbname='.DBNAME, USER, PASSWORD);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            $pdo->exec("SELECT COUNT(*) FROM Scores;");
+
+
+            $pdo = null;
+        } catch (Exception $e) {
+            //si erreur dans le bloc précédent
+            print("<p>Erreur : ".$e->getMessage()."</p>");
+            exit;
+        }
+    }*/
+
     //controleur
     function controleur () {
-        $pseudo = isset($_GET['pseudo']) ? $_GET['pseudo'] : NULL;
-        $score	= isset($_GET['score']) ? $_GET['score'] : NULL ;
         $action	= isset($_GET['action']) ? $_GET['action'] : NULL ;
-
-        print($action);
+        $pseudo = isset($_GET['pseudo']) ? $_GET['pseudo'] : "Wirefox Anonyme";
 
         switch ($action) {
             case NULL:
-            case 'sendData':
-                print('coucou');
+            case 'sendScore':
+                print($pseudo);
                 $this->chargeGET();
-                print($this->pseudo);
                 $this->insertDB();
+
+                //si la BDD contient plus de 10 valeurs
+                /*if($this->checkDB() == true) {
+                    $this->smallerDB();
+                }*/
+                break;
+            case 'view':
+                print($this->getAllFromDB());
                 break;
         }
     }
