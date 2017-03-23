@@ -133,7 +133,7 @@ Hero.prototype.move = function(direction) {
             break;
         case 2: // Si direction haut, alors change couleur de fond
             //document.getElementById("hero").style.backgroundColor = "purple";
-            var nextY = this.y + 1;
+            var nextY = this.y + 2;
             var lastY = this.y - 1;
             
             //si n'essaie pas de sauter à partir de l'air
