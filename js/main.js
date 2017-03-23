@@ -2,6 +2,7 @@ var game;
 var fox;
 var ennemy;
 var item;
+
 var platform;
 var tabEnnemy = new Array();
 var tabItems = new Array();
@@ -106,6 +107,10 @@ function init(nbrGame) {
             tabItems.push(item);
         }
     }
+    
+    for(var b = 0 ; b < tabItems.length ; b++) {
+        tabItems[b].move();
+    }
 
     //chute au début du jeu
     intervalAnim = setInterval(anim, 1000);
@@ -118,6 +123,7 @@ function anim () {
     //var progressivFall =
     fox.findGround();
     fox.findEnnemy();
+//    fox.findItem();
     fox.display();
 
     //GAME OVER
@@ -178,12 +184,15 @@ $(document).ready(function(){
     openButtons.click(function() {
         var cible = $(this).attr('id');
         cible = "#" + cible + "Box";
-        $(cible).show();
+        $(cible).show().css("right", "0px");
+        //$(cible).show().css("margin-right", "0px");     
+        $('body').css("margin-left", "-50px");
     });
 
     var closeButtons = $('.closeBox');
     closeButtons.click(function() {
         $(this).parent().hide();
+        $('body').css("margin-left", "0px");
     });
 
     document.getElementById("result").addEventListener("click", function() {

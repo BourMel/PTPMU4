@@ -15,6 +15,7 @@ function Field (id, height, width, maxHeightGround) {
     ennemi = 4
     hero = 5
     platform = 6
+    item = 7
     */
     this.content = new Array(this.height * this.width);
 
@@ -125,6 +126,7 @@ Field.prototype.display = function () {
             } else if (this.content[j * this.width + i] == 6) {
                 bloc.setAttribute("class", "platform");
             }
+            
 
             //à adapter à la taille des blocs
             bloc.style.left = (i*70) + "px";
@@ -150,8 +152,23 @@ Field.prototype.move = function(direction, heroX, heroY) {
     var leftToHero = heroX-1;
     var rightToHero = heroX+1;
     var didMove;
-
-    if(direction==1 && this.checkBloc(heroY, leftToHero)==0 || direction==3 && this.checkBloc(heroY, rightToHero)==0) { //gauche
+    
+    //si item
+    if(direction==1 && this.checkBloc(heroY, leftToHero)==7 || direction==3 && this.checkBloc(heroY, rightToHero)==7) {
+        //solution à généraliser
+        fox.score += 50;
+        fox.display();
+        
+        switch(direction) {
+            case 1: //gauche
+                this.positionX += 1;
+                break;
+            case 3: //droite
+                this.positionX -= 1;
+                break;
+        }
+        didMove = true;
+    } else if(direction==1 && this.checkBloc(heroY, leftToHero)==0 || direction==3 && this.checkBloc(heroY, rightToHero)==0) { //gauche
         switch(direction) {
             case 1: //gauche
                 this.positionX += 1;
