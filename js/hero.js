@@ -94,13 +94,16 @@ Hero.prototype.move = function(direction) {
     this.field.writeBlock(this.y, this.x, 0);
 
     switch(direction) {
-        case 1: // Si direction gauche, alors change couleur de fond
+        /* ********** DIRECTION GAUCHE ********** */
+        case 1:
             //document.getElementById("hero").style.backgroundColor = "yellow";
             if (this.x > 0) { // Si la position du héros est supérieur à 0, le héro peut reculer
                 this.x -= 1;                
             }
             break;
-        case 2: // Si direction haut, alors change couleur de fond
+            
+        /* ********** DIRECTION HAUT ********** */
+        case 2:
             //document.getElementById("hero").style.backgroundColor = "purple";
             var nextY = this.y + 1;
             var lastY = this.y - 1;
@@ -109,13 +112,26 @@ Hero.prototype.move = function(direction) {
             if ((this.field.checkBloc(lastY, this.x) != 6) && (this.field.checkBloc(nextY, this.x) != 0)) {
                 this.y -= 1;
             }
+            break;
             
-            break;
-        case 3: // Si direction droite, alors change couleur de fond
+        /* ********** DIRECTION DROITE ********** */
+        case 3:
+            var nextX = this.x + 1;
+            
+            // Si à la case suivante, le test this.x > widthField == true,
+            // Alors victoire = true
+            
             //document.getElementById("hero").style.backgroundColor = "green";
-            this.x += 1;
+            if (this.x <= widthField) {
+                this.x += 1;
+            }
+            
+            var victoire = (nextX >= widthField);
+            console.log(victoire);
             break;
-        case 4: // Si direction bas, alors change couleur de fond
+            
+        /* ********** DIRECTION BAS ********** */
+        case 4:
             //document.getElementById("hero").style.backgroundColor = "blue";
             break;
     }
