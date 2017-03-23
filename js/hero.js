@@ -116,18 +116,15 @@ Hero.prototype.move = function(direction) {
             
         /* ********** DIRECTION DROITE ********** */
         case 3:
+            //document.getElementById("hero").style.backgroundColor = "green";
+            this.x += 1;
             var nextX = this.x + 1;
             
-            // Si à la case suivante, le test this.x > widthField == true,
-            // Alors victoire = true
-            
-            //document.getElementById("hero").style.backgroundColor = "green";
-            if (this.x <= widthField) {
-                this.x += 1;
+            if (nextX >= (widthField - 1)) {
+                console.log("Hello man");
+                var victoire = true;
             }
             
-            var victoire = (nextX >= widthField);
-            console.log(victoire);
             break;
             
         /* ********** DIRECTION BAS ********** */

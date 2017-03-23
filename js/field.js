@@ -159,9 +159,7 @@ Field.prototype.move = function(direction, heroX, heroY) {
                 }
                 break;
             case 3: //droite
-                if (heroX < widthField) {
-                    this.positionX -= 1;
-                }
+                this.positionX -= 1;
                 break;
         }
 
