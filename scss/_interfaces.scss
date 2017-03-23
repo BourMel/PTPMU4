@@ -83,6 +83,21 @@
 }
 
 
+#helpBox,
+#resultBox,
+#creditBox {
+    background-color: #abda77;
+    height: 100%;
+    width: 500px;
+    padding: 20px;
+    right: -500px;
+    transition: 2s;
+}
+
+.closeBox:hover {
+    cursor: pointer;
+}
+
 /* ******************************************************************** */
 /* SUCCES */
 /* ******************************************************************** */

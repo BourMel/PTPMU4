@@ -104,6 +104,9 @@ Hero.prototype.findEnnemy = function () {
     var leftToHero = this.x-1;
     var rightToHero = this.x+1;
 
+    console.log (leftToHero);
+    console.log (rightToHero);
+    
     if((this.field.checkBloc(this.y, leftToHero) == 4) || (this.field.checkBloc(this.y, rightToHero) == 4)) {
         this.life-=10;
         this.score-=10;
