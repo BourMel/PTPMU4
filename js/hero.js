@@ -103,8 +103,8 @@ Hero.prototype.findEnnemy = function () {
     var leftToHero = this.x-1;
     var rightToHero = this.x+1;
 
-    console.log (leftToHero);
-    console.log (rightToHero);
+    /*console.log (leftToHero);
+    console.log (rightToHero);*/
     
     if((this.field.checkBloc(this.y, leftToHero) == 4) || (this.field.checkBloc(this.y, rightToHero) == 4)) {
         this.life-=10;
@@ -133,7 +133,7 @@ Hero.prototype.move = function(direction) {
             break;
         case 2: // Si direction haut, alors change couleur de fond
             //document.getElementById("hero").style.backgroundColor = "purple";
-            var nextY = this.y + 1;
+            var nextY = this.y + 2;
             var lastY = this.y - 1;
             
             //si n'essaie pas de sauter à partir de l'air

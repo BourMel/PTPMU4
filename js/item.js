@@ -58,5 +58,5 @@ Item.prototype.move = function () {
     //annonce la case active comme étant occupée
     this.field.writeBlock(this.y, this.x, 7);
     this.display();
-    console.log("item");
+    /*console.log("item");*/
 }
