@@ -177,7 +177,7 @@ function changeColor(HTMLhero) {
 $(document).ready(function(){
 
     //INTERFACE
-    resultBox = document.getElementById("resultBox");
+    resultBox = document.getElementById("listeScores");
 
     /* popups page d'accueil */
     var openButtons = $('.icon');
