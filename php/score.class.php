@@ -22,9 +22,16 @@ class Score {
             $result = $pdo->query('SELECT * FROM Scores');
 
             $listeScores = array();
+            $compteur = 0;
 
             while ($objet = $result->fetch(PDO::FETCH_OBJ)) {
                 array_push($listeScores, $objet);
+                $compteur++;
+
+                //ne récupère que les 10 premiers scores
+                if($compteur >= 10) {
+                    break;
+                }
             }
 
             $final = array("ok" => true, "message" => "requete reussie", "result" => $listeScores);
