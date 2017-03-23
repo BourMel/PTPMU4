@@ -154,7 +154,9 @@ Field.prototype.move = function(direction, heroX, heroY) {
     if(direction==1 && this.checkBloc(heroY, leftToHero)==0 || direction==3 && this.checkBloc(heroY, rightToHero)==0) { //gauche
         switch(direction) {
             case 1: //gauche
-                this.positionX += 1;
+                if (heroX > 0) { // Si la position du héros est supérieur à 0, le terrain peut avancer
+                    this.positionX += 1;
+                }
                 break;
             case 3: //droite
                 this.positionX -= 1;

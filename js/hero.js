@@ -42,13 +42,17 @@ Hero.prototype.display = function() {
 //placer le héros automatiquement sur le sol (chute !)
 Hero.prototype.findGround = function () { //retourne vrai ou faux, function anim() utilise findGround sur objet global (et gère interval)
     var nextY = this.y + 1;
-//    var lastY = this.y - 1;
+    var lastX = this.x - 1;
     
     // Cas où on dépasse les limites du terrain (chute dans un trou)
     if (this.y+1 > this.field.height-1) {
         this.life = 0;
         return false;
     }
+    
+//    else if((this.field.checkBloc(lastX, this.x) == null)) {
+//        
+//    }
     
     // Cas "air" (et undefined en théorie, qui est géré au préalable par "if")
     else if((this.field.checkBloc(nextY, this.x) == 0)) {
@@ -101,7 +105,9 @@ Hero.prototype.move = function(direction) {
     switch(direction) {
         case 1: // Si direction gauche, alors change couleur de fond
             //document.getElementById("hero").style.backgroundColor = "yellow";
-            this.x -= 1;
+            if (this.x > 0) { // Si la position du héros est supérieur à 0, le héro peut reculer
+                this.x -= 1;                
+            }
             break;
         case 2: // Si direction haut, alors change couleur de fond
             //document.getElementById("hero").style.backgroundColor = "purple";
