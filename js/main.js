@@ -175,34 +175,40 @@ function changeColor(HTMLhero) {
 // ---------------------------------------------------------------- //
 
 $(document).ready(function(){
-
     //INTERFACE
+    formPseudo = document.getElementById("pseudoForm");
     resultBox = document.getElementById("resultBox");
-
-    /* popups page d'accueil */
-    var openButtons = $('.icon');
-    var window = $(window);
     
-    openButtons.on('click', (function() {   //au clic sur l'une des icônes...
-        var cible = $(this).attr('id');     //on récupère l'id de l'icône sélectionnée
-        cible = "#" + cible + "Box";        //on rajoute "Box" à l'id de l'icône pour obtenir l'id du pop-up
-
-        var top = Math.max (window.height() - cible.outerHeight(), 0) /2;
-        var left = Math.max (window.width() - cible.outerWidth(), 0) /2;
-        
-        $(cible).show().css({ 
-            top: top + window.scrollTop(),
-            left: left + window.scrollLeft()
-        });
+            
+    //centrer l'input
+    formPseudo.style.position = "absolute";
+    formPseudo.style.left = "50%";
+    formPseudo.style.top = "50%";
+    formPseudo.style.transform = "translate(-50%, -50%)";
+    
+       /* popups page d'accueil */
+    var openButtons = $('.icon');
+    openButtons.click(function() {
+        var cible = $(this).attr('id');
+        cible = "#" + cible + "Box";
+/*        $(cible).show().css("right", "0px");*/
+        $(cible).show();
         //$(cible).show().css("margin-right", "0px");     
-        $('body').css("margin-left", "-50px");
-    }));
+/*        $('body').css("margin-left", "-50px");*/
+        
+            //centrer la cible
+/*       $(cible).style.position = "absolute";
+        $(cible).style.left = "50%";
+        $(cible).style.top = "50%";
+        $(cible).style.transform = "translate(-50%, -50%)";*/
+    });
 
     var closeButtons = $('.closeBox');
     closeButtons.click(function() {
         $(this).parent().hide();
-        $('body').css("margin-left", "0px");
+/*        $('body').css("margin-left", "0px");*/
     });
+
 
     document.getElementById("result").addEventListener("click", function() {
         $.ajax({
@@ -231,11 +237,11 @@ $(document).ready(function(){
         $("#field" + nbrGame).show();
     });
 
-     formPseudo = document.getElementById("pseudoForm");
+    
+    
 
     formPseudo.addEventListener("submit", function (e) {
         e.preventDefault();
-        formPseudo.style.display = "none";
     });
 
     //changé car le clic n'était pas détecté
