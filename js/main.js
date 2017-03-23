@@ -181,13 +181,22 @@ $(document).ready(function(){
 
     /* popups page d'accueil */
     var openButtons = $('.icon');
-    openButtons.click(function() {
-        var cible = $(this).attr('id');
-        cible = "#" + cible + "Box";
-        $(cible).show().css("right", "0px");
+    var window = $(window);
+    
+    openButtons.on('click', (function() {   //au clic sur l'une des icônes...
+        var cible = $(this).attr('id');     //on récupère l'id de l'icône sélectionnée
+        cible = "#" + cible + "Box";        //on rajoute "Box" à l'id de l'icône pour obtenir l'id du pop-up
+
+        var top = Math.max (window.height() - cible.outerHeight(), 0) /2;
+        var left = Math.max (window.width() - cible.outerWidth(), 0) /2;
+        
+        $(cible).show().css({ 
+            top: top + window.scrollTop(),
+            left: left + window.scrollLeft()
+        });
         //$(cible).show().css("margin-right", "0px");     
         $('body').css("margin-left", "-50px");
-    });
+    }));
 
     var closeButtons = $('.closeBox');
     closeButtons.click(function() {
