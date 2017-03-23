@@ -50,10 +50,6 @@ Hero.prototype.findGround = function () { //retourne vrai ou faux, function anim
         return false;
     }
     
-//    else if((this.field.checkBloc(lastX, this.x) == null)) {
-//        
-//    }
-    
     // Cas "air" (et undefined en théorie, qui est géré au préalable par "if")
     else if((this.field.checkBloc(nextY, this.x) == 0)) {
         this.y += 1;
@@ -74,11 +70,6 @@ Hero.prototype.findGround = function () { //retourne vrai ou faux, function anim
         blink();
         return false;
     }
-
-    // Cas de plateforme
-//    else if ((this.field.checkBloc(this.y - 1, this.x) == 6)) {
-//        console.log("Plate");
-//    }
     
     else {
         return false;
