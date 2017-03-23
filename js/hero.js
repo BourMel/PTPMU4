@@ -71,6 +71,11 @@ Hero.prototype.findGround = function () { //retourne vrai ou faux, function anim
         this.field.writeBlock(this.y-1, this.x, 0);
         this.field.writeBlock(this.y, this.x, 5);
 
+        for(var c = 0 ; c < tabItems.length ; c++) {
+            // console.log("je suis dedans");
+            tabItems[c].checkLife();
+        }
+
         //généraliser
         this.score+=50;
         this.display();
@@ -103,7 +108,7 @@ Hero.prototype.findEnnemy = function () {
     var leftToHero = this.x-1;
     var rightToHero = this.x+1;
 
-    /*console.log (leftToHero);
+/*    console.log (leftToHero);
     console.log (rightToHero);*/
     
     if((this.field.checkBloc(this.y, leftToHero) == 4) || (this.field.checkBloc(this.y, rightToHero) == 4)) {

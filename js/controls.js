@@ -32,6 +32,10 @@ document.onkeydown = function(event) {
             //réaffiche à chaque mouvement en prenant en compte la postion du terrain
             tabEnnemy[i].display();
         }
+
+        for(var d = 0 ; d < tabItems.length ; d++) {
+            tabItems[d].checkLife();
+        }
         
         //chute après chaque déplacement ?
         //var intervalFalling = setInterval(fox.findGround(), 1000);
