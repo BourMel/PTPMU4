@@ -42,7 +42,9 @@ Item.prototype.findGround = function () {
 
 //si il n'a plus de vie, l'item disparaît
 Item.prototype.checkLife = function () {
-    if(this.life == 0) {
+    console.log(this.field.checkBloc(this.y, this.x));
+
+    if((this.field.checkBloc(this.y, this.x) == 5) || (this.life ==0)) {
         var HTMLitem = document.getElementById(this.id);
         HTMLitem.parentNode.removeChild(HTMLitem);
         return false;
@@ -58,5 +60,4 @@ Item.prototype.move = function () {
     //annonce la case active comme étant occupée
     this.field.writeBlock(this.y, this.x, 7);
     this.display();
-    console.log("item");
 }
