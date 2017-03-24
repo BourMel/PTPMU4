@@ -159,7 +159,12 @@ Field.prototype.move = function(direction, heroX, heroY) {
                 }
                 break;
             case 3: //droite
-                this.positionX -= 1;
+//                victoire = this.hero.move; undefined
+                
+                // https://openclassrooms.com/forum/sujet/modifier-une-variable-d-un-autre-fichier-js
+                if (victoire == false) {
+                    this.positionX -= 1;                    
+                }
                 break;
         }
 

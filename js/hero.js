@@ -92,6 +92,7 @@ Hero.prototype.findEnnemy = function () {
 Hero.prototype.move = function(direction) {
     //la case quittée est vide
     this.field.writeBlock(this.y, this.x, 0);
+    victoire = false;
 
     switch(direction) {
         /* ********** DIRECTION GAUCHE ********** */
@@ -120,11 +121,12 @@ Hero.prototype.move = function(direction) {
             this.x += 1;
             var nextX = this.x + 1;
             
-            if (nextX >= (widthField - 1)) {
-                console.log("Hello man");
-                var victoire = true;
+            if (nextX >= widthField) {
+                victoire = true;
             }
             
+            return victoire;
+            console.log(victoire);
             break;
             
         /* ********** DIRECTION BAS ********** */
