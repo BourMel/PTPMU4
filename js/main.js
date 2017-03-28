@@ -223,6 +223,7 @@ $(document).ready(function(){
     document.getElementById("butonPseudo").addEventListener("click", function() {
         if (document.getElementById("pseudoInput").value == "") {
             document.getElementById("formError").innerHTML = "vous n'avez pas entré de pseudo...";
+            document.getElementById("pseudoInput").style.outline = "3px solid darkred";
             return false;
         }
         else {
