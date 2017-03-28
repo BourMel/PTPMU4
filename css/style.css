@@ -76,14 +76,15 @@
   top: 800px;
   right: 0px; }
 
+#pseudoForm {
+  text-align: center; }
+
 #helpBox,
 #resultBox,
-#creditBox {
+#creditBox,
+#pseudoForm {
   background-color: #DBD6B3;
-  height: 80%;
-  width: 75%;
   padding: 30px;
-  transition: 2s;
   z-index: 100;
   top: 50%;
   left: 50%;
@@ -91,6 +92,16 @@
   border-radius: 5px;
   line-height: 1.5;
   border: 20px solid #B8B396; }
+
+#helpBox,
+#resultBox,
+#creditBox {
+  height: 800px;
+  width: 800px; }
+
+#pseudoForm {
+  height: 400px;
+  width: 800px; }
 
 #grayBack {
   position: fixed;
@@ -157,6 +168,7 @@ div[id^=field] {
 #helpBox,
 #resultBox,
 #creditBox,
+#pseudoForm,
 .ennemy,
 div[id^=hero],
 .platform,
@@ -181,6 +193,7 @@ div[id^=hero],
 #helpBox,
 #resultBox,
 #creditBox,
+#pseudoForm,
 .platform,
 div[id^=hero] {
   display: none; }
@@ -272,6 +285,11 @@ h1,
 #butonQuit {
   font-family: Beauty and the Beast; }
 
+#butonPseudo,
+input {
+  font-family: Source Sans Pro;
+  font-size: 1.5em; }
+
 h1 {
   font-size: 8em;
   letter-spacing: 10px; }
@@ -291,6 +309,37 @@ h1 {
   font-size: 2em;
   letter-spacing: 7px;
   margin-top: 5px; }
+
+#butonPseudo {
+  background-color: #067567;
+  color: #f2f1d2;
+  border: none;
+  height: 60px;
+  border-radius: 5px;
+  width: 80%;
+  margin-top: 20px; }
+
+input {
+  width: 80%;
+  height: 60px;
+  border: none;
+  padding: 15px;
+  border-radius: 5px;
+  opacity: 0.6;
+  text-align: center;
+  margin-top: 60px; }
+
+input:focus,
+#butonPseudo:hover {
+  outline: none;
+  transition: 1s;
+  letter-spacing: 2px; }
+
+input:focus {
+  opacity: 1; }
+
+#butonPseudo:hover {
+  cursor: pointer; }
 
 /* ******************************************************************** */
 /* UTILITAIRES */

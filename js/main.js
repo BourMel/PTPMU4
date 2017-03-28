@@ -179,14 +179,8 @@ $(document).ready(function(){
     formPseudo = document.getElementById("pseudoForm");
     resultBox = document.getElementById("resultBox");
     
-            
-    //centrer l'input
-    formPseudo.style.position = "absolute";
-    formPseudo.style.left = "50%";
-    formPseudo.style.top = "50%";
-    formPseudo.style.transform = "translate(-50%, -50%)";
-    
-       /* popups page d'accueil */
+
+    /* popups page d'accueil */
     var openButtons = $('.icon');
     openButtons.click(function() {
     var cible = $(this).attr('id');
@@ -221,6 +215,15 @@ $(document).ready(function(){
     });
 
     document.getElementById("butonPlay").addEventListener("click", function() {
+        $(formPseudo).before('<div id="grayBack"></div>'); 
+        $(formPseudo).show();
+        $("#grayBack").css('opacity', 0.4).fadeTo('fast', 0.7, function () { $(formPseudo).fadeIn(300); }); 
+    });
+    
+    document.getElementById("butonPseudo").addEventListener("click", function() {
+        $(this).parent().hide();
+        $("#grayBack").fadeOut('fast', function () { $(this).remove() });
+        
         //JEU
         nbrGame = 0;
         init(nbrGame);

@@ -82,22 +82,35 @@
     right: 0px;
 }
 
+#pseudoForm {
+    text-align: center;
+}
 
 #helpBox,
 #resultBox,
-#creditBox {
+#creditBox,
+#pseudoForm {
     background-color: #DBD6B3;
-    height: 80%;
-    width: 75%;
     padding: 30px;
-    transition: 2s;
     z-index:100;
     top:50%;
     left:50%;
     transform : translate(-50%, -50%);
     border-radius: 5px;
     line-height: 1.5;
-        border: 20px solid #B8B396;
+    border: 20px solid #B8B396;
+}
+
+#helpBox,
+#resultBox,
+#creditBox, {
+    height: 800px; //80%
+    width: 800px; //75%
+}
+
+#pseudoForm {
+    height: 400px; //80%
+    width: 800px; //75%
 }
 
 #grayBack {
