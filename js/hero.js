@@ -121,12 +121,14 @@ Hero.prototype.move = function(direction) {
             this.x += 1;
             var nextX = this.x + 1;
             
+            // Si la case est supérieure ou égale à la longueur du terrain, alors victoire
             if (nextX >= widthField) {
                 victoire = true;
             }
             
-            return victoire;
             console.log(victoire);
+//            return victoire;
+            
             break;
             
         /* ********** DIRECTION BAS ********** */
@@ -134,6 +136,8 @@ Hero.prototype.move = function(direction) {
             //document.getElementById("hero").style.backgroundColor = "blue";
             break;
     }
+    
+    return victoire;
 
     //annonce la case active comme étant occupée
     this.field.writeBlock(this.y, this.x, 5);
