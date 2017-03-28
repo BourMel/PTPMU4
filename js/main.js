@@ -189,24 +189,17 @@ $(document).ready(function(){
        /* popups page d'accueil */
     var openButtons = $('.icon');
     openButtons.click(function() {
-        var cible = $(this).attr('id');
-        cible = "#" + cible + "Box";
-/*        $(cible).show().css("right", "0px");*/
-        $(cible).show();
-        //$(cible).show().css("margin-right", "0px");     
-/*        $('body').css("margin-left", "-50px");*/
-        
-            //centrer la cible
-/*       $(cible).style.position = "absolute";
-        $(cible).style.left = "50%";
-        $(cible).style.top = "50%";
-        $(cible).style.transform = "translate(-50%, -50%)";*/
+    var cible = $(this).attr('id');
+    cible = "#" + cible + "Box";
+    $(cible).before('<div id="grayBack"></div>'); //création de la div d'arrière plan
+    $(cible).show();
+    $("#grayBack").css('opacity', 0.4).fadeTo('fast', 0.7, function () { $("cible").fadeIn(300); }); //apparition en fondu
     });
 
     var closeButtons = $('.closeBox');
     closeButtons.click(function() {
         $(this).parent().hide();
-/*        $('body').css("margin-left", "0px");*/
+        $("#grayBack").fadeOut('fast', function () { $(this).remove() });
     });
 
 
