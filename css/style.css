@@ -115,14 +115,13 @@
 
 .closeBox {
   position: absolute;
-  left: 740px;
-  top: -40px;
+  right: 0px;
+  top: 0px;
   border-radius: 50%;
-  background-color: #B8B396;
   width: 60px;
   height: 60px;
   text-align: center;
-  line-height: 65px;
+  line-height: 60px;
   font-size: 2em;
   font-weight: bold; }
 
