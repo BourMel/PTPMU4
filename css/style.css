@@ -340,6 +340,10 @@ input:focus {
 #butonPseudo:hover {
   cursor: pointer; }
 
+#formError {
+  color: darkred;
+  font-weight: bold; }
+
 /* ******************************************************************** */
 /* UTILITAIRES */
 /* ******************************************************************** */

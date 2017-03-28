@@ -221,16 +221,24 @@ $(document).ready(function(){
     });
     
     document.getElementById("butonPseudo").addEventListener("click", function() {
-        $(this).parent().hide();
-        $("#grayBack").fadeOut('fast', function () { $(this).remove() });
-        
-        //JEU
-        nbrGame = 0;
-        init(nbrGame);
+        if (document.getElementById("pseudoInput").value == "") {
+            document.getElementById("formError").innerHTML = "vous n'avez pas entré de pseudo...";
+            return false;
+        }
+        else {
+            $(this).parent().hide();
+            $("#grayBack").fadeOut('fast', function () { $(this).remove() });
 
-        $("#startGame").hide();
-        $("#hero" + nbrGame).show();
-        $("#field" + nbrGame).show();
+            //JEU
+            nbrGame = 0;
+            init(nbrGame);
+
+            $("#startGame").hide();
+            $("#hero" + nbrGame).show();
+            $("#field" + nbrGame).show();
+            return true;
+        }  
+            
     });
 
     
