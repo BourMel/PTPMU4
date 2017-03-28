@@ -130,14 +130,17 @@ Hero.prototype.findItem = function () {
 Hero.prototype.move = function(direction) {
     //la case quittée est vide
     this.field.writeBlock(this.y, this.x, 0);
+    var heroStyle = document.getElementById("hero0");
+    heroStyle.style.backgroundColor = "transparent";
+    heroStyle.style.backgroundSize = "cover";
 
     switch(direction) {
         case 1: // Si direction gauche, alors change couleur de fond
-            //document.getElementById("hero").style.backgroundColor = "yellow";
+            heroStyle.style.backgroundImage = "url(../images/renard_marche1_gauche.png)";
             this.x -= 1;
             break;
         case 2: // Si direction haut, alors change couleur de fond
-            //document.getElementById("hero").style.backgroundColor = "purple";
+            heroStyle.style.backgroundImage = "url(../images/renard_saut1.png)";
             var nextY = this.y + 2;
             var lastY = this.y - 1;
             
@@ -148,7 +151,7 @@ Hero.prototype.move = function(direction) {
             
             break;
         case 3: // Si direction droite, alors change couleur de fond
-            //document.getElementById("hero").style.backgroundColor = "green";
+            heroStyle.style.backgroundImage = "url(../images/renard_marche1.png)";
             this.x += 1;
             break;
         case 4: // Si direction bas, alors change couleur de fond
