@@ -22,7 +22,7 @@ var nbrGame;
 
 //terrain
 var idField = "field"; //impact dans le css
-var widthField = 100;
+var widthField = 20;
 var heightField = 20;
 var heightGround = 8;
 

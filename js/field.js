@@ -170,7 +170,26 @@ Field.prototype.move = function(direction, heroX, heroY) {
                 if (heroX < (this.width - 1)) {
                     this.positionX -= 1;
                 } else if (heroX == (this.width - 1)) {
-                    alert("Bien joué ! Vous avez aidé Firefox à sauver Internet Explorer. Félicitations !");
+                    document.getElementById('success').style.display = "block" ;
+                   //SUPPRESSION DES ANCIENS OBJETS
+                    oldGame = nbrGame - 1;
+
+                    oldField = document.getElementById(idField + oldGame);
+                    oldHero = document.getElementById(idHero + oldGame);
+                    oldScore = document.getElementById("score" + oldGame);
+                    oldLife = document.getElementById("lifeBar" + oldGame);
+
+                    while (oldField.firstChild) {
+                        oldField.removeChild(oldField.firstChild);
+                    }
+
+                    tabEnnemy = new Array();
+                    tabItems = new Array();
+
+                    document.body.removeChild(oldField);
+                    document.body.removeChild(oldHero);
+                    document.body.removeChild(oldScore);
+                    document.body.removeChild(oldLife);
                 }
                 break;
         }
