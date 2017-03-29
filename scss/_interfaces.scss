@@ -82,18 +82,76 @@
     right: 0px;
 }
 
+#pseudoForm {
+    text-align: center;
+}
 
 #helpBox,
 #resultBox,
-#creditBox {
-    background-color: #abda77;
-    height: 100%;
-    width: 500px;
-    padding: 20px;
-    right: -500px;
-    transition: 2s;
+#creditBox,
+#pseudoForm {
+    background-color: #DBD6B3;
+    padding: 30px;
+    z-index:100;
+    top:50%;
+    left:50%;
+    transform : translate(-50%, -50%);
+    border-radius: 5px;
+    line-height: 1.5;
+    border: 20px solid #B8B396;
 }
 
+#helpBox,
+#resultBox,
+#creditBox, {
+    height: 800px; //80%
+    width: 800px; //75%
+}
+
+#pseudoForm {
+    height: 400px; //80%
+    width: 800px; //75%
+}
+
+#grayBack {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background-color: black;
+     z-index:99;
+     opacity: 0.5;
+}
+
+.closeBox {
+//    position: absolute;
+//    left: 740px;
+//    top: -40px;
+//    border-radius: 50%;
+//    background-color: #B8B396;
+//    width: 60px;
+//    height: 60px;
+//    text-align: center;
+//    line-height: 65px;
+//    font-size: 2em;
+//    font-weight: bold;
+    
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.closeBox img {
+    height: 40%;
+}
 .closeBox:hover {
     cursor: pointer;
 }

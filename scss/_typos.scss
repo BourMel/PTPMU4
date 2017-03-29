@@ -5,8 +5,15 @@
 h1,
 #butonPlay,
 #butonPlayAgain,
-#butonQuit {
+#butonQuit{
     font-family: Beauty and the Beast;
+}
+
+#butonPseudo,
+input {
+    font-family:  Source Sans Pro;
+    font-size: 1.5em;
+    //letter-spacing: 7px;
 }
 
 h1 {
@@ -31,4 +38,48 @@ h1 {
     font-size: 2em;
     letter-spacing: 7px;
     margin-top: 5px;
+}
+
+#butonPseudo {
+    background-color: #067567;
+    color: #f2f1d2;
+    border: none;
+    height: 60px;
+    border-radius: 5px;
+    width: 80%;
+    margin-top: 20px;
+}
+
+input {
+    width: 80%;
+    height: 60px;
+    border: none;
+    padding: 15px;
+    border-radius: 5px;
+    opacity: 0.6;
+    text-align: center;
+    margin-top: 60px;
+}
+
+input:focus,
+#butonPseudo:hover,{
+    outline: none;
+    transition: 1s;
+    letter-spacing: 2px;
+}
+
+input:focus{
+    //font-size: 1.6em;
+    opacity: 1; 
+}
+
+#butonPseudo:hover,{
+    //background-color: #bce579;
+    //color: $color-ground;
+    cursor: pointer;
+}
+
+#formError {
+    color: darkred;
+    font-weight: bold;
 }

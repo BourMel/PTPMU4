@@ -175,25 +175,27 @@ function changeColor(HTMLhero) {
 // ---------------------------------------------------------------- //
 
 $(document).ready(function(){
-
     //INTERFACE
-    resultBox = document.getElementById("listeScores");
+    formPseudo = document.getElementById("pseudoForm");
+    resultBox = document.getElementById("resultBox");
+    
 
     /* popups page d'accueil */
     var openButtons = $('.icon');
     openButtons.click(function() {
-        var cible = $(this).attr('id');
-        cible = "#" + cible + "Box";
-        $(cible).show().css("right", "0px");
-        //$(cible).show().css("margin-right", "0px");     
-        $('body').css("margin-left", "-50px");
+    var cible = $(this).attr('id');
+    cible = "#" + cible + "Box";
+    $(cible).before('<div id="grayBack"></div>'); //création de la div d'arrière plan
+    $(cible).show();
+    $("#grayBack").css('opacity', 0.4).fadeTo('fast', 0.7, function () { $("cible").fadeIn(300); }); //apparition en fondu
     });
 
     var closeButtons = $('.closeBox');
     closeButtons.click(function() {
         $(this).parent().hide();
-        $('body').css("margin-left", "0px");
+        $("#grayBack").fadeOut('fast', function () { $(this).remove() });
     });
+
 
     document.getElementById("result").addEventListener("click", function() {
         $.ajax({
@@ -213,20 +215,38 @@ $(document).ready(function(){
     });
 
     document.getElementById("butonPlay").addEventListener("click", function() {
-        //JEU
-        nbrGame = 0;
-        init(nbrGame);
+        $(formPseudo).before('<div id="grayBack"></div>'); 
+        $(formPseudo).show();
+        $("#grayBack").css('opacity', 0.4).fadeTo('fast', 0.7, function () { $(formPseudo).fadeIn(300); }); 
+    });
+    
+    document.getElementById("butonPseudo").addEventListener("click", function() {
+        if (document.getElementById("pseudoInput").value == "") {
+            document.getElementById("formError").innerHTML = "vous n'avez pas entré de pseudo...";
+            document.getElementById("pseudoInput").style.outline = "3px solid darkred";
+            return false;
+        }
+        else {
+            $(this).parent().hide();
+            $("#grayBack").fadeOut('fast', function () { $(this).remove() });
 
-        $("#startGame").hide();
-        $("#hero" + nbrGame).show();
-        $("#field" + nbrGame).show();
+            //JEU
+            nbrGame = 0;
+            init(nbrGame);
+
+            $("#startGame").hide();
+            $("#hero" + nbrGame).show();
+            $("#field" + nbrGame).show();
+            return true;
+        }  
+            
     });
 
-     formPseudo = document.getElementById("pseudoForm");
+    
+    
 
     formPseudo.addEventListener("submit", function (e) {
         e.preventDefault();
-        formPseudo.style.display = "none";
     });
 
     //changé car le clic n'était pas détecté

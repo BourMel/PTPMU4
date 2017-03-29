@@ -16,6 +16,7 @@ div[id^=field] {
 #helpBox,
 #resultBox,
 #creditBox,
+#pseudoForm,
 .ennemy,
 div[id^=hero],
 .platform,
@@ -42,6 +43,7 @@ div[id^=hero],
 #helpBox,
 #resultBox,
 #creditBox,
+#pseudoForm,
 .platform,
 div[id^=hero]{
     display: $display-none;
