@@ -7,6 +7,7 @@ function Hero (id, life, field) {
     this.score  = 0;
     this.field  = field;
     this.platform = platform;
+    this.victoire = false;
 
     //heros
     var hero = document.createElement("div");
@@ -91,12 +92,6 @@ Hero.prototype.findGround = function () { //retourne vrai ou faux, function anim
         blink();
         return false;
     }
-
-    // Cas de plateforme
-//    else if ((this.field.checkBloc(this.y - 1, this.x) == 6)) {
-//        console.log("Plate");
-//    }
-    
     
     else {
         return false;
@@ -132,14 +127,12 @@ Hero.prototype.move = function(direction) {
     this.field.writeBlock(this.y, this.x, 0);
 
     switch(direction) {
-        case 1: // Si direction gauche, alors change couleur de fond
-            //document.getElementById("hero").style.backgroundColor = "yellow";
+        case 1: // gauche  //document.getElementById("hero").style.backgroundColor = "yellow";
             if (this.x > 0) {
                 this.x -= 1;
             }
             break;
-        case 2: // Si direction haut, alors change couleur de fond
-            //document.getElementById("hero").style.backgroundColor = "purple";
+        case 2: // haut  //document.getElementById("hero").style.backgroundColor = "purple";
             var nextY = this.y + 2;
             var lastY = this.y - 1;
             
@@ -149,18 +142,24 @@ Hero.prototype.move = function(direction) {
             }
             
             break;
-        case 3: // Si direction droite, alors change couleur de fond
-            //document.getElementById("hero").style.backgroundColor = "green";
+        case 3: // droite  //document.getElementById("hero").style.backgroundColor = "green";
             this.x += 1;
+            var nextX = this.x + 1;
+            
+            if (nextX >= widthField) {
+                this.victoire = true;
+            }
+            
             break;
-        case 4: // Si direction bas, alors change couleur de fond
-            //document.getElementById("hero").style.backgroundColor = "blue";
+        case 4: // bas  //document.getElementById("hero").style.backgroundColor = "blue";
             break;
     }
 
     //annonce la case active comme étant occupée
     this.field.writeBlock(this.y, this.x, 5);
     this.display();
+    
+    return this.victoire;
 }
 
 Hero.prototype.checkLife = function() {

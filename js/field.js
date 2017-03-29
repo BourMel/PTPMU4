@@ -179,7 +179,10 @@ Field.prototype.move = function(direction, heroX, heroY) {
                 }
                 break;
             case 3: //droite
-//                if (heroX.victoire) {}
+//                if (heroX.victoire == true) {
+//                    console.log("Gagné");
+//                }
+                console.log(heroX);
                 this.positionX -= 1;
                 break;
         }
