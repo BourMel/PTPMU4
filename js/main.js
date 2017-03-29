@@ -22,7 +22,7 @@ var nbrGame;
 
 //terrain
 var idField = "field"; //impact dans le css
-var widthField = 80;
+var widthField = 100;
 var heightField = 20;
 var heightGround = 8;
 
@@ -31,7 +31,7 @@ var idHero = "hero"; //impact dans le css
 var heroLife = 100;
 
 //ennemis
-var nbrEnnemy = 10;
+var nbrEnnemy = 5;
 // var ennemyLife = 100;
 
 //items à collecter
