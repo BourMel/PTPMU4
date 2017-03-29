@@ -1,12 +1,12 @@
 function Hero (id, life, field) {
-    this.id     = id;
-    this.x      = 0;
-    this.y      = 0;
-    this.speedY = 3;
-    this.life   = life;
-    this.score  = 0;
-    this.field  = field;
-    this.platform = platform;
+    this.id         = id;
+    this.x          = 0;
+    this.y          = 0;
+    this.speedY     = 3;
+    this.life       = life;
+    this.score      = 0;
+    this.field      = field;
+    this.platform   = platform;
 
     //heros
     var hero = document.createElement("div");
@@ -72,7 +72,6 @@ Hero.prototype.findGround = function () { //retourne vrai ou faux, function anim
         this.field.writeBlock(this.y, this.x, 5);
 
         for(var c = 0 ; c < tabItems.length ; c++) {
-            // console.log("je suis dedans");
             tabItems[c].checkLife();
         }
 
@@ -91,12 +90,6 @@ Hero.prototype.findGround = function () { //retourne vrai ou faux, function anim
         blink();
         return false;
     }
-
-    // Cas de plateforme
-//    else if ((this.field.checkBloc(this.y - 1, this.x) == 6)) {
-//        console.log("Plate");
-//    }
-    
     
     else {
         return false;
@@ -132,26 +125,31 @@ Hero.prototype.move = function(direction) {
     this.field.writeBlock(this.y, this.x, 0);
 
     switch(direction) {
-        case 1: // Si direction gauche, alors change couleur de fond
+        case 1: // gauche
             //document.getElementById("hero").style.backgroundColor = "yellow";
-            this.x -= 1;
+            if (this.x > 0) {
+                this.x -= 1;
+            }
             break;
-        case 2: // Si direction haut, alors change couleur de fond
+        case 2: // haut
             //document.getElementById("hero").style.backgroundColor = "purple";
             var nextY = this.y + 2;
             var lastY = this.y - 1;
             
             //si n'essaie pas de sauter à partir de l'air
+//            if ((this.field.checkBloc(lastY, this.x) != 6) && (this.field.checkBloc(nextY, this.x) != 0) && (this.field.checkBloc(nextY, this.x) == 6)) {
             if ((this.field.checkBloc(lastY, this.x) != 6) && (this.field.checkBloc(nextY, this.x) != 0)) {
                 this.y -= 1;
             }
             
             break;
-        case 3: // Si direction droite, alors change couleur de fond
+        case 3: // droite
             //document.getElementById("hero").style.backgroundColor = "green";
             this.x += 1;
+            var nextX = this.x + 1;
+            
             break;
-        case 4: // Si direction bas, alors change couleur de fond
+        case 4: // bas
             //document.getElementById("hero").style.backgroundColor = "blue";
             break;
     }

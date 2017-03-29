@@ -167,14 +167,23 @@ Field.prototype.move = function(direction, heroX, heroY) {
                 this.positionX -= 1;
                 break;
         }
+        
         didMove = true;
-    } else if(direction==1 && this.checkBloc(heroY, leftToHero)==0 || direction==3 && this.checkBloc(heroY, rightToHero)==0) { //gauche
+    }
+    
+    else if (direction==1 && this.checkBloc(heroY, leftToHero)==0 || direction==3 && this.checkBloc(heroY, rightToHero)==0) {
         switch(direction) {
             case 1: //gauche
-                this.positionX += 1;
+                if (heroX > 0) {
+                    this.positionX += 1;
+                }
                 break;
             case 3: //droite
-                this.positionX -= 1;
+                if (heroX < (this.width - 1)) {
+                    this.positionX -= 1;
+                } else if (heroX == (this.width - 1)) {
+                    alert("Bien joué ! Vous avez aidé Firefox à sauver Internet Explorer. Félicitations !");
+                }
                 break;
         }
 
