@@ -84,6 +84,8 @@
 
 #pseudoForm {
     text-align: center;
+    height: 400px; //80%
+    width: 800px; //75%
 }
 
 #helpBox,
@@ -108,11 +110,6 @@
     width: 800px; //75%
 }
 
-#pseudoForm {
-    height: 400px; //80%
-    width: 800px; //75%
-}
-
 #grayBack {
      position: fixed;
      top: 0;
@@ -124,19 +121,7 @@
      opacity: 0.5;
 }
 
-.closeBox {
-//    position: absolute;
-//    left: 740px;
-//    top: -40px;
-//    border-radius: 50%;
-//    background-color: #B8B396;
-//    width: 60px;
-//    height: 60px;
-//    text-align: center;
-//    line-height: 65px;
-//    font-size: 2em;
-//    font-weight: bold;
-    
+.closeBox {    
     position: absolute;
     right: 0px;
     top: 0px;
@@ -156,6 +141,34 @@
     cursor: pointer;
 }
 
+progress {
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 20px;
+    padding: 2px;
+    border: 0 none;
+    background: $color-ground;
+    border-radius: 14px;
+    margin-top: 35px;
+}
+
+progress::-webkit-progress-bar {background: transparent;}
+
+progress::-webkit-progress-value {
+    background: #f1e741;
+    border-radius: 12px;
+}
+
+
+.scoreBar {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2em;
+}
 /* ******************************************************************** */
 /* SUCCES */
 /* ******************************************************************** */
@@ -182,4 +195,5 @@
 .interfaceGameOver {
     background-color: #712607;
     color: #f2f1d2;
+    z-index: 100000;
 }
