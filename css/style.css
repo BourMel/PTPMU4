@@ -1,169 +1,215 @@
 @charset "UTF-8";
-/* ******************************************************************** */
-/* VARIABLES */
-/* ******************************************************************** */
-/* import des partiels scss */
+
+/* Fichier venant styliser l'interface de jeu, notamment la page d'accueil */
+
 /* ******************************************************************** */
 /* GENERALES */
 /* ******************************************************************** */
+
+/* Ids définissent le succès ou la perte du jeu. S'affiche lorsque la partie prend fin = mort */
+
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i");
 #gameOver,
 #success {
-  display: none; }
+    display: none;
+}
 
 .interfaceAccueil,
 .interfaceSuccess,
 .interfaceGameOver {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  align-content: center; }
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+}
 
 #startGame,
 #success,
 #gameOver {
-  position: absolute;
-  width: 100%;
-  height: 100vh; }
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+}
+
 
 /* ******************************************************************** */
 /* ACCUEIL */
 /* ******************************************************************** */
+
 .interfaceAccueil {
-  background-color: #f2f1d2; }
+    background-color: #f2f1d2;
+}
 
 .accueilTitre {
-  margin-bottom: 100px; }
+    margin-bottom: 100px;
+}
 
 #butonPlay,
 #butonPlayAgain,
 #butonQuit {
-  width: 100%;
-  font-size: 3em;
-  /*    margin-top: -300px;*/ }
+    width: 100%;
+    font-size: 3em;
+    /*    margin-top: -300px;*/
+}
 
 #playArrow {
-  width: 100px; }
+    width: 100px;
+}
 
 #butonPlay:hover,
 #butonPlayAgain:hover,
 #butonQuit:hover,
 .icon:hover {
-  cursor: pointer; }
+    cursor: pointer;
+}
 
 .accueilIcones {
-  margin-left: 1em;
-  margin-bottom: 100px; }
+    margin-left: 1em;
+    margin-bottom: 100px;
+}
 
 .icon {
-  background-color: #36383a;
-  color: #f2f1d2;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-bottom: 0.5em;
-  font-size: 2em;
-  display: flex;
-  align-items: center;
-  justify-content: center; }
+    background-color: #36383a;
+    color: #f2f1d2;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-bottom: 0.5em;
+    font-size: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+/* A l'avenir, sons et bruitages seront insérés dans le jeu */
 .soundtrack {
-  position: fixed;
-  top: 800px;
-  right: 0px; }
+    position: fixed;
+    top: 800px;
+    right: 0px;
+}
 
+/* Formulaire de validation de pseudo */
 #pseudoForm {
-  text-align: center; }
+    text-align: center;
+}
 
+/* Menus sur l'accueil pour les crédits, les commandes, le formulaire pour le pseudo */
 #helpBox,
 #resultBox,
 #creditBox,
 #pseudoForm {
-  background-color: #DBD6B3;
-  padding: 30px;
-  z-index: 100;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 5px;
-  line-height: 1.5;
-  border: 20px solid #B8B396; }
+    background-color: #DBD6B3;
+    padding: 30px;
+    z-index: 100;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    line-height: 1.5;
+    border: 20px solid #B8B396;
+}
 
 #helpBox,
 #resultBox,
 #creditBox {
-  height: 800px;
-  width: 800px; }
+    height: 800px;
+    width: 800px;
+}
 
 #pseudoForm {
-  height: 400px;
-  width: 800px; }
+    height: 400px;
+    width: 800px;
+}
 
+/* Arrière plan à l'ouverture d'une popup */
 #grayBack {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: black;
-  z-index: 99;
-  opacity: 0.5; }
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 99;
+    opacity: 0.5;
+}
 
+/* Image permettant de fermer les options (sur l'accueil) */
 .closeBox {
-  position: absolute;
-  right: 0px;
-  top: 0px;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  text-align: center;
-  line-height: 60px;
-  font-size: 2em;
-  font-weight: bold; }
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    font-size: 2em;
+    font-weight: bold;
+}
 
 .closeBox img {
-  height: 40%; }
+    height: 40%;
+}
 
 .closeBox:hover {
-  cursor: pointer; }
+    cursor: pointer;
+}
+
 
 /* ******************************************************************** */
 /* SUCCES */
 /* ******************************************************************** */
+
 .interfaceSuccess {
-  background-color: #f1e741; }
+    background-color: #f1e741;
+}
 
 .interfaceBoutons {
-  width: 50%;
-  display: flex;
-  margin-top: 100px; }
+    width: 50%;
+    display: flex;
+    margin-top: 100px;
+}
 
 .interfaceScore {
-  width: 100%; }
+    width: 100%;
+}
+
 
 /* ******************************************************************** */
 /* GAME OVER */
 /* ******************************************************************** */
+
 .interfaceGameOver {
-  background-color: #712607;
-  color: #f2f1d2; }
+    background-color: #712607;
+    color: #f2f1d2;
+}
+
+
+/* Fichier venant stylisé l'ensemble du terrain */
 
 /* ******************************************************************** */
 /* FIELD */
 /* ******************************************************************** */
+
+
+/* Non affiché initalement, affiché lorsque on valide le pseudo */
 div[id^=field] {
-  display: none;
-  position: relative; }
+    display: none;
+    position: relative;
+}
 
 .item {
-  z-index: 10;
-  background-image: url(../images/item.png);
-  animation: bounce 0.9s ease-out infinite alternate; }
+    z-index: 10;
+    background-image: url(../images/item.png);
+    animation: bounce 0.9s ease-out infinite alternate;
+}
 
+
+/* Tous les éléments du jeu sont positionnés en absolute et leur position est définie dans les boucles au moment de leur création */
 #helpBox,
 #resultBox,
 #creditBox,
@@ -176,8 +222,11 @@ div[id^=hero],
 .piege,
 .bosse,
 .item {
-  position: absolute; }
+    position: absolute;
+}
 
+
+/* Hauteur à 50px et largeur à 70px */
 div[id^=hero],
 .platform,
 .ennemy,
@@ -186,8 +235,9 @@ div[id^=hero],
 .piege,
 .bosse,
 .item {
-  height: 50px;
-  width: 70px; }
+    height: 50px;
+    width: 70px;
+}
 
 #helpBox,
 #resultBox,
@@ -195,52 +245,77 @@ div[id^=hero],
 #pseudoForm,
 .platform,
 div[id^=hero] {
-  display: none; }
+    display: none;
+}
 
 .sol,
 .bosse {
-  background-color: #36383a; }
+    background-color: #36383a;
+}
 
 .piege {
-  background-image: url(../images/trap-01.png);
-  background-size: cover; }
+    background-image: url(../images/trap-01.png);
+    background-size: cover;
+}
 
 .bosse {
-  border-radius: 4px 4px 0 0;
-  z-index: 15; }
+    border-radius: 4px 4px 0 0;
+    z-index: 15;
+}
 
 #score {
-  font-size: 3em; }
+    font-size: 3em;
+}
+
+
+/* Animation utilisée pour les items */
 
 @keyframes bounce {
-  0% {
-    transform: translateY(0%); }
-  100% {
-    transform: translateY(-20px); } }
+    0% {
+        transform: translateY(0%);
+    }
+    100% {
+        transform: translateY(-20px);
+    }
+}
+
+
 /* ******************************************************************** */
-/* HERO + ENNEMY*/
+/* HERO + ENNEMY */
 /* ******************************************************************** */
+
 div[id^=hero] {
-  background-color: #36383a;
-  border: 1px solid red;
-  z-index: 20;
-  /* a affiner : permet chute progressive mais pas tres net
-  transition:all 1000ms linear; */ }
+    background-color: #36383a;
+    border: 1px solid red;
+    z-index: 20;
+    /* a affiner : permet chute progressive mais pas tres net
+  transition:all 1000ms linear; */
+}
 
 .ennemy {
-  background-color: black;
-  z-index: 10; }
+    background-color: black;
+    z-index: 10;
+}
+
 
 /* ******************************************************************** */
 /* PLATEFORME */
 /* ******************************************************************** */
-.platform {
-  display: block;
-  background-color: #36383a;
-  z-index: 10; }
 
-/*debug*/
-/*.air::after {
+.platform {
+    display: block;
+    background-color: #36383a;
+    z-index: 10;
+}
+
+
+/* ******************************************************************** */
+/* DEBUG */
+/* ******************************************************************** */
+
+
+/*
+.air::after {
     content:"0";
     display:block;
 }
@@ -275,99 +350,123 @@ div[id^=hero] {
     color:white;
 }
 */
+
+
 /* ******************************************************************** */
 /* TYPOS */
 /* ******************************************************************** */
+
 h1,
 #butonPlay,
 #butonPlayAgain,
 #butonQuit {
-  font-family: Beauty and the Beast; }
+    font-family: Beauty and the Beast;
+}
 
 #butonPseudo,
 input {
-  font-family: Source Sans Pro;
-  font-size: 1.5em; }
+    font-family: Source Sans Pro;
+    font-size: 1.5em;
+}
 
 h1 {
-  font-size: 8em;
-  letter-spacing: 10px; }
+    font-size: 8em;
+    letter-spacing: 10px;
+}
 
 .interfaceGameOver h1,
 .interfaceSuccess h1 {
-  margin-bottom: 100px; }
+    margin-bottom: 100px;
+}
 
 .accueilTitre h1 {
-  padding: 0.5em;
-  background-image: url(../images/wirecadre-01.svg);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center; }
+    padding: 0.5em;
+    background-image: url(../images/wirecadre-01.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 
 .texte {
-  font-size: 2em;
-  letter-spacing: 7px;
-  margin-top: 5px; }
+    font-size: 2em;
+    letter-spacing: 7px;
+    margin-top: 5px;
+}
 
 #butonPseudo {
-  background-color: #067567;
-  color: #f2f1d2;
-  border: none;
-  height: 60px;
-  border-radius: 5px;
-  width: 80%;
-  margin-top: 20px; }
+    background-color: #067567;
+    color: #f2f1d2;
+    border: none;
+    height: 60px;
+    border-radius: 5px;
+    width: 80%;
+    margin-top: 20px;
+}
 
 input {
-  width: 80%;
-  height: 60px;
-  border: none;
-  padding: 15px;
-  border-radius: 5px;
-  opacity: 0.6;
-  text-align: center;
-  margin-top: 60px; }
+    width: 80%;
+    height: 60px;
+    border: none;
+    padding: 15px;
+    border-radius: 5px;
+    opacity: 0.6;
+    text-align: center;
+    margin-top: 60px;
+}
 
 input:focus,
 #butonPseudo:hover {
-  outline: none;
-  transition: 1s;
-  letter-spacing: 2px; }
+    outline: none;
+    transition: 1s;
+    letter-spacing: 2px;
+}
 
 input:focus {
-  opacity: 1; }
+    opacity: 1;
+}
 
 #butonPseudo:hover {
-  cursor: pointer; }
+    cursor: pointer;
+}
 
 #formError {
-  color: darkred;
-  font-weight: bold; }
+    color: darkred;
+    font-weight: bold;
+}
+
 
 /* ******************************************************************** */
 /* UTILITAIRES */
 /* ******************************************************************** */
+
 @font-face {
-  font-family: Beauty and the Beast;
-  src: url(../fontes/beauty_and_the_beast_sample-webfont.ttf);
-  src: url(../fontes/beauty_and_the_beast_sample-webfont.woff);
-  src: url(../fontes/beauty_and_the_beast_sample-webfont.woff2); }
+    font-family: Beauty and the Beast;
+    src: url(../fontes/beauty_and_the_beast_sample-webfont.ttf);
+    src: url(../fontes/beauty_and_the_beast_sample-webfont.woff);
+    src: url(../fontes/beauty_and_the_beast_sample-webfont.woff2);
+}
+
+
 /* ******************************************************************** */
 /* GENERALES */
 /* ******************************************************************** */
+
 *,
 *:after,
 *:before {
-  box-sizing: border-box; }
+    box-sizing: border-box;
+}
 
 body {
-  width: 100%;
-  height: 100vh;
-  font-family: Source Sans Pro;
-  overflow: hidden;
-  background: #bce579;
-  color: #36383a;
-  /* pour les navigateurs qui ne supportent pas les d├®grades */
-  background: linear-gradient(-5deg, #067567, #bce579); }
+    width: 100%;
+    height: 100vh;
+    font-family: Source Sans Pro;
+    overflow: hidden;
+    background: #bce579;
+    color: #36383a;
+    /* pour les navigateurs qui ne supportent pas les dégrades */
+    background: linear-gradient(-5deg, #067567, #bce579);
+}
+
 
 /*# sourceMappingURL=style.css.map */

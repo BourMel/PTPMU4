@@ -1,6 +1,10 @@
+/* Fichier venant styliser l'interface de jeu, notamment la page d'accueil */
+
 /* ******************************************************************** */
 /* GENERALES */
 /* ******************************************************************** */
+
+/* Ids définissent le succès ou la perte du jeu. S'affiche lorsque la partie prend fin = mort */
 #gameOver,
 #success {
     display: none;
@@ -31,12 +35,10 @@
 /* ACCUEIL */
 /* ******************************************************************** */
 
-.interfaceAccueil {
-    background-color: #f2f1d2;
+.interfaceAccueil {background-color: #f2f1d2;
 }
 
-.accueilTitre {
-    margin-bottom: 100px;
+.accueilTitre {margin-bottom: 100px;
 }
 
 #butonPlay,
@@ -47,8 +49,7 @@
     /*    margin-top: -300px;*/
 }
 
-#playArrow {
-    width: 100px;
+#playArrow {width: 100px;
 }
 
 #butonPlay:hover,
@@ -76,16 +77,19 @@
     justify-content: center;
 }
 
+/* A l'avenir, sons et bruitages seront insérés dans le jeu */
 .soundtrack {
     position: fixed;
     top: 800px;
     right: 0px;
 }
 
+/* Formulaire de validation de pseudo */
 #pseudoForm {
     text-align: center;
 }
 
+/* Menus sur l'accueil pour les crédits, les commandes, le formulaire pour le pseudo */
 #helpBox,
 #resultBox,
 #creditBox,
@@ -113,6 +117,7 @@
     width: 800px; //75%
 }
 
+/* Arrière plan à l'ouverture d'une popup */
 #grayBack {
      position: fixed;
      top: 0;
@@ -124,6 +129,7 @@
      opacity: 0.5;
 }
 
+/* Image permettant de fermer les options (sur l'accueil) */
 .closeBox {
 //    position: absolute;
 //    left: 740px;
