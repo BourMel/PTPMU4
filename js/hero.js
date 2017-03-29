@@ -127,22 +127,26 @@ Hero.prototype.move = function(direction) {
     this.field.writeBlock(this.y, this.x, 0);
 
     switch(direction) {
-        case 1: // gauche  //document.getElementById("hero").style.backgroundColor = "yellow";
+        case 1: // gauche
+            //document.getElementById("hero").style.backgroundColor = "yellow";
             if (this.x > 0) {
                 this.x -= 1;
             }
             break;
-        case 2: // haut  //document.getElementById("hero").style.backgroundColor = "purple";
+        case 2: // haut
+            //document.getElementById("hero").style.backgroundColor = "purple";
             var nextY = this.y + 2;
             var lastY = this.y - 1;
             
             //si n'essaie pas de sauter à partir de l'air
+//            if ((this.field.checkBloc(lastY, this.x) != 6) && (this.field.checkBloc(nextY, this.x) != 0) && (this.field.checkBloc(nextY, this.x) == 6)) {
             if ((this.field.checkBloc(lastY, this.x) != 6) && (this.field.checkBloc(nextY, this.x) != 0)) {
                 this.y -= 1;
             }
             
             break;
-        case 3: // droite  //document.getElementById("hero").style.backgroundColor = "green";
+        case 3: // droite
+            //document.getElementById("hero").style.backgroundColor = "green";
             this.x += 1;
             var nextX = this.x + 1;
             

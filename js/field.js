@@ -152,6 +152,8 @@ Field.prototype.move = function(direction, heroX, heroY) {
     var leftToHero = heroX-1;
     var rightToHero = heroX+1;
     var didMove;
+//    heroX.move(direction);
+//    console.log(heroX.victoire);
     
     //si item
     if(direction==1 && this.checkBloc(heroY, leftToHero)==7 || direction==3 && this.checkBloc(heroY, rightToHero)==7) {
@@ -172,6 +174,8 @@ Field.prototype.move = function(direction, heroX, heroY) {
     }
     
     else if (direction==1 && this.checkBloc(heroY, leftToHero)==0 || direction==3 && this.checkBloc(heroY, rightToHero)==0) {
+//        console.log(heroX.victoire);
+        
         switch(direction) {
             case 1: //gauche
                 if (heroX > 0) {
@@ -179,11 +183,10 @@ Field.prototype.move = function(direction, heroX, heroY) {
                 }
                 break;
             case 3: //droite
-//                if (heroX.victoire == true) {
-//                    console.log("Gagné");
-//                }
-                console.log(heroX);
-                this.positionX -= 1;
+                if (heroX < (this.width - 1)) {
+                    console.log("Hey man");
+                    this.positionX -= 1;
+                }
                 break;
         }
 
