@@ -1,9 +1,16 @@
-function Ennemy (id, y, life, field) {
+/**
+ * Classe Ennemy : permet de générer des ennemis
+ * @param id : permet de choisir les id des ennemis en fonction du nombre de parties jouées
+ * @param field : permet d'utiliser les fonctions du terrain quel qu'il soit
+ * @constructor
+ */
+
+function Ennemy (id, field) {
     this.id     = "game" + nbrGame + id;
-    this.life   = life;
+    this.life   = 1;
     this.field  = field;
     this.x      = Math.floor(Math.random() * this.field.width);
-    this.y      = y;
+    this.y      = 0;
 
     var fieldHTML = document.getElementById(this.field.id);
     var ennemy = document.createElement("div");
@@ -12,33 +19,33 @@ function Ennemy (id, y, life, field) {
     fieldHTML.appendChild(ennemy);
 }
 
-//affiche l'ennemi, appelé dans init() (main.js) et par controls.js
+/* ****************************** METHODES ****************************** */
+/* *********************************************************************** */
+
+/*Affichage de l'ennemi
+* Appelé dans main.js (fonction init() et dans controls.js*/
 Ennemy.prototype.display = function () {
     var HTMLennemy = document.getElementById(this.id);
     HTMLennemy.style.top = (this.y*50) + "px";
     HTMLennemy.style.left = ((this.x)*70) + "px";
-}
+};
 
-//lui fait trouver le sol
+/*Fait tomber l'ennemi jusqu'au sol, retourne False en cas de chute hors terrain*/
 Ennemy.prototype.findGround = function () {
     var nextY = this.y + 1;
-    //on situe x par rapport au tableau
-    var actualX = this.x;
 
-    //ennemi directement placé sur le sol
-    while(this.field.checkBloc(nextY, actualX) == 0) {
+    while(this.field.checkBloc(nextY, this.x) == 0) {
         this.y += 1;
         nextY += 1;
-        
-        //si dépasse limites du terrain
+
         if (this.y > this.field.height) {
             this.life = 0;
             return false;
         }
     }
-}
+};
 
-//si plus de vie, return false
+/*Permet de détecter qu'un ennemi est mort*/
 Ennemy.prototype.checkLife = function () {
     if(this.life == 0) {
         var HTMLennemy = document.getElementById(this.id);
@@ -47,27 +54,22 @@ Ennemy.prototype.checkLife = function () {
     } else {
         return true;
     }
-}
+};
 
+/*Déplacement aléatoire des ennemis, lecture et écriture des cases*/
 Ennemy.prototype.move = function () {
-    //vérifie état du sol à la prochaine case    
     if(Math.random()<0.5) {
-        //si la voie est libre
         if((this.field.checkBloc(this.y, this.x-1) == 0) && (this.field.checkBloc(this.y+1, this.x-1) ==1)) {
-            //la case quittée est libre
             this.field.writeBlock(this.y, this.x, 0);
             this.x -=1;
         }
     } else if ((Math.random()>0.5)) {
-        //si la voie est libre
         if((this.field.checkBloc(this.y, this.x+1) == 0) && (this.field.checkBloc(this.y+1, this.x+1) ==1)) {
-            //la case quittée est libre
             this.field.writeBlock(this.y, this.x, 0);
             this.x +=1;
         }
     }
 
-    //annonce la case active comme étant occupée
     this.field.writeBlock(this.y, this.x, 4);
     this.display();
-}
+};
