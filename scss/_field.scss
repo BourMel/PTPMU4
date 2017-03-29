@@ -1,7 +1,10 @@
+/* Fichier venant stylisé l'ensemble du terrain */
+
 /* ******************************************************************** */
 /* FIELD */
 /* ******************************************************************** */
 
+/* Non affiché initalement, affiché lorsque on valide le pseudo */
 div[id^=field] {
     display: $display-none;
     position: relative;
@@ -13,6 +16,7 @@ div[id^=field] {
     animation: bounce 0.9s ease-out infinite alternate;
 }
 
+/* Tous les éléments du jeu sont positionnés en absolute et leur position est définie dans les boucles au moment de leur création */
 #helpBox,
 #resultBox,
 #creditBox,
@@ -29,6 +33,7 @@ div[id^=hero],
     position: absolute;
 }
 
+/* Hauteur à 50px et largeur à 70px */
 div[id^=hero],
 .platform,
 .ennemy,
@@ -50,7 +55,6 @@ div[id^=hero]{
     display: $display-none;
 }
 
-
 .sol,
 .bosse {
     background-color: $color-ground;
@@ -70,6 +74,7 @@ div[id^=hero]{
     font-size: 3em;
 }
 
+/* Animation utilisée pour les items */
 @keyframes bounce {
     0% {
         transform: translateY(0%);
@@ -81,7 +86,7 @@ div[id^=hero]{
 
 
 /* ******************************************************************** */
-/* HERO + ENNEMY*/
+/* HERO + ENNEMY */
 /* ******************************************************************** */
 
 div[id^=hero] {
@@ -102,7 +107,6 @@ div[id^=hero] {
 /* PLATEFORME */
 /* ******************************************************************** */
 
-
 .platform {
     display: block;
     background-color: $color-ground;
@@ -110,12 +114,12 @@ div[id^=hero] {
 }
 
 
+/* ******************************************************************** */
+/* DEBUG */
+/* ******************************************************************** */
 
-
-/*debug*/
-
-
-/*.air::after {
+/*
+.air::after {
     content:"0";
     display:block;
 }

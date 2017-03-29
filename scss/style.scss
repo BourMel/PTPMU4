@@ -7,7 +7,7 @@ $square-width: 70px;
 $display-none: none;
 $color-ground: #36383a;
 
-/* import des partiels scss */
+//  import des partiels scss
 @import "variables.scss";
 @import "interfaces.scss";
 @import "field.scss";
@@ -29,6 +29,7 @@ $color-ground: #36383a;
 /* ******************************************************************** */
 /* GENERALES */
 /* ******************************************************************** */
+
 *,
 *:after,
 *:before {
