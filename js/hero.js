@@ -23,6 +23,7 @@ function Hero (id, life, field) {
     //score
     var score = document.createElement("div");
     score.setAttribute("id", "score" + nbrGame);
+    score.setAttribute("class", "scoreBar");
     score.innerHTML = this.score;
     document.body.appendChild(score);
 }
