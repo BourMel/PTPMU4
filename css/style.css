@@ -370,4 +370,33 @@ body {
   /* pour les navigateurs qui ne supportent pas les d├®grades */
   background: linear-gradient(-5deg, #067567, #bce579); }
 
+progress {
+  display: block;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 20px;
+  padding: 2px;
+  border: 0 none;
+  background: #36383a;
+  border-radius: 14px;
+  margin-top: 35px; }
+
+/* une m├®thode pour ne cibler que Chrome */
+/* on enl├¿ve le fond de cet ├®l├®ment suppl├®mentaire */
+progress::-webkit-progress-bar {
+  background: transparent; }
+
+/* on applique les m├¬mes styles que sur ::-moz-progress-bar */
+progress::-webkit-progress-value {
+  background: #f1e741;
+  border-radius: 12px; }
+
+.scoreBar {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2em; }
+
 /*# sourceMappingURL=style.css.map */
