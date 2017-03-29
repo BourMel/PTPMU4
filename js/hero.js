@@ -1,13 +1,12 @@
 function Hero (id, life, field) {
-    this.id     = id;
-    this.x      = 0;
-    this.y      = 0;
-    this.speedY = 3;
-    this.life   = life;
-    this.score  = 0;
-    this.field  = field;
-    this.platform = platform;
-    this.victoire = false;
+    this.id         = id;
+    this.x          = 0;
+    this.y          = 0;
+    this.speedY     = 3;
+    this.life       = life;
+    this.score      = 0;
+    this.field      = field;
+    this.platform   = platform;
 
     //heros
     var hero = document.createElement("div");
@@ -151,19 +150,18 @@ Hero.prototype.move = function(direction) {
             var nextX = this.x + 1;
             
             if (nextX >= widthField) {
-                this.victoire = true;
+                console.log("Helllo");
             }
             
             break;
-        case 4: // bas  //document.getElementById("hero").style.backgroundColor = "blue";
+        case 4: // bas
+            //document.getElementById("hero").style.backgroundColor = "blue";
             break;
     }
 
     //annonce la case active comme étant occupée
     this.field.writeBlock(this.y, this.x, 5);
     this.display();
-    
-    return this.victoire;
 }
 
 Hero.prototype.checkLife = function() {
