@@ -31,7 +31,7 @@ var idHero = "hero"; //impact dans le css
 var heroLife = 100;
 
 //ennemis
-var nbrEnnemy = 10;
+var nbrEnnemy = 5;
 // var ennemyLife = 100;
 
 //items à collecter
