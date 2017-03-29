@@ -72,7 +72,6 @@ Hero.prototype.findGround = function () { //retourne vrai ou faux, function anim
         this.field.writeBlock(this.y, this.x, 5);
 
         for(var c = 0 ; c < tabItems.length ; c++) {
-            // console.log("je suis dedans");
             tabItems[c].checkLife();
         }
 
@@ -148,10 +147,6 @@ Hero.prototype.move = function(direction) {
             //document.getElementById("hero").style.backgroundColor = "green";
             this.x += 1;
             var nextX = this.x + 1;
-            
-            if (nextX >= widthField) {
-                console.log("Helllo");
-            }
             
             break;
         case 4: // bas
