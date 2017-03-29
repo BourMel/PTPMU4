@@ -7,33 +7,24 @@
     <title>WireFox</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <!-- Place favicon.ico in the root directory -->
+    <link rel="icon" type="image/png" href="./images/favicon.png"/>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css.map">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-
-<!--    <audio loop controls class="soundtrack">
-        <source src="sounds/soundtrack.ogg" type="audio/ogg">
-        <source src="sounds/soundtrack.mp2" type="audio/mpeg">
-        Your browser does not support the audio tag.
-    </audio>-->
-   
-   <!--Formulaire pour pseudo-->
+    <!--Formulaire pour pseudo-->
     <form id="pseudoForm">
         <input id="pseudoInput" placeholder="Entrez votre pseudo...">
         <button id="butonPseudo" type="submit">Valider</button>
         <p id="formError"></p>
         <div class="closeBox">
-         <img src="images/closeBox.svg"/>
-         </div>
-         
+            <img src="images/closeBox.svg"/>
+        </div>
     </form>
-    
-   <!-- interface Accueil -->
+
+    <!-- interface Accueil -->
     <div id="startGame">
         <div class="interfaceAccueil">
             <div class="accueilTitre">
@@ -49,38 +40,36 @@
                 <p>Play</p>
                 <img id="playArrow" src="images/arrow-black.svg"/>
             </div>
-            
         </div>
-      </div> 
-    
-    
+    </div>
+
     <div id="helpBox">
         <div class="closeBox">
-         <img src="images/closeBox.svg"/>
-         </div>
-          <p>But du jeu</p>
-          <p>Commandes</p>
-      </div>
+            <img src="images/closeBox.svg"/>
+        </div>
+        <p>But du jeu</p>
+        <p>Commandes</p>
+    </div>
 
-      <div id="resultBox">
-         <div class="closeBox">
-         <img src="images/closeBox.svg"/>
-         </div>
-          <p>meilleurs scores</p>
-          <div id="listeScores"></div>
-      </div>
+    <div id="resultBox">
+        <div class="closeBox">
+            <img src="images/closeBox.svg"/>
+        </div>
+        <p>meilleurs scores</p>
+        <div id="listeScores"></div>
+    </div>
 
-      <div id="creditBox">
-         <div class="closeBox">
-         <img src="images/closeBox.svg"/>
-         </div>
-          <p>Méline Bour-Lang</p>
-          <p>Sophie Candel</p>
-          <p>Marie-Lou Wechsler</p>
-      </div>
+    <div id="creditBox">
+        <div class="closeBox">
+            <img src="images/closeBox.svg"/>
+        </div>
+        <p>Méline Bour-Lang</p>
+        <p>Sophie Candel</p>
+        <p>Marie-Lou Wechsler</p>
+    </div>
 
     <!-- interface Succès -->
-     <div id="success">
+    <div id="success">
         <div class="interfaceSuccess">
             <h1>Félicitations !</h1>
             <div class="interfaceScore">
@@ -93,10 +82,10 @@
                 </div>
                 <div id="butonQuit">
                     <p>Quitter</p>
-                </div> 
+                </div>
             </div>
-        </div>  
-     </div>  
+        </div>
+    </div>
 
     <!-- interface Game Over -->
     <div id="gameOver">
@@ -112,23 +101,17 @@
                 </div>
                 <div id="butonQuit">
                     <p>Quitter</p>
-                </div> 
+                </div>
             </div>
-        </div>  
-     </div> 
-     
-     
+        </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
-    <!--A mettre dans un ordre logique /!\-->
     <script src="js/field.js"></script>
-    <!--Hero.js utilise field.js-->
     <script src="js/hero.js"></script>
     <script src="js/ennemy.js"></script>
     <script src="js/item.js"></script>
-    <!-- Platform.js va appeller une fonctionnalité de hero (saut) -->
     <script src="js/controls.js"></script>
-    <!--Gère l'initialisation du jeu et les interfaces-->
     <script src="js/main.js"></script>
 </body>
-
 </html>

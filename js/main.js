@@ -1,16 +1,24 @@
+/**
+ * Mise en place du jeu, gestion des interfaces et des différentes parties
+ * (Game Over, Envoi des scores vers les fichiers PHP...)
+ */
+
+// ------------------------- //
+// Déclaration des variables //
+// ------------------------- //
+
 var game;
 var fox;
 var ennemy;
 var item;
-
 var platform;
 var tabEnnemy = new Array();
 var tabItems = new Array();
 var nbrGame;
 
-// ---------------------------------------------------------------- //
-// DONNEES DU JEU - à modifier selon niveau de difficulté recherché //
-// ---------------------------------------------------------------- //
+// ---------------//
+// DONNEES DU JEU //
+// ------------- //
 
 //terrain
 var idField = "field"; //impact dans le css
@@ -23,36 +31,38 @@ var idHero = "hero"; //impact dans le css
 var heroLife = 100;
 
 //ennemis
-var nbrEnnemy = 10; //peut être réduit s'ils tombent dans des trous
-var ennemyLife = 100;
+var nbrEnnemy = 10;
+// var ennemyLife = 100;
 
-//items
+//items à collecter
 var nbrItem = 10;
-var itemLife = 100;
+// var itemLife = 100;
 
 
 // ---------------------------------------------------------------- //
 // INITIALISATION DU JEU //
 // ---------------------------------------------------------------- //
 function init(nbrGame) {
-    //si ce n'est pas la première partie
+    // ---------------//
+    // ---GAME OVER--- //
+    // ------------- //
     if(nbrGame != 0) {
-        //GESTION DU GAME OVER
+        //INTERFACE
         $('#gameOver').show();
         $('#gameOver .texte .data').html(fox.score);
+
+        //BASE DE DONNEES
         $.ajax({
-            //exécution d'une requête AJAX vers score.php
             url: "./php/score.php",
-            //recevoir données
             data:{
                 action:"sendScore",
                 pseudo: document.getElementById("pseudoInput").value,
-                score:fox.score,
+                score:fox.score
             },
             dataType: "json"
         });
 
-        //GESTION DE LA NOUVELLE PARTIE
+        //SUPPRESSION DES ANCIENS OBJETS
         oldGame = nbrGame - 1;
 
         oldField = document.getElementById(idField + oldGame);
@@ -60,12 +70,10 @@ function init(nbrGame) {
         oldScore = document.getElementById("score" + oldGame);
         oldLife = document.getElementById("lifeBar" + oldGame);
 
-        /*vide le terrain avant de le supprimer*/
         while (oldField.firstChild) {
             oldField.removeChild(oldField.firstChild);
         }
 
-        /*vide les tableaux*/
         tabEnnemy = new Array();
         tabItems = new Array();
 
@@ -75,22 +83,19 @@ function init(nbrGame) {
         document.body.removeChild(oldLife);
     }
 
-    //créé un nouveau terrain
+    // ---------------//
+    // ---NEW GAME--- //
+    // ------------- //
+
     game = new Field(idField + nbrGame, heightField, widthField, heightGround);
     game.display();
 
-    //créé de nouvelles plateformes aériennes
-    // platform = new Platform(game);
-    // platform.display();
-
-    //créer le héros
     fox = new Hero (idHero + nbrGame, heroLife, game);
     fox.display();
     fox.findGround();
 
-    //crée un tableau d'ennemis
     for(var i = 0 ; i < nbrEnnemy+1; i++) {
-        ennemy = new Ennemy ("ennemy"+i, 0, ennemyLife, game);
+        ennemy = new Ennemy ("ennemy"+i, game);
         ennemy.findGround();
         if(ennemy.checkLife()) {
             ennemy.display();
@@ -98,58 +103,53 @@ function init(nbrGame) {
         }
     }
 
-    //créé de nouveaux items à collectionner
     for(var i = 0 ; i < nbrItem+1 ; i++) {
-        var item = new Item ("item"+i, widthField, 0, itemLife, game);
+        var item = new Item ("item"+i, game);
         item.findGround();
         if(item.checkLife()) {
             item.display();
             tabItems.push(item);
         }
     }
-    
-    for(var b = 0 ; b < tabItems.length ; b++) {
+
+    for(var b=0 ; b<tabItems.length ; b++) {
         tabItems[b].move();
     }
 
-    //chute au début du jeu
     intervalAnim = setInterval(anim, 1000);
 }
 
-//la fonction, quand elle est appelée, active la chute du personnage
-//c'est la seule fonction à être active sans action du joueur
+// ---------------//
+// ---ANIMATION-- //
+// ------------- //
 function anim () {
-    //nommé comme variable pour pouvoir être utilisé dans controls.js
-    //var progressivFall =
+    //à chaque instant...
+
     fox.findGround();
     fox.findEnnemy();
-//    fox.findItem();
     fox.display();
 
-    //GAME OVER
     if(fox.checkLife() == false) {
         fox.score = fox.score + fox.x*10; //score final
 
-        //possibilité de remplacer par interface
         nbrGame ++;
         clearInterval(intervalAnim);
         init(nbrGame);
     }
 
-    // console.log(tabEnnemy.length);
     for(var b = 0 ; b < tabEnnemy.length ; b++) {
-        // console.log("je suis dedans");
         tabEnnemy[b].move();
     }
 }
 
-
+//crée un intervalle sur le héros s'il subit des dégâts (hero.move/findGround)
 function blink () {
     var HTMLhero = document.getElementById(idHero + nbrGame);
     lostLife = setInterval(changeColor(HTMLhero), 100);
     HTMLhero.style.backgroundColor = "#36383a";
 }
 
+//l'intervalle appelle une fonction qui fait clignoter le héros
 function changeColor(HTMLhero) {
     var nbrClignotements = 3;
 
@@ -166,28 +166,26 @@ function changeColor(HTMLhero) {
             clearInterval(lostLife);
         }
     }
-
-
 }
 
 // ---------------------------------------------------------------- //
-// DOCUMENT READY //
+//--------------------- AU CHARGEMENT DE LA PAGE------------------- //
 // ---------------------------------------------------------------- //
 
 $(document).ready(function(){
-    //INTERFACE
     formPseudo = document.getElementById("pseudoForm");
     resultBox = document.getElementById("resultBox");
-    
 
-    /* popups page d'accueil */
+    // ---------------//
+    // ---POPS UP--- //
+    // ------------- //
     var openButtons = $('.icon');
     openButtons.click(function() {
-    var cible = $(this).attr('id');
-    cible = "#" + cible + "Box";
-    $(cible).before('<div id="grayBack"></div>'); //création de la div d'arrière plan
-    $(cible).show();
-    $("#grayBack").css('opacity', 0.4).fadeTo('fast', 0.7, function () { $("cible").fadeIn(300); }); //apparition en fondu
+        var cible = $(this).attr('id');
+        cible = "#" + cible + "Box";
+        $(cible).before('<div id="grayBack"></div>'); //création de la div d'arrière plan
+        $(cible).show();
+        $("#grayBack").css('opacity', 0.4).fadeTo('fast', 0.7, function () { $("cible").fadeIn(300); });
     });
 
     var closeButtons = $('.closeBox');
@@ -196,7 +194,7 @@ $(document).ready(function(){
         $("#grayBack").fadeOut('fast', function () { $(this).remove() });
     });
 
-
+    //REQUETE AJAX POUR AFFICHER LES SCORES
     document.getElementById("result").addEventListener("click", function() {
         $.ajax({
             url: "./php/score.php",
@@ -215,11 +213,14 @@ $(document).ready(function(){
     });
 
     document.getElementById("butonPlay").addEventListener("click", function() {
-        $(formPseudo).before('<div id="grayBack"></div>'); 
+        $(formPseudo).before('<div id="grayBack"></div>');
         $(formPseudo).show();
-        $("#grayBack").css('opacity', 0.4).fadeTo('fast', 0.7, function () { $(formPseudo).fadeIn(300); }); 
+        $("#grayBack").css('opacity', 0.4).fadeTo('fast', 0.7, function () { $(formPseudo).fadeIn(300); });
     });
-    
+
+    // ----------------------------//
+    // ---INITIALISATION DU JEU--- //
+    // -------------------------- //
     document.getElementById("butonPseudo").addEventListener("click", function() {
         if (document.getElementById("pseudoInput").value == "") {
             document.getElementById("formError").innerHTML = "vous n'avez pas entré de pseudo...";
@@ -238,19 +239,13 @@ $(document).ready(function(){
             $("#hero" + nbrGame).show();
             $("#field" + nbrGame).show();
             return true;
-        }  
-            
+        }
     });
-
-    
-    
 
     formPseudo.addEventListener("submit", function (e) {
         e.preventDefault();
     });
 
-    //changé car le clic n'était pas détecté
-    //document.getElementById("butonPlayAgain").addEventListener("click", function() {
     document.getElementById("gameOver").addEventListener("click", function() {
         $("#gameOver").hide();
         $("#hero" + nbrGame).show();
@@ -261,18 +256,4 @@ $(document).ready(function(){
         $("#success").hide();
     });
 });
-
-
-/*function initGame(event) {
- var game = new Field(10, 80, 4, 0);
- game.display();
- }
-
- var bouton = document.getElementById("butonPlay");
- bouton.addEventListener("click", initGame);*/
-
-
-//$("#butonPlay").click(function(){
-//    console.log("The paragraph was clicked.");
-//});
 

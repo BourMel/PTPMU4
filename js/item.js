@@ -1,49 +1,52 @@
-//maxX prend pour valeur la longueur du terrain
-function Item (id, maxX, y, life, field) {
-    this.id     = "game" + nbrGame + id;
-    this.x      = Math.floor(Math.random()*maxX);
-    this.y      = y;
-    this.life   = life;
-    this.field  = field;
+/**
+ *Classe Item : permet de générer des items à collecter (gain de points)
+ * @param id : permet de choisir les id des ennemis en fonction du nombre de parties jouées
+ * @param field : permet d'utiliser les fonctions du terrain quel qu'il soit
+ * @constructor
+ */
 
-    var field = document.getElementById("field" + nbrGame);
-    var item = document.createElement("div"); //créé une div qui s'appelle item
+function Item (id, field) {
+    this.id     = "game" + nbrGame + id;
+    this.field  = field;
+    this.x      = Math.floor(Math.random()*this.field.width);
+    this.y      = 0;
+    this.life   = 1;
+
+    var fieldHTML = document.getElementById("field" + nbrGame);
+    var item = document.createElement("div");
     item.setAttribute("class", "item");
     item.setAttribute("id", this.id);
-    field.appendChild(item); //ajoute la div au terrain
+    fieldHTML.appendChild(item);
 }
 
-//affiche l'item, appelé dans init() (main.js) et par controls.js
+/* ****************************** METHODES ****************************** */
+/* *********************************************************************** */
+
+/*Affichage de l'item
+ * Appelé dans main.js (fonction init() et dans controls.js*/
 Item.prototype.display = function () {
     var HTMLitem = document.getElementById(this.id);
     HTMLitem.style.top = (this.y*50) + "px";
-    //prend en compte le déplacement du terrain
     HTMLitem.style.left = ((this.x + this.field.positionX)*70) + "px";
-}
+};
 
-//lui fait trouver le sol
+/*Fait tomber l'item jusqu'au sol, retourne False en cas de chute hors terrain*/
 Item.prototype.findGround = function () {
     var nextY = this.y + 1;
-    //on situe x par rapport au tableau
-    var actualX = this.x;
 
-    //item directement placé sur le sol
-    while(this.field.checkBloc(nextY, actualX) == 0) {
+    while(this.field.checkBloc(nextY, this.x) == 0) {
         this.y += 1;
         nextY += 1;
-        
-        //si dépasse limites du terrain enlève la vie
+
         if (this.y > this.field.height) {
             this.life = 0;
             return false;
         }
     }
-}
+};
 
-//si il n'a plus de vie, l'item disparaît
+/*Permet de détecter qu'un item est "mort"*/
 Item.prototype.checkLife = function () {
-//    console.log(this.field.checkBloc(this.y, this.x));
-
     if((this.field.checkBloc(this.y, this.x) == 5) || (this.life ==0)) {
         var HTMLitem = document.getElementById(this.id);
         HTMLitem.parentNode.removeChild(HTMLitem);
@@ -51,14 +54,10 @@ Item.prototype.checkLife = function () {
     } else {
         return true;
     }
-}
+};
 
-
-
-
+/*annonce la case active comme étant occupée*/
 Item.prototype.move = function () {
-    //annonce la case active comme étant occupée
     this.field.writeBlock(this.y, this.x, 7);
     this.display();
-    /*console.log("item");*/
-}
+};
