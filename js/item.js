@@ -42,7 +42,7 @@ Item.prototype.findGround = function () {
 
 //si il n'a plus de vie, l'item disparaît
 Item.prototype.checkLife = function () {
-    console.log(this.field.checkBloc(this.y, this.x));
+//    console.log(this.field.checkBloc(this.y, this.x));
 
     if((this.field.checkBloc(this.y, this.x) == 5) || (this.life ==0)) {
         var HTMLitem = document.getElementById(this.id);

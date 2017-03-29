@@ -134,7 +134,9 @@ Hero.prototype.move = function(direction) {
     switch(direction) {
         case 1: // Si direction gauche, alors change couleur de fond
             //document.getElementById("hero").style.backgroundColor = "yellow";
-            this.x -= 1;
+            if (this.x > 0) {
+                this.x -= 1;
+            }
             break;
         case 2: // Si direction haut, alors change couleur de fond
             //document.getElementById("hero").style.backgroundColor = "purple";
